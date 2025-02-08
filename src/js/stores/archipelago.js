@@ -35,10 +35,10 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 
 	const connectionInfos = reactive({
 		// protocol: 'wss',
-		hostname: 'localhost', // Replace with the actual AP server hostname.
-		port: 38281, // Replace with the actual AP server port.
+		hostname: localStorage.getItem('ap.hostname'), // Replace with the actual AP server hostname.
+		port: parseInt(localStorage.getItem('ap.port')), // Replace with the actual AP server port.
 		game: 'Paper Mario', // Replace with the game name for this player.
-		name: '', // Replace with the player slot name.
+		name: localStorage.getItem('ap.name'), // Replace with the player slot name.
 		items_handling: ITEMS_HANDLING_FLAGS.REMOTE_ALL,
 		tags: [COMMON_TAGS.TRACKER],
 		version: {
@@ -49,6 +49,30 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 		password: '',
 		yaml: null
 	});
+
+	watch(
+		() => connectionInfos.hostname,
+		(newValue, oldValue) => {
+			//save to local storage
+			localStorage.setItem('ap.hostname', newValue);
+		}
+	);
+
+	watch(
+		() => connectionInfos.port,
+		(newValue, oldValue) => {
+			//save to local storage
+			localStorage.setItem('ap.port', newValue);
+		}
+	);
+
+	watch(
+		() => connectionInfos.name,
+		(newValue, oldValue) => {
+			//save to local storage
+			localStorage.setItem('ap.name', newValue);
+		}
+	);
 
 	const setYaml = (htmlEvent) => {
 		const file = htmlEvent.target.files;

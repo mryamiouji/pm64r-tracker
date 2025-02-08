@@ -1421,7 +1421,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.goomba_village() && flags.deliver_letters() && save.data.items.letters.goompapa >= 1;
 							},
-							ap: [8112000006]
+							ap: [8112000005]
 						},
 						{
 							name: 'Goompapa 2',
@@ -1432,7 +1432,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.goomba_village() && flags.deliver_letters() && save.data.items.letters.goompapa >= 2;
 							},
-							ap: [8112000005]
+							ap: [8112000006]
 						},
 						{
 							name: 'Bottom right bush',
@@ -1678,7 +1678,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toad_town() && flags.deliver_letters() && save.data.items.letters.muss_t;
 							},
-							ap: [8112000708]
+							ap: [8112000709]
 						}
 					]
 				},
@@ -1749,7 +1749,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toad_town() && flags.panels();
 							},
-							ap: [8112000185]
+							ap: [8112000186]
 						},
 						{
 							name: 'Merlow',
@@ -1760,7 +1760,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toad_town() && flags.jump_ledges() && flags.deliver_letters() && save.data.items.letters.merlow;
 							},
-							ap: [8112000163]
+							ap: [8112000164]
 						},
 						{
 							name: 'Give Merluvlee the Crystal Ball',
@@ -1782,7 +1782,7 @@ export const useLogicStore = defineStore('logic', () => {
 									save.data.items.koopa_koot_favors.crystal_ball
 								);
 							},
-							ap: [8112000162]
+							ap: [8112000163]
 						},
 						{
 							name: 'Merlow star pieces reward 1',
@@ -1793,7 +1793,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toad_town() && flags.jump_ledges() && save.data.items.star_pieces >= save.data.configs.logic.merlow_reward_cost_1;
 							},
-							ap: [8112000179]
+							ap: [8112000180]
 						},
 						{
 							name: 'Merlow star pieces reward 2',
@@ -1804,7 +1804,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toad_town() && flags.jump_ledges() && save.data.items.star_pieces >= save.data.configs.logic.merlow_reward_cost_2;
 							},
-							ap: [8112000180]
+							ap: [8112000181]
 						},
 						{
 							name: 'Merlow star pieces reward 3',
@@ -1815,7 +1815,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toad_town() && flags.jump_ledges() && save.data.items.star_pieces >= save.data.configs.logic.merlow_reward_cost_3;
 							},
-							ap: [8112000181]
+							ap: [8112000182]
 						},
 						{
 							name: 'Merlow star pieces reward 4',
@@ -1826,7 +1826,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toad_town() && flags.jump_ledges() && save.data.items.star_pieces >= save.data.configs.logic.merlow_reward_cost_4;
 							},
-							ap: [8112000182]
+							ap: [8112000183]
 						},
 						{
 							name: 'Merlow star pieces reward 5',
@@ -1837,7 +1837,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toad_town() && flags.jump_ledges() && save.data.items.star_pieces >= save.data.configs.logic.merlow_reward_cost_5;
 							},
-							ap: [8112000183]
+							ap: [8112000184]
 						},
 						{
 							name: 'Merlow star pieces reward 6',
@@ -1848,7 +1848,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toad_town() && flags.jump_ledges() && save.data.items.star_pieces >= save.data.configs.logic.merlow_reward_cost_6;
 							},
-							ap: [8112000184]
+							ap: [8112000185]
 						},
 						{
 							name: 'Merlow star pieces shop 1',
@@ -1859,7 +1859,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toad_town() && flags.jump_ledges() && save.data.items.star_pieces >= 1;
 							},
-							ap: [8112000164]
+							ap: [8112000165]
 						},
 						{
 							name: 'Merlow star pieces shop 2',
@@ -1870,7 +1870,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toad_town() && flags.jump_ledges() && save.data.items.star_pieces >= 1;
 							},
-							ap: [8112000165]
+							ap: [8112000166]
 						},
 						{
 							name: 'Merlow star pieces shop 3',
@@ -1881,7 +1881,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toad_town() && flags.jump_ledges() && save.data.items.star_pieces >= 2;
 							},
-							ap: [8112000166]
+							ap: [8112000167]
 						},
 						{
 							name: 'Merlow star pieces shop 4',
@@ -1892,7 +1892,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toad_town() && flags.jump_ledges() && save.data.items.star_pieces >= 2;
 							},
-							ap: [8112000167]
+							ap: [8112000168]
 						},
 						{
 							name: 'Merlow star pieces shop 5',
@@ -1903,7 +1903,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toad_town() && flags.jump_ledges() && save.data.items.star_pieces >= 4;
 							},
-							ap: [8112000168]
+							ap: [8112000169]
 						},
 						{
 							name: 'Merlow star pieces shop 6',
@@ -1914,7 +1914,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toad_town() && flags.jump_ledges() && save.data.items.star_pieces >= 4;
 							},
-							ap: [8112000169]
+							ap: [8112000170]
 						},
 						{
 							name: 'Merlow star pieces shop 7',
@@ -1925,7 +1925,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toad_town() && flags.jump_ledges() && save.data.items.star_pieces >= 6;
 							},
-							ap: [8112000170]
+							ap: [8112000171]
 						},
 						{
 							name: 'Merlow star pieces shop 8',
@@ -1936,7 +1936,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toad_town() && flags.jump_ledges() && save.data.items.star_pieces >= 6;
 							},
-							ap: [8112000171]
+							ap: [8112000172]
 						},
 						{
 							name: 'Merlow star pieces shop 9',
@@ -1947,7 +1947,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toad_town() && flags.jump_ledges() && save.data.items.star_pieces >= 8;
 							},
-							ap: [8112000172]
+							ap: [8112000173]
 						},
 						{
 							name: 'Merlow star pieces shop 10',
@@ -1958,7 +1958,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toad_town() && flags.jump_ledges() && save.data.items.star_pieces >= 8;
 							},
-							ap: [8112000173]
+							ap: [8112000174]
 						},
 						{
 							name: 'Merlow star pieces shop 11',
@@ -1969,7 +1969,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toad_town() && flags.jump_ledges() && save.data.items.star_pieces >= 10;
 							},
-							ap: [8112000174]
+							ap: [8112000175]
 						},
 						{
 							name: 'Merlow star pieces shop 12',
@@ -1980,7 +1980,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toad_town() && flags.jump_ledges() && save.data.items.star_pieces >= 10;
 							},
-							ap: [8112000175]
+							ap: [8112000176]
 						},
 						{
 							name: 'Merlow star pieces shop 13',
@@ -1991,7 +1991,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toad_town() && flags.jump_ledges() && save.data.items.star_pieces >= 15;
 							},
-							ap: [8112000176]
+							ap: [8112000177]
 						},
 						{
 							name: 'Merlow star pieces shop 14',
@@ -2002,7 +2002,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toad_town() && flags.jump_ledges() && save.data.items.star_pieces >= 15;
 							},
-							ap: [8112000177]
+							ap: [8112000178]
 						},
 						{
 							name: 'Merlow star pieces shop 15',
@@ -2013,7 +2013,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toad_town() && flags.jump_ledges() && save.data.items.star_pieces >= 20;
 							},
-							ap: [8112000178]
+							ap: [8112000179]
 						}
 					]
 				},
@@ -3304,7 +3304,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.coin_blocks;
 							},
 							available: () => {
-								return flags.sewers() && flags.shiver_city();
+								return flags.sewers() && ((save.data.items.boots >= 2 && flags.partner('sushie')) || (flags.rip_cheato() && flags.partner('bombette'))) && save.data.items.boots >= 2;
 							},
 							ap: [8112000137]
 						},
@@ -3315,7 +3315,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.coin_blocks;
 							},
 							available: () => {
-								return flags.sewers() && flags.shiver_city();
+								return flags.sewers() && ((save.data.items.boots >= 2 && flags.partner('sushie')) || (flags.rip_cheato() && flags.partner('bombette'))) && save.data.items.boots >= 2;
 							},
 							ap: [8112000138]
 						},
@@ -3326,7 +3326,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.coin_blocks;
 							},
 							available: () => {
-								return flags.sewers() && flags.shiver_city();
+								return flags.sewers() && ((save.data.items.boots >= 2 && flags.partner('sushie')) || (flags.rip_cheato() && flags.partner('bombette'))) && save.data.items.boots >= 2;
 							},
 							ap: [8112000139]
 						},
@@ -3337,7 +3337,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.coin_blocks;
 							},
 							available: () => {
-								return flags.sewers() && flags.shiver_city();
+								return flags.sewers() && ((save.data.items.boots >= 2 && flags.partner('sushie')) || (flags.rip_cheato() && flags.partner('bombette'))) && save.data.items.boots >= 2;
 							},
 							ap: [8112000140]
 						}
@@ -3505,7 +3505,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toad_town() && flags.jump_coin_blocks();
 							},
-							ap: [8112000233]
+							ap: [8112000234]
 						},
 						{
 							name: 'Middle ? block',
@@ -3516,7 +3516,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toad_town() && flags.jump_coin_blocks();
 							},
-							ap: [8112000234]
+							ap: [8112000235]
 						},
 						{
 							name: 'Right ? block',
@@ -3527,7 +3527,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toad_town() && flags.jump_coin_blocks();
 							},
-							ap: [8112000235]
+							ap: [8112000236]
 						}
 					]
 				},
@@ -3547,7 +3547,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toad_town() && flags.jump_coin_blocks();
 							},
-							ap: [8112000236]
+							ap: [8112000237]
 						},
 						{
 							name: 'Item on the little island after the bridge',
@@ -3558,7 +3558,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village() && flags.partner('kooper');
 							},
-							ap: [8112000237]
+							ap: [8112000238]
 						},
 						{
 							name: 'Item behind the small fence',
@@ -3569,7 +3569,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village();
 							},
-							ap: [8112000238]
+							ap: [8112000239]
 						},
 						{
 							name: 'Last block near the east exit',
@@ -3580,7 +3580,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village() && flags.jump_coin_blocks();
 							},
-							ap: [8112000239]
+							ap: [8112000240]
 						}
 					]
 				},
@@ -3600,7 +3600,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village() && flags.panels();
 							},
-							ap: [8112000242]
+							ap: [8112000243]
 						},
 						{
 							name: 'Item behind the right most striped pillar on top of the mountain',
@@ -3611,7 +3611,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village();
 							},
-							ap: [8112000241]
+							ap: [8112000242]
 						},
 						{
 							name: 'Break brick boxes in order next to Koopa Village entrance (left, right, middle)',
@@ -3622,7 +3622,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village() && flags.jump_coin_blocks() && flags.ground_blocks();
 							},
-							ap: [8112000240]
+							ap: [8112000241]
 						}
 					]
 				},
@@ -3642,7 +3642,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village() && (flags.partner('kooper') || save.data.items.boots >= 3);
 							},
-							ap: [8112000248]
+							ap: [8112000249]
 						},
 						{
 							name: 'Hidden block after the bridge',
@@ -3653,7 +3653,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village() && flags.partner('kooper');
 							},
-							ap: [8112000249]
+							ap: [8112000250]
 						},
 						{
 							name: 'Under the 5 coins next to the west entrance',
@@ -3664,7 +3664,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village() && flags.panels();
 							},
-							ap: [8112000250]
+							ap: [8112000251]
 						},
 						{
 							name: 'Coin 1 next to the west entrance',
@@ -3675,7 +3675,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village();
 							},
-							ap: [8112000243]
+							ap: [8112000244]
 						},
 						{
 							name: 'Coin 2 next to the west entrance',
@@ -3686,7 +3686,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village();
 							},
-							ap: [8112000244]
+							ap: [8112000245]
 						},
 						{
 							name: 'Coin 3 next to the west entrance',
@@ -3697,7 +3697,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village();
 							},
-							ap: [8112000245]
+							ap: [8112000246]
 						},
 						{
 							name: 'Coin 4 next to the west entrance',
@@ -3708,7 +3708,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village();
 							},
-							ap: [8112000246]
+							ap: [8112000247]
 						},
 						{
 							name: 'Coin 5 next to the west entrance',
@@ -3719,7 +3719,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village();
 							},
-							ap: [8112000247]
+							ap: [8112000248]
 						}
 					]
 				},
@@ -3739,7 +3739,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village() && save.data.items.kooper && flags.trees();
 							},
-							ap: [8112000251]
+							ap: [8112000252]
 						},
 						{
 							name: 'Chest on the ledge in the next screen',
@@ -3751,7 +3751,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village() && flags.partner('kooper') && flags.partner('bombette');
 							},
-							ap: [8112000253]
+							ap: [8112000254]
 						},
 						{
 							name: eldstar_dungeon_shuffle_name,
@@ -3790,7 +3790,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village();
 							},
-							ap: [8112000186]
+							ap: [8112000187]
 						},
 						{
 							name: 'Bottom bush on the left side',
@@ -3801,7 +3801,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village();
 							},
-							ap: [8112000187]
+							ap: [8112000188]
 						},
 						{
 							name: 'Second bush on the right next to the east exit',
@@ -3812,7 +3812,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village();
 							},
-							ap: [8112000189]
+							ap: [8112000190]
 						},
 						{
 							name: 'Third bush on the right next to the east exit',
@@ -3823,7 +3823,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village();
 							},
-							ap: [8112000188]
+							ap: [8112000189]
 						},
 						{
 							name: 'Shop item 1',
@@ -3834,7 +3834,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village();
 							},
-							ap: [8112000195]
+							ap: [8112000196]
 						},
 						{
 							name: 'Shop item 2',
@@ -3845,7 +3845,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village();
 							},
-							ap: [8112000196]
+							ap: [8112000197]
 						},
 						{
 							name: 'Shop item 3',
@@ -3856,7 +3856,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village();
 							},
-							ap: [8112000197]
+							ap: [8112000198]
 						},
 						{
 							name: 'Shop item 4',
@@ -3867,7 +3867,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village();
 							},
-							ap: [8112000198]
+							ap: [8112000199]
 						},
 						{
 							name: 'Shop item 5',
@@ -3878,7 +3878,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village();
 							},
-							ap: [8112000199]
+							ap: [8112000200]
 						},
 						{
 							name: 'Shop item 6',
@@ -3889,7 +3889,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village();
 							},
-							ap: [8112000200]
+							ap: [8112000201]
 						},
 						{
 							name: 'Left of tree',
@@ -3900,7 +3900,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village() && flags.panels();
 							},
-							ap: [8112000201]
+							ap: [8112000202]
 						},
 						{
 							name: 'Mort T. (Koopa Inn)',
@@ -3911,7 +3911,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village() && flags.deliver_letters() && save.data.items.letters.mort_t;
 							},
-							ap: [8112000192]
+							ap: [8112000193]
 						},
 						{
 							name: 'Koover 1 (Koopa at the west entrance)',
@@ -3922,7 +3922,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village() && flags.deliver_letters() && save.data.items.letters.koover >= 1 && save.data.items.hammer >= 1;
 							},
-							ap: [8112000194]
+							ap: [8112000195]
 						},
 						{
 							name: 'Koover 2 (Koopa at the west entrance)',
@@ -3933,7 +3933,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village() && flags.deliver_letters() && save.data.items.letters.koover >= 2 && save.data.items.hammer >= 1;
 							},
-							ap: [8112000193]
+							ap: [8112000194]
 						},
 						{
 							name: 'Bush closest of the east exit (After Koopa Koot asks for his wallet)',
@@ -3953,7 +3953,7 @@ export const useLogicStore = defineStore('logic', () => {
 									save.data.items.koopa_koot_favors.luigi_autograph
 								);
 							},
-							ap: [8112000191]
+							ap: [8112000192]
 						},
 						{
 							name: 'Second bush near the west exit (After Koopa Koot asks for his glasses)',
@@ -3982,7 +3982,7 @@ export const useLogicStore = defineStore('logic', () => {
 									flags.partner('bombette')
 								);
 							},
-							ap: [8112000190]
+							ap: [8112000191]
 						}
 					]
 				},
@@ -4002,7 +4002,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village();
 							},
-							ap: [8112000208]
+							ap: [8112000209]
 						},
 						{
 							name: 'Give Kooper his shell',
@@ -4013,7 +4013,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village() && save.data.items.kooper_shell;
 							},
-							ap: [8112000209]
+							ap: [8112000210]
 						},
 						{
 							name: 'Give the artifact to Kolorado',
@@ -4026,7 +4026,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village() && save.data.items.artifact;
 							},
-							ap: [8112000206]
+							ap: [8112000207]
 						},
 						{
 							name: 'Kolorado',
@@ -4039,7 +4039,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village() && flags.deliver_letters() && save.data.items.letters.kolorado;
 							},
-							ap: [8112000207]
+							ap: [8112000208]
 						},
 						{
 							name: 'Item on top of the brick block on the right (After beating the fuzzies)',
@@ -4050,7 +4050,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village() && save.data.items.hammer >= 1 && flags.jump_coin_blocks();
 							},
-							ap: [8112000202]
+							ap: [8112000203]
 						},
 						{
 							name: 'Far right bush',
@@ -4061,7 +4061,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village();
 							},
-							ap: [8112000230]
+							ap: [8112000231]
 						},
 						{
 							name: "Talk to Kolorado's wife (After Koopa Koot asks for the Koopa Legends)",
@@ -4072,7 +4072,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village() && flags.can_koot();
 							},
-							ap: [8112000203]
+							ap: [8112000204]
 						},
 						{
 							name: 'Koopa Koot - Return Koopa Legends',
@@ -4083,7 +4083,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village() && flags.can_koot() && save.data.items.koopa_koot_favors.koopa_legends;
 							},
-							ap: [8112000210]
+							ap: [8112000211]
 						},
 						{
 							name: 'Koopa Koot - Give Sleepy Sheep - First reward',
@@ -4094,7 +4094,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village() && flags.can_koot() && save.data.items.koopa_koot_favors.koopa_legends && save.data.items.koopa_koot_favors.sleepy_sheep;
 							},
-							ap: [8112000204]
+							ap: [8112000205]
 						},
 						{
 							name: 'Koopa Koot - Give Sleepy Sheep - Second reward',
@@ -4105,7 +4105,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village() && flags.can_koot() && save.data.items.koopa_koot_favors.koopa_legends && save.data.items.koopa_koot_favors.sleepy_sheep;
 							},
-							ap: [8112000211]
+							ap: [8112000212]
 						},
 						{
 							name: 'Koopa Koot - Give Tape',
@@ -4123,7 +4123,7 @@ export const useLogicStore = defineStore('logic', () => {
 									save.data.items.koopa_koot_favors.tape
 								);
 							},
-							ap: [8112000212]
+							ap: [8112000213]
 						},
 						{
 							name: 'Koopa Koot - Give Koopa Tea',
@@ -4142,7 +4142,7 @@ export const useLogicStore = defineStore('logic', () => {
 									save.data.items.koopa_koot_favors.koopa_tea
 								);
 							},
-							ap: [8112000213]
+							ap: [8112000214]
 						},
 						{
 							name: "Koopa Koot - Give Luigi's Autograph",
@@ -4162,7 +4162,7 @@ export const useLogicStore = defineStore('logic', () => {
 									save.data.items.koopa_koot_favors.luigi_autograph
 								);
 							},
-							ap: [8112000214]
+							ap: [8112000215]
 						},
 						{
 							name: 'Koopa Koot - Give Empty Wallet',
@@ -4183,7 +4183,7 @@ export const useLogicStore = defineStore('logic', () => {
 									save.data.items.koopa_koot_favors.empty_wallet
 								);
 							},
-							ap: [8112000215]
+							ap: [8112000216]
 						},
 						{
 							name: 'Koopa Koot - Give Tasty Tonic',
@@ -4205,7 +4205,7 @@ export const useLogicStore = defineStore('logic', () => {
 									save.data.items.koopa_koot_favors.tasty_tonic
 								);
 							},
-							ap: [8112000216]
+							ap: [8112000217]
 						},
 						{
 							name: "Koopa Koot - Give Merluvlee's autograph",
@@ -4229,7 +4229,7 @@ export const useLogicStore = defineStore('logic', () => {
 									save.data.items.koopa_koot_favors.merluvlee_autograph
 								);
 							},
-							ap: [8112000217]
+							ap: [8112000218]
 						},
 						{
 							name: 'Koopa Koot - Go read the news in Toad Town',
@@ -4253,7 +4253,7 @@ export const useLogicStore = defineStore('logic', () => {
 									save.data.items.koopa_koot_favors.merluvlee_autograph
 								);
 							},
-							ap: [8112000218]
+							ap: [8112000219]
 						},
 						{
 							name: 'Koopa Koot - Give Life Shroom - First reward',
@@ -4278,7 +4278,7 @@ export const useLogicStore = defineStore('logic', () => {
 									save.data.items.koopa_koot_favors.life_shroom
 								);
 							},
-							ap: [8112000205]
+							ap: [8112000206]
 						},
 						{
 							name: 'Koopa Koot - Give Life Shroom - Second reward',
@@ -4303,7 +4303,7 @@ export const useLogicStore = defineStore('logic', () => {
 									save.data.items.koopa_koot_favors.life_shroom
 								);
 							},
-							ap: [8112000219]
+							ap: [8112000220]
 						},
 						{
 							name: 'Koopa Koot - Give Nutty Cake',
@@ -4329,7 +4329,7 @@ export const useLogicStore = defineStore('logic', () => {
 									save.data.items.koopa_koot_favors.nutty_cake
 								);
 							},
-							ap: [8112000220]
+							ap: [8112000221]
 						},
 						{
 							name: 'Koopa Koot - Calm the Bob-ombs',
@@ -4357,7 +4357,7 @@ export const useLogicStore = defineStore('logic', () => {
 									flags.partner('bombette')
 								);
 							},
-							ap: [8112000221]
+							ap: [8112000222]
 						},
 						{
 							name: 'Koopa Koot - Give Old Photo',
@@ -4386,7 +4386,7 @@ export const useLogicStore = defineStore('logic', () => {
 									save.data.items.koopa_koot_favors.old_photo
 								);
 							},
-							ap: [8112000222]
+							ap: [8112000223]
 						},
 						{
 							name: 'Koopa Koot - Give Koopasta',
@@ -4416,7 +4416,7 @@ export const useLogicStore = defineStore('logic', () => {
 									save.data.items.koopa_koot_favors.koopasta
 								);
 							},
-							ap: [8112000223]
+							ap: [8112000224]
 						},
 						{
 							name: 'Koopa Koot - Give Glasses',
@@ -4447,7 +4447,7 @@ export const useLogicStore = defineStore('logic', () => {
 									save.data.items.koopa_koot_favors.glasses
 								);
 							},
-							ap: [8112000224]
+							ap: [8112000225]
 						},
 						{
 							name: 'Koopa Koot - Give a Lime',
@@ -4479,7 +4479,7 @@ export const useLogicStore = defineStore('logic', () => {
 									save.data.items.koopa_koot_favors.lime
 								);
 							},
-							ap: [8112000225]
+							ap: [8112000226]
 						},
 						{
 							name: 'Koopa Koot - Give Kooky Cookie',
@@ -4512,7 +4512,7 @@ export const useLogicStore = defineStore('logic', () => {
 									save.data.items.koopa_koot_favors.kooky_cookie
 								);
 							},
-							ap: [8112000226]
+							ap: [8112000227]
 						},
 						{
 							name: 'Koopa Koot - Give Package',
@@ -4546,7 +4546,7 @@ export const useLogicStore = defineStore('logic', () => {
 									save.data.items.koopa_koot_favors.package
 								);
 							},
-							ap: [8112000227]
+							ap: [8112000228]
 						},
 						{
 							name: 'Koopa Koot - Give Coconut',
@@ -4581,7 +4581,7 @@ export const useLogicStore = defineStore('logic', () => {
 									save.data.items.koopa_koot_favors.coconut
 								);
 							},
-							ap: [8112000228]
+							ap: [8112000229]
 						},
 						{
 							name: 'Koopa Koot - Give Red jar',
@@ -4617,7 +4617,7 @@ export const useLogicStore = defineStore('logic', () => {
 									save.data.items.koopa_koot_favors.red_jar
 								);
 							},
-							ap: [8112000229]
+							ap: [8112000230]
 						}
 					]
 				},
@@ -4637,7 +4637,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village() && flags.jump_ledges() && (flags.partner('kooper') || flags.partner('parakarry'));
 							},
-							ap: [8112000231]
+							ap: [8112000232]
 						}
 					]
 				},
@@ -4657,7 +4657,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_village() && save.data.items.hammer >= 1;
 							},
-							ap: [8112000232]
+							ap: [8112000233]
 						}
 					]
 				}
@@ -4693,7 +4693,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_bros_fortress();
 							},
-							ap: [8112000255]
+							ap: [8112000256]
 						},
 						{
 							name: 'Top of the room, guarded by a Bob-omb',
@@ -4704,7 +4704,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_bros_fortress() && flags.jump_ledges() && save.data.items.fortress_key >= 4 && (flags.partner('kooper') || flags.partner('parakarry'));
 							},
-							ap: [8112000254]
+							ap: [8112000255]
 						}
 					]
 				},
@@ -4732,7 +4732,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_bros_fortress() && save.data.items.fortress_key >= 3 && flags.partner('bombette') && (flags.partner('kooper') || flags.partner('parakarry'));
 							},
-							ap: [8112000256]
+							ap: [8112000257]
 						},
 						{
 							name: 'Middle jail cell',
@@ -4743,7 +4743,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_bros_fortress() && save.data.items.fortress_key >= 1;
 							},
-							ap: [8112000258]
+							ap: [8112000259]
 						},
 						{
 							name: 'Right jail cell',
@@ -4754,7 +4754,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_bros_fortress() && save.data.items.fortress_key >= 1 && flags.partner('bombette');
 							},
-							ap: [8112000257]
+							ap: [8112000258]
 						}
 					]
 				},
@@ -4790,7 +4790,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_bros_fortress() && save.data.items.fortress_key >= 2 && flags.partner('bombette');
 							},
-							ap: [8112000252]
+							ap: [8112000253]
 						}
 					]
 				},
@@ -4818,7 +4818,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_bros_fortress() && save.data.items.fortress_key >= 1;
 							},
-							ap: [8112000260]
+							ap: [8112000261]
 						}
 					]
 				},
@@ -4846,7 +4846,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.koopa_bros_fortress() && ((flags.partner('bombette') && save.data.items.fortress_key >= 1) || save.data.items.fortress_key >= 2);
 							},
-							ap: [8112000259]
+							ap: [8112000260]
 						}
 					]
 				},
@@ -4872,7 +4872,7 @@ export const useLogicStore = defineStore('logic', () => {
 									(flags.partner('kooper') || flags.partner('parakarry'))
 								);
 							},
-							ap: [8112000261]
+							ap: [8112000262]
 						}
 					]
 				},
@@ -4919,7 +4919,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_rugged(false);
 							},
-							ap: [8112000290]
+							ap: [8112000291]
 						},
 						{
 							name: 'Give three letters to Parakarry',
@@ -4930,7 +4930,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_rugged() && flags.jump_ledges() && flags.letters_count() >= 3;
 							},
-							ap: [8112000291]
+							ap: [8112000292]
 						},
 						{
 							name: 'Bush 1 near the train station',
@@ -4941,7 +4941,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_rugged(false);
 							},
-							ap: [8112000287]
+							ap: [8112000288]
 						},
 						{
 							name: 'Bush 2 near the train station',
@@ -4952,7 +4952,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_rugged(false);
 							},
-							ap: [8112000288]
+							ap: [8112000289]
 						},
 						{
 							name: 'Bush 3 near the train station',
@@ -4963,7 +4963,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_rugged(false);
 							},
-							ap: [8112000289]
+							ap: [8112000290]
 						},
 						{
 							name: 'Super Block',
@@ -4974,7 +4974,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_rugged() && flags.jump_ledges() && save.data.items.hammer >= 2;
 							},
-							ap: [8112000292]
+							ap: [8112000293]
 						}
 					]
 				},
@@ -4994,7 +4994,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_rugged() && (save.data.items.hammer >= 1 || flags.partner('bombette'));
 							},
-							ap: [8112000266]
+							ap: [8112000267]
 						},
 						{
 							name: '? block',
@@ -5005,7 +5005,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_rugged() && flags.jump_coin_blocks();
 							},
-							ap: [8112000265]
+							ap: [8112000266]
 						},
 						{
 							name: 'Item 1 on slide',
@@ -5016,7 +5016,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_rugged() && flags.jump_ledges();
 							},
-							ap: [8112000262]
+							ap: [8112000263]
 						},
 						{
 							name: 'Item 2 on slide',
@@ -5027,7 +5027,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_rugged() && flags.jump_ledges();
 							},
-							ap: [8112000263]
+							ap: [8112000264]
 						},
 						{
 							name: 'Item 3 on slide',
@@ -5038,7 +5038,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_rugged() && flags.jump_ledges();
 							},
-							ap: [8112000264]
+							ap: [8112000265]
 						}
 					]
 				},
@@ -5058,7 +5058,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_rugged() && flags.jump_coin_blocks();
 							},
-							ap: [8112000274]
+							ap: [8112000275]
 						},
 						{
 							name: 'Chest in the cave (enter the cave and go left)',
@@ -5069,7 +5069,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_rugged() && flags.jump_ledges();
 							},
-							ap: [8112000272]
+							ap: [8112000273]
 						},
 						{
 							name: 'Item 1 on the ground in the gap at the far left of the room',
@@ -5080,7 +5080,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_rugged() && flags.jump_ledges();
 							},
-							ap: [8112000284]
+							ap: [8112000285]
 						},
 						{
 							name: 'Item 2 on the ground in the gap at the far left of the room',
@@ -5091,7 +5091,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_rugged() && flags.jump_ledges();
 							},
-							ap: [8112000285]
+							ap: [8112000286]
 						},
 						{
 							name: 'Item at the far left of the room',
@@ -5102,7 +5102,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_rugged() && flags.jump_ledges() && flags.partner('parakarry');
 							},
-							ap: [8112000277]
+							ap: [8112000278]
 						},
 						{
 							name: 'Item 1 of the circle of items at the far left of the room',
@@ -5113,7 +5113,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_rugged() && flags.jump_ledges() && flags.partner('parakarry');
 							},
-							ap: [8112000278]
+							ap: [8112000279]
 						},
 						{
 							name: 'Item 2 of the circle of items at the far left of the room',
@@ -5124,7 +5124,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_rugged() && flags.jump_ledges() && flags.partner('parakarry');
 							},
-							ap: [8112000279]
+							ap: [8112000280]
 						},
 						{
 							name: 'Item 3 of the circle of items at the far left of the room',
@@ -5135,7 +5135,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_rugged() && flags.jump_ledges() && flags.partner('parakarry');
 							},
-							ap: [8112000280]
+							ap: [8112000281]
 						},
 						{
 							name: 'Item 4 of the circle of items at the far left of the room',
@@ -5146,7 +5146,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_rugged() && flags.jump_ledges() && flags.partner('parakarry');
 							},
-							ap: [8112000281]
+							ap: [8112000282]
 						},
 						{
 							name: 'Item 5 of the circle of items at the far left of the room',
@@ -5157,7 +5157,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_rugged() && flags.jump_ledges() && flags.partner('parakarry');
 							},
-							ap: [8112000282]
+							ap: [8112000283]
 						},
 						{
 							name: 'Item 6 of the circle of items at the far left of the room',
@@ -5168,7 +5168,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_rugged() && flags.jump_ledges() && flags.partner('parakarry');
 							},
-							ap: [8112000283]
+							ap: [8112000284]
 						},
 						{
 							name: '? block on top of the ledge on the left',
@@ -5179,7 +5179,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_rugged() && flags.jump_ledges() && flags.ground_blocks();
 							},
-							ap: [8112000273]
+							ap: [8112000274]
 						},
 						{
 							name: '? block on top of the ledge on the right',
@@ -5190,7 +5190,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_rugged() && flags.jump_ledges() && flags.ground_blocks();
 							},
-							ap: [8112000275]
+							ap: [8112000276]
 						},
 						{
 							name: 'Item on the ledge at the far right of the screen',
@@ -5201,7 +5201,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_rugged() && flags.jump_ledges();
 							},
-							ap: [8112000276]
+							ap: [8112000277]
 						}
 					]
 				},
@@ -5221,7 +5221,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_rugged() && flags.panels();
 							},
-							ap: [8112000269]
+							ap: [8112000270]
 						},
 						{
 							name: 'Right item on the ledge',
@@ -5232,7 +5232,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_rugged() && (flags.partner('kooper') || flags.partner('parakarry'));
 							},
-							ap: [8112000268]
+							ap: [8112000269]
 						},
 						{
 							name: 'Left item on the ledge',
@@ -5243,7 +5243,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_rugged() && flags.partner('parakarry');
 							},
-							ap: [8112000267]
+							ap: [8112000268]
 						}
 					]
 				},
@@ -5263,7 +5263,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_rugged() && flags.jump_ledges();
 							},
-							ap: [8112000270]
+							ap: [8112000271]
 						},
 						{
 							name: 'Bub-ulb',
@@ -5274,7 +5274,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_rugged() && flags.partner('parakarry');
 							},
-							ap: [8112000271]
+							ap: [8112000272]
 						}
 					]
 				},
@@ -5294,7 +5294,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_rugged();
 							},
-							ap: [8112000286]
+							ap: [8112000287]
 						}
 					]
 				}
@@ -5331,7 +5331,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.ground_blocks();
 							},
-							ap: [8112000308]
+							ap: [8112000309]
 						},
 						{
 							name: 'Right ? block',
@@ -5342,7 +5342,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.ground_blocks();
 							},
-							ap: [8112000309]
+							ap: [8112000310]
 						}
 					]
 				},
@@ -5372,7 +5372,7 @@ export const useLogicStore = defineStore('logic', () => {
 									flags.koopa_village() && flags.dry_dry_desert() && flags.star_spirits_count() >= 3 && save.data.items.trading_event_toad.nutty_cake && save.data.items.hammer >= 1
 								);
 							},
-							ap: [8112000310]
+							ap: [8112000311]
 						},
 						{
 							name: mamar_dungeon_shuffle_name,
@@ -5419,7 +5419,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert();
 							},
-							ap: [8112000311]
+							ap: [8112000312]
 						}
 					]
 				},
@@ -5439,7 +5439,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.trees();
 							},
-							ap: [8112000312]
+							ap: [8112000313]
 						},
 						{
 							name: 'Block near the tree',
@@ -5450,7 +5450,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.jump_coin_blocks();
 							},
-							ap: [8112000313]
+							ap: [8112000314]
 						}
 					]
 				},
@@ -5470,7 +5470,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.jump_ledges() && flags.jump_coin_blocks();
 							},
-							ap: [8112000314]
+							ap: [8112000315]
 						}
 					]
 				},
@@ -5514,7 +5514,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.ground_blocks();
 							},
-							ap: [8112000315]
+							ap: [8112000316]
 						},
 						{
 							name: 'Right ? block',
@@ -5525,7 +5525,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.ground_blocks();
 							},
-							ap: [8112000316]
+							ap: [8112000317]
 						},
 						{
 							name: 'Block in the center of the room',
@@ -5536,7 +5536,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.jump_coin_blocks();
 							},
-							ap: [8112000317]
+							ap: [8112000318]
 						}
 					]
 				},
@@ -5572,7 +5572,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.ground_blocks() && flags.jump_coin_blocks();
 							},
-							ap: [8112000318]
+							ap: [8112000319]
 						},
 						{
 							name: 'Hit the block 5 time',
@@ -5583,7 +5583,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.ground_blocks() && flags.jump_coin_blocks();
 							},
-							ap: [8112000319]
+							ap: [8112000320]
 						},
 						{
 							name: 'Hit the block 10 time',
@@ -5594,7 +5594,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.ground_blocks() && flags.jump_coin_blocks();
 							},
-							ap: [8112000320]
+							ap: [8112000321]
 						}
 					]
 				},
@@ -5622,7 +5622,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.ground_blocks();
 							},
-							ap: [8112000321]
+							ap: [8112000322]
 						},
 						{
 							name: 'Top right ? block',
@@ -5633,7 +5633,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.ground_blocks();
 							},
-							ap: [8112000322]
+							ap: [8112000323]
 						},
 						{
 							name: 'Middle ? block',
@@ -5644,7 +5644,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.ground_blocks();
 							},
-							ap: [8112000325]
+							ap: [8112000326]
 						},
 						{
 							name: 'Bottom left ? block',
@@ -5655,7 +5655,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.ground_blocks();
 							},
-							ap: [8112000323]
+							ap: [8112000324]
 						},
 						{
 							name: 'Bottom right ? block',
@@ -5666,7 +5666,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.ground_blocks();
 							},
-							ap: [8112000324]
+							ap: [8112000325]
 						}
 					]
 				},
@@ -5694,7 +5694,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.jump_coin_blocks();
 							},
-							ap: [8112000326]
+							ap: [8112000327]
 						}
 					]
 				},
@@ -5714,7 +5714,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.jump_coin_blocks();
 							},
-							ap: [8112000327]
+							ap: [8112000328]
 						},
 						{
 							name: 'Third block from the right',
@@ -5725,7 +5725,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.jump_coin_blocks();
 							},
-							ap: [8112000328]
+							ap: [8112000329]
 						}
 					]
 				},
@@ -5745,7 +5745,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.trees();
 							},
-							ap: [8112000329]
+							ap: [8112000330]
 						}
 					]
 				},
@@ -5765,7 +5765,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.trees() && save.data.items.mamar;
 							},
-							ap: [8112000330]
+							ap: [8112000331]
 						}
 					]
 				},
@@ -5801,7 +5801,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.panels();
 							},
-							ap: [8112000331]
+							ap: [8112000332]
 						}
 					]
 				},
@@ -5821,7 +5821,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.deliver_letters() && save.data.items.letters.nomadimouse;
 							},
-							ap: [8112000332]
+							ap: [8112000333]
 						},
 						{
 							name: 'Tree',
@@ -5832,7 +5832,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.trees();
 							},
-							ap: [8112000333]
+							ap: [8112000334]
 						}
 					]
 				},
@@ -5852,7 +5852,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.trees();
 							},
-							ap: [8112000334]
+							ap: [8112000335]
 						}
 					]
 				},
@@ -5872,7 +5872,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.trees();
 							},
-							ap: [8112000336]
+							ap: [8112000337]
 						},
 						{
 							name: 'Second tree from the left',
@@ -5883,7 +5883,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.trees();
 							},
-							ap: [8112000337]
+							ap: [8112000338]
 						},
 						{
 							name: 'Fourth tree from the right',
@@ -5894,7 +5894,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.trees();
 							},
-							ap: [8112000338]
+							ap: [8112000339]
 						},
 						{
 							name: 'Far right tree',
@@ -5905,7 +5905,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.trees();
 							},
-							ap: [8112000335]
+							ap: [8112000336]
 						}
 					]
 				},
@@ -5925,7 +5925,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.jump_coin_blocks();
 							},
-							ap: [8112000339]
+							ap: [8112000340]
 						}
 					]
 				},
@@ -5961,7 +5961,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.ground_blocks();
 							},
-							ap: [8112000340]
+							ap: [8112000341]
 						}
 					]
 				},
@@ -5990,7 +5990,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert();
 							},
-							ap: [8112000342]
+							ap: [8112000343]
 						},
 						{
 							name: 'Item on the brick block',
@@ -6001,7 +6001,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && ((flags.jump_ledges() && flags.partner('kooper')) || flags.ultra_jump_blocks());
 							},
-							ap: [8112000341]
+							ap: [8112000342]
 						}
 					]
 				},
@@ -6021,7 +6021,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.ground_blocks();
 							},
-							ap: [8112000343]
+							ap: [8112000344]
 						},
 						{
 							name: 'Invisible block above the ? block in the middle of the room',
@@ -6032,7 +6032,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.jump_ledges() && flags.jump_coin_blocks();
 							},
-							ap: [8112000344]
+							ap: [8112000345]
 						},
 						{
 							name: 'Bottom tree',
@@ -6043,7 +6043,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.trees();
 							},
-							ap: [8112000345]
+							ap: [8112000346]
 						}
 					]
 				},
@@ -6079,7 +6079,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.jump_coin_blocks();
 							},
-							ap: [8112000346]
+							ap: [8112000347]
 						}
 					]
 				},
@@ -6115,7 +6115,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.trees();
 							},
-							ap: [8112000348]
+							ap: [8112000349]
 						},
 						{
 							name: 'Item behind the bush near the east exit',
@@ -6126,7 +6126,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert();
 							},
-							ap: [8112000347]
+							ap: [8112000348]
 						},
 						{
 							name: 'Block near the tree',
@@ -6137,7 +6137,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.jump_coin_blocks();
 							},
-							ap: [8112000349]
+							ap: [8112000350]
 						}
 					]
 				},
@@ -6157,7 +6157,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.trees();
 							},
-							ap: [8112000350]
+							ap: [8112000351]
 						},
 						{
 							name: 'Big tree on the right',
@@ -6168,7 +6168,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.trees();
 							},
-							ap: [8112000351]
+							ap: [8112000352]
 						},
 						{
 							name: 'Super Block',
@@ -6179,7 +6179,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.jump_coin_blocks();
 							},
-							ap: [8112000354]
+							ap: [8112000355]
 						},
 						{
 							name: 'Tree at the bottom left of the room',
@@ -6190,7 +6190,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.trees();
 							},
-							ap: [8112000352]
+							ap: [8112000353]
 						},
 						{
 							name: 'Tree down of the heart block',
@@ -6201,7 +6201,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.trees();
 							},
-							ap: [8112000353]
+							ap: [8112000354]
 						}
 					]
 				},
@@ -6229,7 +6229,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.jump_ledges() && flags.jump_coin_blocks();
 							},
-							ap: [8112000355]
+							ap: [8112000356]
 						}
 					]
 				},
@@ -6265,7 +6265,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.ground_blocks();
 							},
-							ap: [8112000356]
+							ap: [8112000357]
 						}
 					]
 				},
@@ -6293,7 +6293,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.trees();
 							},
-							ap: [8112000357]
+							ap: [8112000358]
 						},
 						{
 							name: 'Brick block top left',
@@ -6304,7 +6304,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.jump_coin_blocks();
 							},
-							ap: [8112000358]
+							ap: [8112000359]
 						},
 						{
 							name: 'Brick block top right',
@@ -6315,7 +6315,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.jump_coin_blocks();
 							},
-							ap: [8112000359]
+							ap: [8112000360]
 						},
 						{
 							name: 'Brick block right',
@@ -6326,7 +6326,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.jump_coin_blocks();
 							},
-							ap: [8112000360]
+							ap: [8112000361]
 						},
 						{
 							name: 'Brick block left',
@@ -6337,7 +6337,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.jump_coin_blocks();
 							},
-							ap: [8112000361]
+							ap: [8112000362]
 						},
 						{
 							name: 'Brick block bottom left',
@@ -6348,7 +6348,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.jump_coin_blocks();
 							},
-							ap: [8112000362]
+							ap: [8112000363]
 						},
 						{
 							name: 'Brick block bottom right',
@@ -6359,7 +6359,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.jump_coin_blocks();
 							},
-							ap: [8112000363]
+							ap: [8112000364]
 						}
 					]
 				},
@@ -6379,7 +6379,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && save.data.items.lyrics;
 							},
-							ap: [8112000293]
+							ap: [8112000294]
 						},
 						{
 							name: 'Red tree',
@@ -6390,7 +6390,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.trees();
 							},
-							ap: [8112000296]
+							ap: [8112000297]
 						},
 						{
 							name: 'Shop item 1',
@@ -6401,7 +6401,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert();
 							},
-							ap: [8112000297]
+							ap: [8112000298]
 						},
 						{
 							name: 'Shop item 3',
@@ -6412,7 +6412,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert();
 							},
-							ap: [8112000299]
+							ap: [8112000300]
 						},
 						{
 							name: 'Shop item 6',
@@ -6423,7 +6423,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert();
 							},
-							ap: [8112000302]
+							ap: [8112000303]
 						},
 						{
 							name: 'Little Mouser',
@@ -6434,7 +6434,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.deliver_letters() && save.data.items.letters.little_mouser;
 							},
-							ap: [8112000295]
+							ap: [8112000296]
 						},
 						{
 							name: 'Buy Dusty Hammer, Dried Pasta, Dusty Hammer, Dried Shroom',
@@ -6445,7 +6445,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert();
 							},
-							ap: [8112000294]
+							ap: [8112000295]
 						}
 					]
 				},
@@ -6465,7 +6465,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && save.data.items.boots >= 1;
 							},
-							ap: [8112000305]
+							ap: [8112000306]
 						},
 						{
 							name: 'Item on the rooftops',
@@ -6476,7 +6476,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && save.data.items.boots >= 1;
 							},
-							ap: [8112000303]
+							ap: [8112000304]
 						},
 						{
 							name: 'Rooftop',
@@ -6487,7 +6487,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.panels();
 							},
-							ap: [8112000307]
+							ap: [8112000308]
 						},
 						{
 							name: 'Mr E',
@@ -6498,7 +6498,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.deliver_letters() && save.data.items.letters.mr_e;
 							},
-							ap: [8112000306]
+							ap: [8112000307]
 						},
 						{
 							name: 'Talk to Merlee after Merluvlee requests her Crystal Ball',
@@ -6520,7 +6520,7 @@ export const useLogicStore = defineStore('logic', () => {
 									save.data.items.koopa_koot_favors.tasty_tonic
 								);
 							},
-							ap: [8112000304]
+							ap: [8112000305]
 						}
 					]
 				}
@@ -6556,7 +6556,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_ruins(false, false);
 							},
-							ap: [8112000364]
+							ap: [8112000365]
 						}
 					]
 				},
@@ -6584,7 +6584,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_ruins(false);
 							},
-							ap: [8112000365]
+							ap: [8112000366]
 						}
 					]
 				},
@@ -6612,7 +6612,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_ruins() && save.data.items.ruins_key >= 1 && flags.partner('parakarry') && flags.partner('bombette');
 							},
-							ap: [8112000367]
+							ap: [8112000368]
 						}
 					]
 				},
@@ -6632,7 +6632,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_ruins() && save.data.items.ruins_key >= 1 && flags.partner('parakarry') && flags.partner('bombette');
 							},
-							ap: [8112000368]
+							ap: [8112000369]
 						}
 					]
 				},
@@ -6652,7 +6652,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_ruins() && flags.stone_blocks() && save.data.items.ruins_key >= 1;
 							},
-							ap: [8112000366]
+							ap: [8112000367]
 						}
 					]
 				},
@@ -6672,7 +6672,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_ruins() && save.data.items.ruins_key >= 2;
 							},
-							ap: [8112000369]
+							ap: [8112000370]
 						},
 						{
 							name: 'On the ledge',
@@ -6683,7 +6683,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_ruins() && flags.stone_blocks() && save.data.items.ruins_key >= 2;
 							},
-							ap: [8112000370]
+							ap: [8112000371]
 						}
 					]
 				},
@@ -6712,7 +6712,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_ruins() && save.data.items.ruins_key >= 3 && flags.partner('parakarry');
 							},
-							ap: [8112000371]
+							ap: [8112000372]
 						},
 						{
 							name: 'Super Hammer Chest',
@@ -6723,7 +6723,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_ruins() && save.data.items.ruins_key >= 3 && flags.partner('parakarry');
 							},
-							ap: [8112000372]
+							ap: [8112000373]
 						}
 					]
 				},
@@ -6743,7 +6743,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_ruins() && save.data.items.ruins_key >= 3;
 							},
-							ap: [8112000373]
+							ap: [8112000374]
 						}
 					]
 				},
@@ -6763,7 +6763,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_ruins() && save.data.items.ruins_key >= 3 && flags.partner('bombette') && save.data.items.hammer >= 2;
 							},
-							ap: [8112000376]
+							ap: [8112000377]
 						}
 					]
 				},
@@ -6791,7 +6791,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_ruins() && flags.stone_blocks() && save.data.items.ruins_key >= 3;
 							},
-							ap: [8112000374]
+							ap: [8112000375]
 						}
 					]
 				},
@@ -6827,7 +6827,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_ruins() && flags.stone_blocks() && save.data.items.ruins_key >= 4;
 							},
-							ap: [8112000375]
+							ap: [8112000376]
 						}
 					]
 				},
@@ -6951,7 +6951,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.forever_forest();
 							},
-							ap: [8112000377]
+							ap: [8112000378]
 						}
 					]
 				},
@@ -6997,7 +6997,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.forever_forest() && flags.jump_coin_blocks();
 							},
-							ap: [8112000378]
+							ap: [8112000379]
 						}
 					]
 				},
@@ -7060,7 +7060,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.forever_forest() && flags.jump_coin_blocks();
 							},
-							ap: [8112000379]
+							ap: [8112000380]
 						}
 					]
 				},
@@ -7106,7 +7106,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.boo_mansion() && save.data.items.boo_portrait;
 							},
-							ap: [8112000405]
+							ap: [8112000406]
 						}
 					]
 				},
@@ -7126,7 +7126,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.boo_mansion() && save.data.items.record;
 							},
-							ap: [8112000402]
+							ap: [8112000403]
 						}
 					]
 				},
@@ -7146,7 +7146,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.boo_mansion();
 							},
-							ap: [8112000403]
+							ap: [8112000404]
 						},
 						{
 							name: 'Middle of the room',
@@ -7157,7 +7157,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.boo_mansion() && flags.panels();
 							},
-							ap: [8112000404]
+							ap: [8112000405]
 						}
 					]
 				},
@@ -7185,7 +7185,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.boo_mansion() && flags.deliver_letters() && save.data.items.letters.franky && save.data.items.boo_portrait;
 							},
-							ap: [8112000384]
+							ap: [8112000385]
 						},
 						{
 							name: 'By the couch',
@@ -7196,7 +7196,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.boo_mansion() && flags.panels();
 							},
-							ap: [8112000385]
+							ap: [8112000386]
 						},
 						{
 							name: 'Talk to Franky (After Koopa Koot asks for the Old Photo)',
@@ -7222,7 +7222,7 @@ export const useLogicStore = defineStore('logic', () => {
 									flags.partner('bombette')
 								);
 							},
-							ap: [8112000383]
+							ap: [8112000384]
 						}
 					]
 				},
@@ -7242,7 +7242,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.boo_mansion(false) && flags.jump_coin_blocks();
 							},
-							ap: [8112000380]
+							ap: [8112000381]
 						},
 						{
 							name: 'Bush near the east exit',
@@ -7253,7 +7253,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.boo_mansion(false);
 							},
-							ap: [8112000381]
+							ap: [8112000382]
 						}
 					]
 				},
@@ -7273,7 +7273,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.boo_mansion() && (save.data.items.weight || (save.data.items.boots >= 2 && flags.partner('bombette'))) && flags.panels();
 							},
-							ap: [8112000386]
+							ap: [8112000387]
 						}
 					]
 				},
@@ -7293,7 +7293,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.boo_mansion() && save.data.items.boots >= 2;
 							},
-							ap: [8112000398]
+							ap: [8112000399]
 						},
 						{
 							name: 'Left crate',
@@ -7304,7 +7304,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.boo_mansion() && save.data.items.boots >= 2;
 							},
-							ap: [8112000399]
+							ap: [8112000400]
 						}
 					]
 				},
@@ -7324,7 +7324,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.boo_mansion() && save.data.items.boots >= 2 && flags.partner('parakarry');
 							},
-							ap: [8112000400]
+							ap: [8112000401]
 						},
 						{
 							name: 'Bottom crate of the stack of crates',
@@ -7335,7 +7335,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.boo_mansion() && save.data.items.boots >= 2;
 							},
-							ap: [8112000401]
+							ap: [8112000402]
 						}
 					]
 				},
@@ -7355,7 +7355,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.boo_mansion() && save.data.items.boots >= 2 && (flags.partner('bombette') || save.data.items.weight);
 							},
-							ap: [8112000387]
+							ap: [8112000388]
 						}
 					]
 				},
@@ -7375,7 +7375,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.boo_mansion() && ((save.data.items.boots >= 2 && flags.partner('bombette')) || save.data.items.weight);
 							},
-							ap: [8112000396]
+							ap: [8112000397]
 						},
 						{
 							name: 'Bottom left crate',
@@ -7386,7 +7386,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.boo_mansion() && save.data.items.boots >= 2 && (flags.partner('bombette') || save.data.items.weight);
 							},
-							ap: [8112000395]
+							ap: [8112000396]
 						},
 						{
 							name: 'On the left of the room near the door',
@@ -7397,7 +7397,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.boo_mansion() && save.data.items.boots >= 2 && (flags.partner('bombette') || save.data.items.weight);
 							},
-							ap: [8112000397]
+							ap: [8112000398]
 						}
 					]
 				},
@@ -7417,7 +7417,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.boo_mansion() && save.data.items.boo_portrait && ((flags.partner('bombette') && save.data.items.boots >= 2) || save.data.items.weight);
 							},
-							ap: [8112000389]
+							ap: [8112000390]
 						},
 						{
 							name: 'Shop item 2',
@@ -7428,7 +7428,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.boo_mansion() && save.data.items.boo_portrait && ((flags.partner('bombette') && save.data.items.boots >= 2) || save.data.items.weight);
 							},
-							ap: [8112000390]
+							ap: [8112000391]
 						},
 						{
 							name: 'Shop item 3',
@@ -7439,7 +7439,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.boo_mansion() && save.data.items.boo_portrait && ((flags.partner('bombette') && save.data.items.boots >= 2) || save.data.items.weight);
 							},
-							ap: [8112000391]
+							ap: [8112000392]
 						},
 						{
 							name: 'Shop item 4',
@@ -7450,7 +7450,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.boo_mansion() && save.data.items.boo_portrait && ((flags.partner('bombette') && save.data.items.boots >= 2) || save.data.items.weight);
 							},
-							ap: [8112000392]
+							ap: [8112000393]
 						},
 						{
 							name: 'Shop item 5',
@@ -7461,7 +7461,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.boo_mansion() && save.data.items.boo_portrait && ((flags.partner('bombette') && save.data.items.boots >= 2) || save.data.items.weight);
 							},
-							ap: [8112000393]
+							ap: [8112000394]
 						},
 						{
 							name: 'Shop item 6',
@@ -7472,7 +7472,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.boo_mansion() && save.data.items.boo_portrait && ((flags.partner('bombette') && save.data.items.boots >= 2) || save.data.items.weight);
 							},
-							ap: [8112000394]
+							ap: [8112000395]
 						},
 						{
 							name: 'Igor',
@@ -7488,7 +7488,7 @@ export const useLogicStore = defineStore('logic', () => {
 									save.data.items.letters.igor
 								);
 							},
-							ap: [8112000388]
+							ap: [8112000389]
 						}
 					]
 				}
@@ -7516,7 +7516,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.gusty_gulch() && flags.panels();
 							},
-							ap: [8112000382]
+							ap: [8112000383]
 						}
 					]
 				},
@@ -7555,7 +7555,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.gusty_gulch();
 							},
-							ap: [8112000412]
+							ap: [8112000413]
 						},
 						{
 							name: 'Talk to the Boo nead the Save Block (After Koopa Koot asks for the Package)',
@@ -7586,7 +7586,7 @@ export const useLogicStore = defineStore('logic', () => {
 									save.data.items.koopa_koot_favors.kooky_cookie
 								);
 							},
-							ap: [8112000411]
+							ap: [8112000412]
 						}
 					]
 				},
@@ -7614,7 +7614,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.gusty_gulch();
 							},
-							ap: [8112000408]
+							ap: [8112000409]
 						},
 						{
 							name: 'Item on the ledge',
@@ -7625,7 +7625,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.gusty_gulch() && (flags.partner('kooper') || flags.partner('parakarry'));
 							},
-							ap: [8112000406]
+							ap: [8112000407]
 						},
 						{
 							name: 'Left ? block near the Goomba',
@@ -7636,7 +7636,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.gusty_gulch();
 							},
-							ap: [8112000409]
+							ap: [8112000410]
 						},
 						{
 							name: 'Right ? block near the Goomba',
@@ -7647,7 +7647,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.gusty_gulch();
 							},
-							ap: [8112000410]
+							ap: [8112000411]
 						},
 						{
 							name: 'Item in front of the log',
@@ -7658,7 +7658,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.gusty_gulch();
 							},
-							ap: [8112000407]
+							ap: [8112000408]
 						}
 					]
 				},
@@ -7678,7 +7678,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.gusty_gulch() && flags.partner('parakarry');
 							},
-							ap: [8112000413]
+							ap: [8112000414]
 						},
 						{
 							name: 'Item behind the rock and the dead tree',
@@ -7689,7 +7689,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.gusty_gulch() && flags.partner('parakarry');
 							},
-							ap: [8112000415]
+							ap: [8112000416]
 						},
 						{
 							name: '? block near the east exit',
@@ -7700,7 +7700,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.gusty_gulch() && flags.partner('parakarry');
 							},
-							ap: [8112000414]
+							ap: [8112000415]
 						},
 						{
 							name: 'Near the east exit',
@@ -7711,7 +7711,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.gusty_gulch() && flags.partner('parakarry');
 							},
-							ap: [8112000416]
+							ap: [8112000417]
 						}
 					]
 				},
@@ -7775,7 +7775,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.tubba_blubba_castle();
 							},
-							ap: [8112000420]
+							ap: [8112000421]
 						}
 					]
 				},
@@ -7795,7 +7795,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.tubba_blubba_castle() && save.data.items.tubba_castle_key >= 1 && flags.partner('bombette') && flags.partner('parakarry') && save.data.items.boots >= 2;
 							},
-							ap: [8112000421]
+							ap: [8112000422]
 						}
 					]
 				},
@@ -7816,7 +7816,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.tubba_blubba_castle() && save.data.items.tubba_castle_key >= 1;
 							},
-							ap: [8112000417]
+							ap: [8112000418]
 						}
 					]
 				},
@@ -7844,7 +7844,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.tubba_blubba_castle();
 							},
-							ap: [8112000418]
+							ap: [8112000419]
 						}
 					]
 				},
@@ -7864,7 +7864,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.tubba_blubba_castle() && save.data.items.boots >= 2;
 							},
-							ap: [8112000419]
+							ap: [8112000420]
 						}
 					]
 				},
@@ -7900,7 +7900,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.tubba_blubba_castle() && save.data.items.tubba_castle_key >= 1 && flags.partner('bow');
 							},
-							ap: [8112000422]
+							ap: [8112000423]
 						}
 					]
 				},
@@ -7936,7 +7936,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.tubba_blubba_castle() && save.data.items.tubba_castle_key >= 1 && flags.partner('parakarry');
 							},
-							ap: [8112000423]
+							ap: [8112000424]
 						},
 						{
 							name: 'Coin on the bed 1',
@@ -7947,7 +7947,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.tubba_blubba_castle() && save.data.items.tubba_castle_key >= 1 && flags.partner('parakarry');
 							},
-							ap: [8112000424]
+							ap: [8112000425]
 						},
 						{
 							name: 'Coin on the bed 2',
@@ -7958,7 +7958,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.tubba_blubba_castle() && save.data.items.tubba_castle_key >= 1 && flags.partner('parakarry');
 							},
-							ap: [8112000425]
+							ap: [8112000426]
 						},
 						{
 							name: 'Coin on the bed 3',
@@ -7969,7 +7969,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.tubba_blubba_castle() && save.data.items.tubba_castle_key >= 1 && flags.partner('parakarry');
 							},
-							ap: [8112000426]
+							ap: [8112000427]
 						},
 						{
 							name: 'Coin on the bed 4',
@@ -7980,7 +7980,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.tubba_blubba_castle() && save.data.items.tubba_castle_key >= 1 && flags.partner('parakarry');
 							},
-							ap: [8112000427]
+							ap: [8112000428]
 						},
 						{
 							name: 'Coin on the bed 5',
@@ -7991,7 +7991,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.tubba_blubba_castle() && save.data.items.tubba_castle_key >= 1 && flags.partner('parakarry');
 							},
-							ap: [8112000428]
+							ap: [8112000429]
 						},
 						{
 							name: 'Coin on the bed 6',
@@ -8002,7 +8002,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.tubba_blubba_castle() && save.data.items.tubba_castle_key >= 1 && flags.partner('parakarry');
 							},
-							ap: [8112000429]
+							ap: [8112000430]
 						}
 					]
 				},
@@ -8022,7 +8022,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.tubba_blubba_castle() && save.data.items.tubba_castle_key >= 2;
 							},
-							ap: [8112000430]
+							ap: [8112000431]
 						}
 					]
 				},
@@ -8050,7 +8050,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.tubba_blubba_castle() && save.data.items.tubba_castle_key >= 2;
 							},
-							ap: [8112000431]
+							ap: [8112000432]
 						}
 					]
 				},
@@ -8105,7 +8105,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox(false) && flags.panels();
 							},
-							ap: [8112000443]
+							ap: [8112000445]
 						}
 					]
 				},
@@ -8125,7 +8125,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox_jack_in_a_box(false);
 							},
-							ap: [8112000450]
+							ap: [8112000451]
 						},
 						{
 							name: 'Item 2 on the left spring',
@@ -8136,7 +8136,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox_jack_in_a_box(false);
 							},
-							ap: [8112000451]
+							ap: [8112000452]
 						},
 						{
 							name: 'Item 3 on the left spring',
@@ -8147,7 +8147,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox_jack_in_a_box(false);
 							},
-							ap: [8112000452]
+							ap: [8112000453]
 						},
 						{
 							name: 'Item 1 on the spring of top of the first wall',
@@ -8158,7 +8158,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox_jack_in_a_box(false);
 							},
-							ap: [8112000453]
+							ap: [8112000454]
 						},
 						{
 							name: 'Item 2 on the spring of top of the first wall',
@@ -8169,7 +8169,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox_jack_in_a_box(false);
 							},
-							ap: [8112000454]
+							ap: [8112000455]
 						},
 						{
 							name: 'Item 3 on the spring of top of the first wall',
@@ -8180,7 +8180,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox_jack_in_a_box(false);
 							},
-							ap: [8112000455]
+							ap: [8112000456]
 						},
 						{
 							name: 'Item 4 on the spring of top of the first wall',
@@ -8191,7 +8191,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox_jack_in_a_box(false);
 							},
-							ap: [8112000456]
+							ap: [8112000457]
 						},
 						{
 							name: 'Item 5 on the spring of top of the first wall',
@@ -8202,7 +8202,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox_jack_in_a_box(false);
 							},
-							ap: [8112000457]
+							ap: [8112000458]
 						},
 						{
 							name: 'Item behind the fallen blocks',
@@ -8213,7 +8213,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox_jack_in_a_box(false);
 							},
-							ap: [8112000459]
+							ap: [8112000460]
 						},
 						{
 							name: 'Item of the roof of the west most building',
@@ -8224,7 +8224,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox_jack_in_a_box(false) && flags.partner('parakarry');
 							},
-							ap: [8112000458]
+							ap: [8112000459]
 						},
 						{
 							name: '? block on the west side of the last wall',
@@ -8235,7 +8235,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox_jack_in_a_box(false);
 							},
-							ap: [8112000447]
+							ap: [8112000448]
 						},
 						{
 							name: '? block on the east side of the last wall',
@@ -8246,7 +8246,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox_jack_in_a_box(false);
 							},
-							ap: [8112000448]
+							ap: [8112000449]
 						},
 						{
 							name: '? block on the ledge at the end of the room',
@@ -8257,7 +8257,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox_jack_in_a_box(false);
 							},
-							ap: [8112000449]
+							ap: [8112000450]
 						},
 						{
 							name: 'Item that Kammy spawns',
@@ -8268,7 +8268,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox_jack_in_a_box(false);
 							},
-							ap: [8112000445]
+							ap: [8112000446]
 						},
 						{
 							name: 'Chest',
@@ -8279,7 +8279,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox_jack_in_a_box(false);
 							},
-							ap: [8112000446]
+							ap: [8112000447]
 						}
 					]
 				},
@@ -8299,7 +8299,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox(false, false) && flags.jump_coin_blocks();
 							},
-							ap: [8112000504]
+							ap: [8112000505]
 						},
 						{
 							name: "Anti Guy's chest",
@@ -8311,7 +8311,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox(false, false) && save.data.items.anti_guy;
 							},
-							ap: [8112000502]
+							ap: [8112000503]
 						},
 						{
 							name: '? block near the west exit',
@@ -8322,7 +8322,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox(false, false) && flags.jump_coin_blocks();
 							},
-							ap: [8112000503]
+							ap: [8112000504]
 						}
 					]
 				},
@@ -8342,7 +8342,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox(false, false) && flags.jump_coin_blocks();
 							},
-							ap: [8112000439]
+							ap: [8112000440]
 						},
 						{
 							name: 'Western invisible block',
@@ -8353,7 +8353,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox(false, false) && flags.jump_coin_blocks();
 							},
-							ap: [8112000438]
+							ap: [8112000439]
 						},
 						{
 							name: 'Yellow Shy Guy',
@@ -8364,7 +8364,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox(false, false);
 							},
-							ap: [8112000434]
+							ap: [8112000435]
 						},
 						{
 							name: 'Red Shy Guy 1',
@@ -8375,7 +8375,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox(false, false);
 							},
-							ap: [8112000433]
+							ap: [8112000434]
 						},
 						{
 							name: 'Red Shy Guy 2',
@@ -8386,7 +8386,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox(false, false);
 							},
-							ap: [8112000432]
+							ap: [8112000433]
 						},
 						{
 							name: 'Blue Shy Guy',
@@ -8397,7 +8397,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox(false, false);
 							},
-							ap: [8112000436]
+							ap: [8112000437]
 						},
 						{
 							name: 'South yellow shy guy',
@@ -8408,7 +8408,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox(false, false);
 							},
-							ap: [8112000435]
+							ap: [8112000436]
 						},
 						{
 							name: 'Green Shy Guy',
@@ -8419,7 +8419,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox(false, false);
 							},
-							ap: [8112000437]
+							ap: [8112000438]
 						}
 					]
 				},
@@ -8439,7 +8439,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train;
 							},
-							ap: [8112000465]
+							ap: [8112000466]
 						},
 						{
 							name: 'Invisible block by the pink lever',
@@ -8450,7 +8450,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake;
 							},
-							ap: [8112000466]
+							ap: [8112000467]
 						},
 						{
 							name: 'In front of the station',
@@ -8461,7 +8461,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && flags.panels();
 							},
-							ap: [8112000467]
+							ap: [8112000468]
 						}
 					]
 				},
@@ -8481,7 +8481,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox_jack_in_a_box() && save.data.items.toy_train;
 							},
-							ap: [8112000470]
+							ap: [8112000471]
 						},
 						{
 							name: '? block in the alley past the house',
@@ -8492,7 +8492,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox_jack_in_a_box() && save.data.items.toy_train;
 							},
-							ap: [8112000472]
+							ap: [8112000473]
 						},
 						{
 							name: 'Chest past the alley and past the house',
@@ -8503,7 +8503,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox_jack_in_a_box() && save.data.items.toy_train;
 							},
-							ap: [8112000471]
+							ap: [8112000472]
 						},
 						{
 							name: 'Item that Kammy spawns',
@@ -8514,7 +8514,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox_jack_in_a_box() && save.data.items.toy_train;
 							},
-							ap: [8112000468]
+							ap: [8112000469]
 						},
 						{
 							name: 'Chest at the end of the room',
@@ -8525,7 +8525,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox_jack_in_a_box() && save.data.items.toy_train;
 							},
-							ap: [8112000469]
+							ap: [8112000470]
 						}
 					]
 				},
@@ -8545,7 +8545,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train;
 							},
-							ap: [8112000505]
+							ap: [8112000506]
 						},
 						{
 							name: 'West ? block north of the tracks',
@@ -8556,7 +8556,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake;
 							},
-							ap: [8112000506]
+							ap: [8112000507]
 						},
 						{
 							name: 'East ? block north of the tracks',
@@ -8567,7 +8567,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake;
 							},
-							ap: [8112000507]
+							ap: [8112000508]
 						},
 						{
 							name: 'Block between the two ? blocks north of the tracks',
@@ -8578,7 +8578,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake;
 							},
-							ap: [8112000508]
+							ap: [8112000509]
 						}
 					]
 				},
@@ -8599,7 +8599,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake;
 							},
-							ap: [8112000460]
+							ap: [8112000461]
 						},
 						{
 							name: '? block north of the tracks, left of the Gourmet Guy Gate',
@@ -8610,7 +8610,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake;
 							},
-							ap: [8112000461]
+							ap: [8112000462]
 						},
 						{
 							name: 'Left ? block north of the tracks, right of the Gourmet Guy Gate',
@@ -8621,7 +8621,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake;
 							},
-							ap: [8112000462]
+							ap: [8112000463]
 						},
 						{
 							name: 'Middle invisible block north of the tracks, right of the Gourmet Guy Gate',
@@ -8632,7 +8632,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake;
 							},
-							ap: [8112000464]
+							ap: [8112000465]
 						},
 						{
 							name: 'Right ? block north of the tracks, right of the Gourmet Guy Gate',
@@ -8643,7 +8643,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake;
 							},
-							ap: [8112000463]
+							ap: [8112000464]
 						}
 					]
 				},
@@ -8663,7 +8663,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake && flags.panels();
 							},
-							ap: [8112000473]
+							ap: [8112000474]
 						},
 						{
 							name: 'Invisible block east of the station',
@@ -8674,7 +8674,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake;
 							},
-							ap: [8112000474]
+							ap: [8112000475]
 						}
 					]
 				},
@@ -8694,7 +8694,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake;
 							},
-							ap: [8112000477]
+							ap: [8112000478]
 						},
 						{
 							name: 'Item 2 on the first threadmill',
@@ -8705,7 +8705,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake;
 							},
-							ap: [8112000478]
+							ap: [8112000479]
 						},
 						{
 							name: 'Item 3 on the first threadmill',
@@ -8716,7 +8716,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake;
 							},
-							ap: [8112000479]
+							ap: [8112000480]
 						},
 						{
 							name: 'Item 1 on the second threadmill',
@@ -8727,7 +8727,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake;
 							},
-							ap: [8112000480]
+							ap: [8112000481]
 						},
 						{
 							name: 'Item 2 on the second threadmill',
@@ -8738,7 +8738,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake;
 							},
-							ap: [8112000481]
+							ap: [8112000482]
 						},
 						{
 							name: 'Item 3 on the second threadmill',
@@ -8749,7 +8749,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake;
 							},
-							ap: [8112000482]
+							ap: [8112000483]
 						},
 						{
 							name: 'Yellow Shy Guy on the last threadmill',
@@ -8760,7 +8760,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake && flags.partner('bow');
 							},
-							ap: [8112000490]
+							ap: [8112000491]
 						},
 						{
 							name: 'Block on the pink moving platform',
@@ -8771,7 +8771,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake && flags.partner('bow') && flags.partner('parakarry');
 							},
-							ap: [8112000491]
+							ap: [8112000492]
 						},
 						{
 							name: 'Coin 1 inside the fort',
@@ -8782,7 +8782,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake && flags.partner('bow');
 							},
-							ap: [8112000484]
+							ap: [8112000485]
 						},
 						{
 							name: 'Coin 2 inside the fort',
@@ -8793,7 +8793,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake && flags.partner('bow');
 							},
-							ap: [8112000485]
+							ap: [8112000486]
 						},
 						{
 							name: 'Coin 3 inside the fort',
@@ -8804,7 +8804,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake && flags.partner('bow');
 							},
-							ap: [8112000486]
+							ap: [8112000487]
 						},
 						{
 							name: 'Coin 4 inside the fort',
@@ -8815,7 +8815,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake && flags.partner('bow');
 							},
-							ap: [8112000487]
+							ap: [8112000488]
 						},
 						{
 							name: 'Coin 5 inside the fort',
@@ -8826,7 +8826,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake && flags.partner('bow');
 							},
-							ap: [8112000488]
+							ap: [8112000489]
 						},
 						{
 							name: 'Coin 6 inside the fort',
@@ -8837,7 +8837,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake && flags.partner('bow');
 							},
-							ap: [8112000489]
+							ap: [8112000490]
 						},
 						{
 							name: 'Item in the fort',
@@ -8848,7 +8848,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake && flags.partner('bow');
 							},
-							ap: [8112000483]
+							ap: [8112000484]
 						},
 						{
 							name: 'Item that Kammy spawns',
@@ -8859,7 +8859,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake && flags.partner('bow') && flags.partner('parakarry');
 							},
-							ap: [8112000475]
+							ap: [8112000476]
 						},
 						{
 							name: 'Chest at the end of the room',
@@ -8870,7 +8870,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake && flags.partner('bow') && flags.partner('parakarry');
 							},
-							ap: [8112000476]
+							ap: [8112000477]
 						}
 					]
 				},
@@ -8890,7 +8890,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake && flags.panels() && save.data.items.hammer >= 1;
 							},
-							ap: [8112000493]
+							ap: [8112000494]
 						},
 						{
 							name: 'Invisible block west of the station',
@@ -8901,7 +8901,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake && save.data.items.hammer >= 1;
 							},
-							ap: [8112000492]
+							ap: [8112000493]
 						}
 					]
 				},
@@ -8921,7 +8921,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake && save.data.items.hammer >= 1;
 							},
-							ap: [8112000494]
+							ap: [8112000495]
 						},
 						{
 							name: 'On top of the wheel',
@@ -8932,7 +8932,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake && save.data.items.hammer >= 1;
 							},
-							ap: [8112000500]
+							ap: [8112000501]
 						},
 						{
 							name: 'Left ? block in the middle of the room',
@@ -8943,7 +8943,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake && save.data.items.hammer >= 1;
 							},
-							ap: [8112000496]
+							ap: [8112000497]
 						},
 						{
 							name: 'Middle invisible block in the middle of the room',
@@ -8954,7 +8954,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake && save.data.items.hammer >= 1;
 							},
-							ap: [8112000497]
+							ap: [8112000498]
 						},
 						{
 							name: 'Right ? block in the middle of the room',
@@ -8965,7 +8965,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake && save.data.items.hammer >= 1;
 							},
-							ap: [8112000498]
+							ap: [8112000499]
 						},
 						{
 							name: 'Hidden block near the west exit',
@@ -8976,7 +8976,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake && save.data.items.hammer >= 1;
 							},
-							ap: [8112000495]
+							ap: [8112000496]
 						},
 						{
 							name: 'Super Block',
@@ -8987,7 +8987,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake && flags.partner('parakarry') && save.data.items.hammer >= 1;
 							},
-							ap: [8112000499]
+							ap: [8112000500]
 						}
 					]
 				},
@@ -9007,7 +9007,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake && save.data.items.hammer >= 1;
 							},
-							ap: [8112000501]
+							ap: [8112000502]
 						}
 					]
 				},
@@ -9034,7 +9034,7 @@ export const useLogicStore = defineStore('logic', () => {
 									save.data.items.hammer >= 1
 								);
 							},
-							ap: [8112000442]
+							ap: [8112000443]
 						},
 						{
 							name: 'Invisible ? block near the item on top of the brick block',
@@ -9045,7 +9045,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake && flags.partner('bombette') && save.data.items.hammer >= 1;
 							},
-							ap: [8112000441]
+							ap: [8112000442]
 						},
 						{
 							name: '? block near the east exit',
@@ -9056,7 +9056,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toybox() && save.data.items.toy_train && save.data.items.cake && flags.partner('bombette') && save.data.items.hammer >= 1;
 							},
-							ap: [8112000440]
+							ap: [8112000441]
 						}
 					]
 				},
@@ -9111,7 +9111,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.jump_ledges();
 							},
-							ap: [8112000509]
+							ap: [8112000510]
 						},
 						{
 							name: 'Item 2 on the spinning flower',
@@ -9122,7 +9122,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.jump_ledges();
 							},
-							ap: [8112000510]
+							ap: [8112000511]
 						},
 						{
 							name: 'Coconut tree',
@@ -9133,7 +9133,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.trees();
 							},
-							ap: [8112000512]
+							ap: [8112000513]
 						},
 						{
 							name: 'Item behind the bush north of the screen',
@@ -9144,7 +9144,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island();
 							},
-							ap: [8112000511]
+							ap: [8112000512]
 						}
 					]
 				},
@@ -9164,7 +9164,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.trees();
 							},
-							ap: [8112000518]
+							ap: [8112000519]
 						},
 						{
 							name: 'Coconut tree 2',
@@ -9175,7 +9175,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.trees();
 							},
-							ap: [8112000519]
+							ap: [8112000520]
 						},
 						{
 							name: 'Coconut tree 3',
@@ -9186,7 +9186,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.trees();
 							},
-							ap: [8112000520]
+							ap: [8112000521]
 						},
 						{
 							name: 'Coconut tree 4',
@@ -9197,7 +9197,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.trees();
 							},
-							ap: [8112000521]
+							ap: [8112000522]
 						},
 						{
 							name: 'Coconut tree 5',
@@ -9208,7 +9208,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.trees();
 							},
-							ap: [8112000522]
+							ap: [8112000523]
 						},
 						{
 							name: 'Coconut tree near the east exit (item 1)',
@@ -9219,7 +9219,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.trees();
 							},
-							ap: [8112000523]
+							ap: [8112000524]
 						},
 						{
 							name: 'Coconut tree near the east exit (item 2)',
@@ -9230,7 +9230,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.trees();
 							},
-							ap: [8112000524]
+							ap: [8112000525]
 						},
 						{
 							name: 'West invisible block by the bell plant',
@@ -9241,7 +9241,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.jump_coin_blocks();
 							},
-							ap: [8112000514]
+							ap: [8112000515]
 						},
 						{
 							name: 'East invisible block by the bell plant',
@@ -9252,7 +9252,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.jump_coin_blocks();
 							},
-							ap: [8112000515]
+							ap: [8112000516]
 						},
 						{
 							name: 'Item 1 on the spinning flower',
@@ -9263,7 +9263,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.jump_ledges();
 							},
-							ap: [8112000516]
+							ap: [8112000517]
 						},
 						{
 							name: 'Item 2 on the spinning flower',
@@ -9274,7 +9274,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.jump_ledges();
 							},
-							ap: [8112000517]
+							ap: [8112000518]
 						},
 						{
 							name: 'Item on the rock in the middle of the screen',
@@ -9285,7 +9285,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.jump_ledges();
 							},
-							ap: [8112000513]
+							ap: [8112000514]
 						}
 					]
 				},
@@ -9305,7 +9305,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.panels();
 							},
-							ap: [8112000528]
+							ap: [8112000529]
 						},
 						{
 							name: 'Talk to the Yoshi Chief',
@@ -9317,7 +9317,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.partner('watt') && flags.partner('sushie') && save.data.items.boots >= 1 && save.data.items.hammer >= 1;
 							},
-							ap: [8112000525]
+							ap: [8112000526]
 						},
 						{
 							name: 'West coconut tree',
@@ -9328,7 +9328,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.trees();
 							},
-							ap: [8112000526]
+							ap: [8112000527]
 						},
 						{
 							name: 'East coconut tree',
@@ -9339,7 +9339,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.trees();
 							},
-							ap: [8112000527]
+							ap: [8112000528]
 						}
 					]
 				},
@@ -9359,7 +9359,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.jump_ledges();
 							},
-							ap: [8112000533]
+							ap: [8112000534]
 						},
 						{
 							name: 'Shop item 2',
@@ -9370,7 +9370,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.jump_ledges();
 							},
-							ap: [8112000534]
+							ap: [8112000535]
 						},
 						{
 							name: 'Shop item 3',
@@ -9381,7 +9381,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.jump_ledges();
 							},
-							ap: [8112000535]
+							ap: [8112000536]
 						},
 						{
 							name: 'Shop item 4',
@@ -9392,7 +9392,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.jump_ledges();
 							},
-							ap: [8112000536]
+							ap: [8112000537]
 						},
 						{
 							name: 'Shop item 5',
@@ -9403,7 +9403,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.jump_ledges();
 							},
-							ap: [8112000537]
+							ap: [8112000538]
 						},
 						{
 							name: 'Shop item 6',
@@ -9414,7 +9414,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.jump_ledges();
 							},
-							ap: [8112000538]
+							ap: [8112000539]
 						},
 						{
 							name: 'Red Yoshi Kid',
@@ -9425,7 +9425,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.deliver_letters() && save.data.items.letters.red_yoshi_kid;
 							},
-							ap: [8112000531]
+							ap: [8112000532]
 						},
 						{
 							name: 'Give a Tayce T. item to the Yellow Adult Yoshi',
@@ -9445,7 +9445,7 @@ export const useLogicStore = defineStore('logic', () => {
 									(save.data.configs.logic.cook_without_frying_pan || save.data.items.frying_pan)
 								);
 							},
-							ap: [8112000530]
+							ap: [8112000531]
 						},
 						{
 							name: 'Give the volcano vase to Kolorado',
@@ -9464,7 +9464,7 @@ export const useLogicStore = defineStore('logic', () => {
 									save.data.items.misstar
 								);
 							},
-							ap: [8112000529]
+							ap: [8112000530]
 						},
 						{
 							name: 'Coconut tree near the east exit',
@@ -9475,7 +9475,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.trees();
 							},
-							ap: [8112000532]
+							ap: [8112000533]
 						}
 					]
 				},
@@ -9495,7 +9495,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island();
 							},
-							ap: [8112000575]
+							ap: [8112000576]
 						},
 						{
 							name: misstar_dungeon_shuffle_name,
@@ -9526,7 +9526,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.jump_coin_blocks() && flags.partner('sushie');
 							},
-							ap: [8112000553]
+							ap: [8112000554]
 						},
 						{
 							name: 'Coin 1 underwater',
@@ -9537,7 +9537,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.partner('sushie');
 							},
-							ap: [8112000550]
+							ap: [8112000551]
 						},
 						{
 							name: 'Coin 2 underwater',
@@ -9548,7 +9548,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.partner('sushie');
 							},
-							ap: [8112000551]
+							ap: [8112000552]
 						},
 						{
 							name: 'Coin 3 underwater',
@@ -9559,7 +9559,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.partner('sushie');
 							},
-							ap: [8112000552]
+							ap: [8112000553]
 						},
 						{
 							name: 'Super Block',
@@ -9570,7 +9570,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.partner('sushie') && flags.jump_coin_blocks();
 							},
-							ap: [8112000558]
+							ap: [8112000559]
 						},
 						{
 							name: 'Tree near the north exit',
@@ -9581,7 +9581,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.partner('sushie') && flags.trees();
 							},
-							ap: [8112000556]
+							ap: [8112000557]
 						},
 						{
 							name: 'Tree near the east exit',
@@ -9592,7 +9592,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.partner('sushie') && flags.trees();
 							},
-							ap: [8112000557]
+							ap: [8112000558]
 						},
 						{
 							name: 'Bush near the north exit',
@@ -9603,7 +9603,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.partner('sushie');
 							},
-							ap: [8112000554]
+							ap: [8112000555]
 						},
 						{
 							name: 'Bush near the south exit',
@@ -9614,7 +9614,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.jump_ledges();
 							},
-							ap: [8112000555]
+							ap: [8112000556]
 						}
 					]
 				},
@@ -9634,7 +9634,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.partner('sushie') && flags.jump_coin_blocks();
 							},
-							ap: [8112000543]
+							ap: [8112000544]
 						},
 						{
 							name: 'Tree near the east exit',
@@ -9645,7 +9645,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.trees();
 							},
-							ap: [8112000546]
+							ap: [8112000547]
 						},
 						{
 							name: 'Bush near the south exit',
@@ -9656,7 +9656,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island();
 							},
-							ap: [8112000544]
+							ap: [8112000545]
 						},
 						{
 							name: 'South-west bush',
@@ -9667,7 +9667,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && save.data.items.hammer >= 1 && flags.partner('sushie');
 							},
-							ap: [8112000545]
+							ap: [8112000546]
 						}
 					]
 				},
@@ -9687,7 +9687,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.trees();
 							},
-							ap: [8112000542]
+							ap: [8112000543]
 						},
 						{
 							name: 'Item on the top right island',
@@ -9698,7 +9698,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.partner('sushie');
 							},
-							ap: [8112000540]
+							ap: [8112000541]
 						},
 						{
 							name: 'Tree on the top right island',
@@ -9709,7 +9709,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.partner('sushie') && flags.trees();
 							},
-							ap: [8112000541]
+							ap: [8112000542]
 						},
 						{
 							name: 'Chest after saving Misstar',
@@ -9720,7 +9720,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && save.data.items.misstar;
 							},
-							ap: [8112000539]
+							ap: [8112000540]
 						}
 					]
 				},
@@ -9740,7 +9740,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.partner('sushie');
 							},
-							ap: [8112000563]
+							ap: [8112000564]
 						}
 					]
 				},
@@ -9760,7 +9760,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.partner('sushie') && flags.trees();
 							},
-							ap: [8112000562]
+							ap: [8112000563]
 						},
 						{
 							name: 'Tree on the ledge',
@@ -9771,7 +9771,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.partner('sushie') && flags.jump_ledges() && flags.trees();
 							},
-							ap: [8112000561]
+							ap: [8112000562]
 						},
 						{
 							name: 'Bush near the south exit',
@@ -9782,7 +9782,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.partner('sushie');
 							},
-							ap: [8112000560]
+							ap: [8112000561]
 						},
 						{
 							name: 'Bush near the east exit',
@@ -9793,7 +9793,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.partner('sushie');
 							},
-							ap: [8112000559]
+							ap: [8112000560]
 						}
 					]
 				},
@@ -9813,7 +9813,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.partner('sushie') && save.data.items.hammer >= 1;
 							},
-							ap: [8112000547]
+							ap: [8112000548]
 						},
 						{
 							name: 'Tree near the raven statue',
@@ -9824,7 +9824,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.partner('sushie') && save.data.items.hammer >= 1;
 							},
-							ap: [8112000548]
+							ap: [8112000549]
 						}
 					]
 				},
@@ -9844,7 +9844,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island() && flags.partner('sushie') && save.data.items.hammer >= 1;
 							},
-							ap: [8112000549]
+							ap: [8112000550]
 						}
 					]
 				},
@@ -9864,7 +9864,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island_jungle_behind_raven_statue() && flags.jump_ledges() && flags.jump_coin_blocks();
 							},
-							ap: [8112000565]
+							ap: [8112000566]
 						},
 						{
 							name: 'Tree vine near the bell plant',
@@ -9875,7 +9875,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island_jungle_behind_raven_statue() && save.data.items.boots >= 1;
 							},
-							ap: [8112000564]
+							ap: [8112000565]
 						},
 						{
 							name: 'Tree near bell plant',
@@ -9886,7 +9886,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island_jungle_behind_raven_statue() && flags.jump_ledges() && flags.trees();
 							},
-							ap: [8112000566]
+							ap: [8112000567]
 						}
 					]
 				},
@@ -9906,7 +9906,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island_jungle_behind_raven_statue() && flags.trees();
 							},
-							ap: [8112000568]
+							ap: [8112000569]
 						},
 						{
 							name: 'Invisible block near the first push block',
@@ -9917,7 +9917,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island_jungle_behind_raven_statue() && flags.jump_coin_blocks() && flags.jump_ledges();
 							},
-							ap: [8112000567]
+							ap: [8112000568]
 						}
 					]
 				},
@@ -9937,7 +9937,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island_jungle_behind_raven_statue() && save.data.items.boots >= 1;
 							},
-							ap: [8112000569]
+							ap: [8112000570]
 						},
 						{
 							name: 'Tree vine far east',
@@ -9948,7 +9948,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island_jungle_behind_raven_statue() && save.data.items.boots >= 1;
 							},
-							ap: [8112000570]
+							ap: [8112000571]
 						}
 					]
 				},
@@ -9968,7 +9968,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island_jungle_behind_raven_statue() && flags.panels();
 							},
-							ap: [8112000572]
+							ap: [8112000573]
 						},
 						{
 							name: 'Tree near the east exit',
@@ -9979,7 +9979,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island_jungle_behind_raven_statue() && save.data.items.boots >= 1 && flags.trees();
 							},
-							ap: [8112000571]
+							ap: [8112000572]
 						}
 					]
 				},
@@ -9999,7 +9999,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island_jungle_behind_raven_statue() && save.data.items.boots >= 1;
 							},
-							ap: [8112000573]
+							ap: [8112000574]
 						},
 						{
 							name: 'Talk to Raphael the Raven',
@@ -10010,7 +10010,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.lava_lava_island_jungle_behind_raven_statue() && save.data.items.boots >= 1;
 							},
-							ap: [8112000574]
+							ap: [8112000575]
 						}
 					]
 				}
@@ -10054,7 +10054,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_lavalava() && save.data.items.boots >= 1 && (flags.partner('kooper') || flags.ultra_jump_blocks());
 							},
-							ap: [8112000577]
+							ap: [8112000578]
 						},
 						{
 							name: '? block 1',
@@ -10065,7 +10065,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_lavalava() && flags.jump_coin_blocks();
 							},
-							ap: [8112000578]
+							ap: [8112000579]
 						},
 						{
 							name: '? block 2',
@@ -10076,7 +10076,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_lavalava() && flags.jump_coin_blocks();
 							},
-							ap: [8112000579]
+							ap: [8112000580]
 						},
 						{
 							name: '? block 3',
@@ -10087,7 +10087,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_lavalava() && flags.jump_coin_blocks();
 							},
-							ap: [8112000580]
+							ap: [8112000581]
 						},
 						{
 							name: '? block 4',
@@ -10098,7 +10098,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_lavalava() && flags.jump_coin_blocks();
 							},
-							ap: [8112000581]
+							ap: [8112000582]
 						},
 						{
 							name: 'Item on platform halfway down then second zipline',
@@ -10109,7 +10109,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_lavalava() && save.data.items.boots >= 1;
 							},
-							ap: [8112000576]
+							ap: [8112000577]
 						}
 					]
 				},
@@ -10129,7 +10129,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_lavalava() && save.data.items.boots >= 1;
 							},
-							ap: [8112000582]
+							ap: [8112000583]
 						}
 					]
 				},
@@ -10157,7 +10157,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_lavalava() && flags.jump_coin_blocks() && flags.jump_ledges();
 							},
-							ap: [8112000583]
+							ap: [8112000584]
 						}
 					]
 				},
@@ -10177,7 +10177,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_lavalava() && (flags.partner('parakarry') || flags.partner('lakilester'));
 							},
-							ap: [8112000584]
+							ap: [8112000585]
 						}
 					]
 				},
@@ -10197,7 +10197,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_lavalava() && flags.ultra_blocks() && (flags.partner('parakarry') || flags.partner('lakilester'));
 							},
-							ap: [8112000585]
+							ap: [8112000586]
 						}
 					]
 				},
@@ -10217,7 +10217,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_lavalava() && save.data.items.boots >= 1 && flags.ultra_blocks();
 							},
-							ap: [8112000586]
+							ap: [8112000587]
 						},
 						{
 							name: 'East side of the lower level',
@@ -10228,7 +10228,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_lavalava() && flags.panels();
 							},
-							ap: [8112000587]
+							ap: [8112000588]
 						}
 					]
 				},
@@ -10272,7 +10272,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_lavalava() && flags.panels() && flags.ultra_blocks();
 							},
-							ap: [8112000588]
+							ap: [8112000589]
 						}
 					]
 				},
@@ -10292,7 +10292,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_lavalava() && save.data.items.boots >= 1 && flags.ultra_blocks();
 							},
-							ap: [8112000589]
+							ap: [8112000590]
 						},
 						{
 							name: 'East ? block',
@@ -10303,7 +10303,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.mt_lavalava() && save.data.items.boots >= 1 && flags.ultra_blocks();
 							},
-							ap: [8112000590]
+							ap: [8112000591]
 						}
 					]
 				},
@@ -10358,7 +10358,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.flower_fields() && flags.jump_ledges() && (save.data.items.bubble_berry || flags.partner('lakilester'));
 							},
-							ap: [8112000611]
+							ap: [8112000612]
 						},
 						{
 							name: 'Item in the vines near the east exit',
@@ -10369,7 +10369,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.flower_fields();
 							},
-							ap: [8112000612]
+							ap: [8112000613]
 						}
 					]
 				},
@@ -10389,7 +10389,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.flower_fields() && flags.jump_ledges() && flags.partner('bombette') && (save.data.items.bubble_berry || flags.partner('lakilester'));
 							},
-							ap: [8112000610]
+							ap: [8112000611]
 						},
 						{
 							name: 'Item in the grass',
@@ -10400,7 +10400,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.flower_fields() && (save.data.items.bubble_berry || flags.partner('lakilester'));
 							},
-							ap: [8112000609]
+							ap: [8112000610]
 						},
 						{
 							name: 'Item on the ledge',
@@ -10411,7 +10411,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.flower_fields() && flags.jump_ledges() && (save.data.items.bubble_berry || flags.partner('lakilester')) && flags.partner('bombette');
 							},
-							ap: [8112000608]
+							ap: [8112000609]
 						}
 					]
 				},
@@ -10439,7 +10439,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.flower_fields() && flags.jump_coin_blocks() && save.data.items.blue_berry;
 							},
-							ap: [8112000620]
+							ap: [8112000621]
 						},
 						{
 							name: 'Hidden block over the brick block',
@@ -10450,7 +10450,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.flower_fields() && flags.jump_ledges() && flags.jump_coin_blocks() && save.data.items.blue_berry;
 							},
-							ap: [8112000621]
+							ap: [8112000622]
 						}
 					]
 				},
@@ -10470,7 +10470,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.flower_fields() && save.data.items.blue_berry && save.data.items.boots >= 1;
 							},
-							ap: [8112000606]
+							ap: [8112000607]
 						}
 					]
 				},
@@ -10490,7 +10490,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.flower_fields() && save.data.items.blue_berry && save.data.items.boots >= 1 && save.data.items.crystal_berry;
 							},
-							ap: [8112000607]
+							ap: [8112000608]
 						}
 					]
 				},
@@ -10510,7 +10510,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.flower_fields() && flags.panels() && save.data.items.red_berry;
 							},
-							ap: [8112000630]
+							ap: [8112000631]
 						},
 						{
 							name: 'Item in the tree 1',
@@ -10521,7 +10521,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.flower_fields() && save.data.items.red_berry && flags.trees();
 							},
-							ap: [8112000628]
+							ap: [8112000629]
 						},
 						{
 							name: 'Item in the tree 2',
@@ -10532,7 +10532,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.flower_fields() && save.data.items.red_berry && flags.trees();
 							},
-							ap: [8112000629]
+							ap: [8112000630]
 						},
 						{
 							name: 'Item in the middle vine',
@@ -10543,7 +10543,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.flower_fields() && save.data.items.red_berry;
 							},
-							ap: [8112000627]
+							ap: [8112000628]
 						}
 					]
 				},
@@ -10563,7 +10563,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.flower_fields() && save.data.items.red_berry;
 							},
-							ap: [8112000596]
+							ap: [8112000597]
 						},
 						{
 							name: 'Item from Posie 2',
@@ -10574,7 +10574,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.flower_fields() && save.data.items.red_berry;
 							},
-							ap: [8112000595]
+							ap: [8112000596]
 						}
 					]
 				},
@@ -10594,7 +10594,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.flower_fields() && flags.jump_ledges();
 							},
-							ap: [8112000614]
+							ap: [8112000615]
 						},
 						{
 							name: 'Ground pound the top of the ledge near the east exit',
@@ -10605,7 +10605,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.flower_fields() && save.data.items.boots >= 2 && flags.partner('lakilester');
 							},
-							ap: [8112000613]
+							ap: [8112000614]
 						},
 						{
 							name: 'Super Block',
@@ -10616,7 +10616,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.flower_fields() && save.data.items.boots >= 2 && flags.partner('lakilester');
 							},
-							ap: [8112000615]
+							ap: [8112000616]
 						}
 					]
 				},
@@ -10636,7 +10636,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.flower_fields() && save.data.items.boots >= 2 && flags.partner('lakilester');
 							},
-							ap: [8112000617]
+							ap: [8112000618]
 						},
 						{
 							name: 'Invisible block near the east exit',
@@ -10647,7 +10647,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.flower_fields() && save.data.items.boots >= 2 && flags.partner('lakilester');
 							},
-							ap: [8112000616]
+							ap: [8112000617]
 						}
 					]
 				},
@@ -10675,7 +10675,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.flower_fields();
 							},
-							ap: [8112000603]
+							ap: [8112000604]
 						},
 						{
 							name: 'Hit the trees in the right order',
@@ -10687,7 +10687,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.flower_fields() && flags.trees();
 							},
-							ap: [8112000602]
+							ap: [8112000603]
 						}
 					]
 				},
@@ -10707,7 +10707,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.flower_fields() && flags.trees();
 							},
-							ap: [8112000592]
+							ap: [8112000593]
 						},
 						{
 							name: 'Item in the tree 2',
@@ -10718,7 +10718,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.flower_fields() && flags.trees();
 							},
-							ap: [8112000593]
+							ap: [8112000594]
 						},
 						{
 							name: 'South-west of the room',
@@ -10729,7 +10729,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.flower_fields() && flags.panels();
 							},
-							ap: [8112000594]
+							ap: [8112000595]
 						},
 						{
 							name: 'Talk to Petunia and defeat all the moles',
@@ -10740,7 +10740,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.flower_fields();
 							},
-							ap: [8112000591]
+							ap: [8112000592]
 						}
 					]
 				},
@@ -10760,7 +10760,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.flower_fields() && save.data.items.blue_berry;
 							},
-							ap: [8112000619]
+							ap: [8112000620]
 						}
 					]
 				},
@@ -10780,7 +10780,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.flower_fields();
 							},
-							ap: [8112000597]
+							ap: [8112000598]
 						},
 						{
 							name: 'Item in the tree 1',
@@ -10791,7 +10791,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.flower_fields() && save.data.items.yellow_berry && (flags.partner('lakilester') || flags.partner('parakarry')) && flags.trees();
 							},
-							ap: [8112000599]
+							ap: [8112000600]
 						},
 						{
 							name: 'Item in the tree 2',
@@ -10802,7 +10802,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.flower_fields() && save.data.items.yellow_berry && (flags.partner('lakilester') || flags.partner('parakarry')) && flags.trees();
 							},
-							ap: [8112000600]
+							ap: [8112000601]
 						},
 						{
 							name: 'Item in the grass next of the tree',
@@ -10813,7 +10813,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.flower_fields() && save.data.items.yellow_berry && (flags.partner('lakilester') || flags.partner('parakarry'));
 							},
-							ap: [8112000598]
+							ap: [8112000599]
 						},
 						{
 							name: 'Super Block',
@@ -10824,7 +10824,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.flower_fields() && save.data.items.yellow_berry && (flags.partner('lakilester') || flags.partner('parakarry')) && flags.jump_ledges();
 							},
-							ap: [8112000601]
+							ap: [8112000602]
 						}
 					]
 				},
@@ -10844,7 +10844,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.flower_fields() && save.data.items.yellow_berry && (flags.partner('lakilester') || flags.partner('parakarry')) && flags.jump_coin_blocks();
 							},
-							ap: [8112000622]
+							ap: [8112000623]
 						},
 						{
 							name: 'Item in the tree 1',
@@ -10862,7 +10862,7 @@ export const useLogicStore = defineStore('logic', () => {
 									flags.partner('sushie')
 								);
 							},
-							ap: [8112000624]
+							ap: [8112000625]
 						},
 						{
 							name: 'Item in the tree 2',
@@ -10880,7 +10880,7 @@ export const useLogicStore = defineStore('logic', () => {
 									flags.partner('sushie')
 								);
 							},
-							ap: [8112000625]
+							ap: [8112000626]
 						},
 						{
 							name: 'Invisible block near the east exit',
@@ -10897,7 +10897,7 @@ export const useLogicStore = defineStore('logic', () => {
 									flags.jump_ledges()
 								);
 							},
-							ap: [8112000623]
+							ap: [8112000624]
 						},
 						{
 							name: 'Near the east exit',
@@ -10908,7 +10908,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.flower_fields() && save.data.items.yellow_berry && (flags.partner('lakilester') || flags.partner('parakarry')) && flags.panels() && flags.jump_ledges();
 							},
-							ap: [8112000626]
+							ap: [8112000627]
 						}
 					]
 				},
@@ -10934,7 +10934,7 @@ export const useLogicStore = defineStore('logic', () => {
 									save.data.items.water_stone
 								);
 							},
-							ap: [8112000604]
+							ap: [8112000605]
 						},
 						{
 							name: 'Item in the tree',
@@ -10945,7 +10945,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.flower_fields() && save.data.items.yellow_berry && (flags.partner('lakilester') || flags.partner('parakarry')) && flags.jump_ledges() && flags.trees();
 							},
-							ap: [8112000605]
+							ap: [8112000606]
 						}
 					]
 				},
@@ -10973,7 +10973,7 @@ export const useLogicStore = defineStore('logic', () => {
 									save.data.items.hammer >= 1 // ??
 								);
 							},
-							ap: [8112000618]
+							ap: [8112000619]
 						}
 					]
 				},
@@ -11048,7 +11048,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.shiver_city() && flags.panels();
 							},
-							ap: [8112000634]
+							ap: [8112000635]
 						},
 						{
 							name: 'Mayor penguin',
@@ -11059,7 +11059,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.shiver_city() && flags.deliver_letters() && save.data.items.letters.mayor_penguin && save.data.items.warehouse_key;
 							},
-							ap: [8112000632]
+							ap: [8112000633]
 						},
 						{
 							name: 'Talk to the mayor after having met Merle',
@@ -11070,7 +11070,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.leave_shiver_city();
 							},
-							ap: [8112000631]
+							ap: [8112000632]
 						},
 						{
 							name: 'Chest in the middle house',
@@ -11081,7 +11081,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.shiver_city() && save.data.items.boots >= 1;
 							},
-							ap: [8112000633]
+							ap: [8112000634]
 						}
 					]
 				},
@@ -11101,7 +11101,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.shiver_city();
 							},
-							ap: [8112000641]
+							ap: [8112000642]
 						},
 						{
 							name: 'Shop item 2',
@@ -11112,7 +11112,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.shiver_city();
 							},
-							ap: [8112000642]
+							ap: [8112000643]
 						},
 						{
 							name: 'Shop item 3',
@@ -11123,7 +11123,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.shiver_city();
 							},
-							ap: [8112000643]
+							ap: [8112000644]
 						},
 						{
 							name: 'Shop item 4',
@@ -11134,7 +11134,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.shiver_city();
 							},
-							ap: [8112000644]
+							ap: [8112000645]
 						},
 						{
 							name: 'Shop item 5',
@@ -11145,7 +11145,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.shiver_city();
 							},
-							ap: [8112000645]
+							ap: [8112000646]
 						},
 						{
 							name: 'Shop item 6',
@@ -11156,7 +11156,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.shiver_city();
 							},
-							ap: [8112000646]
+							ap: [8112000647]
 						},
 						{
 							name: 'Item in the inn',
@@ -11167,7 +11167,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.shiver_city();
 							},
-							ap: [8112000635]
+							ap: [8112000636]
 						},
 						{
 							name: 'Reward in the inn 1',
@@ -11179,7 +11179,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.leave_shiver_city() && save.data.items.scarf && save.data.items.bucket;
 							},
-							ap: [8112000636]
+							ap: [8112000637]
 						},
 						{
 							name: 'Reward in the inn 2',
@@ -11191,7 +11191,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.leave_shiver_city() && save.data.items.scarf && save.data.items.bucket;
 							},
-							ap: [8112000637]
+							ap: [8112000638]
 						},
 						{
 							name: 'Reward in the inn 3',
@@ -11203,7 +11203,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.leave_shiver_city() && save.data.items.scarf && save.data.items.bucket;
 							},
-							ap: [8112000638]
+							ap: [8112000639]
 						},
 						{
 							name: 'Reward in the inn 4',
@@ -11215,7 +11215,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.leave_shiver_city() && save.data.items.scarf && save.data.items.bucket;
 							},
-							ap: [8112000639]
+							ap: [8112000640]
 						},
 						{
 							name: 'Reward in the inn 5',
@@ -11227,7 +11227,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.leave_shiver_city() && save.data.items.scarf && save.data.items.bucket;
 							},
-							ap: [8112000640]
+							ap: [8112000641]
 						}
 					]
 				},
@@ -11247,7 +11247,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.shiver_city() && save.data.items.boots >= 2 && flags.partner('sushie');
 							},
-							ap: [8112000662]
+							ap: [8112000663]
 						}
 					]
 				},
@@ -11275,7 +11275,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.leave_shiver_city() && flags.panels();
 							},
-							ap: [8112000649]
+							ap: [8112000650]
 						},
 						{
 							name: 'Hit the left pine tree 4 times',
@@ -11286,7 +11286,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.leave_shiver_city() && save.data.items.hammer >= 1;
 							},
-							ap: [8112000647]
+							ap: [8112000648]
 						},
 						{
 							name: 'Item behind the pine tree near the east exit',
@@ -11297,7 +11297,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.leave_shiver_city();
 							},
-							ap: [8112000648]
+							ap: [8112000649]
 						}
 					]
 				},
@@ -11317,7 +11317,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.leave_shiver_city();
 							},
-							ap: [8112000650]
+							ap: [8112000651]
 						},
 						{
 							name: 'Invisible block near Monstar fight',
@@ -11328,7 +11328,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.leave_shiver_city() && flags.jump_coin_blocks();
 							},
-							ap: [8112000651]
+							ap: [8112000652]
 						}
 					]
 				},
@@ -11348,7 +11348,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.leave_shiver_city() && flags.jump_ledges() && flags.deliver_letters() && save.data.items.letters.frost_t;
 							},
-							ap: [8112000653]
+							ap: [8112000654]
 						},
 						{
 							name: 'Talk to Merle',
@@ -11359,7 +11359,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.leave_shiver_city() && flags.jump_ledges();
 							},
-							ap: [8112000652]
+							ap: [8112000653]
 						}
 					]
 				},
@@ -11379,7 +11379,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.shiver_mountain() && flags.ultra_jump_blocks();
 							},
-							ap: [8112000654]
+							ap: [8112000655]
 						}
 					]
 				},
@@ -11399,7 +11399,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.shiver_mountain();
 							},
-							ap: [8112000655]
+							ap: [8112000656]
 						},
 						{
 							name: 'Super Block',
@@ -11410,7 +11410,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.shiver_mountain_tunnel();
 							},
-							ap: [8112000656]
+							ap: [8112000657]
 						}
 					]
 				},
@@ -11430,7 +11430,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.shiver_mountain_tunnel();
 							},
-							ap: [8112000657]
+							ap: [8112000658]
 						},
 						{
 							name: 'Center pillar',
@@ -11441,7 +11441,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.shiver_mountain_tunnel();
 							},
-							ap: [8112000658]
+							ap: [8112000659]
 						},
 						{
 							name: 'East pillar',
@@ -11452,7 +11452,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.shiver_mountain_tunnel();
 							},
-							ap: [8112000659]
+							ap: [8112000660]
 						}
 					]
 				},
@@ -11472,7 +11472,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.shiver_mountain_tunnel() && save.data.items.star_stone;
 							},
-							ap: [8112000661]
+							ap: [8112000662]
 						},
 						{
 							name: 'Item on the ledge when falling down after the second sets of stairs',
@@ -11483,7 +11483,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.shiver_mountain_tunnel() && save.data.items.star_stone;
 							},
-							ap: [8112000660]
+							ap: [8112000661]
 						},
 						{
 							name: kalmar_dungeon_shuffle_name,
@@ -11514,7 +11514,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.shiver_mountain_tunnel() && flags.partner('bombette');
 							},
-							ap: [8112000663]
+							ap: [8112000664]
 						}
 					]
 				}
@@ -11542,7 +11542,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.crystal_palace() && (save.data.items.red_key || (save.data.items.blue_key && flags.partner('bombette') && save.data.items.boots >= 2));
 							},
-							ap: [8112000671]
+							ap: [8112000672]
 						}
 					]
 				},
@@ -11594,7 +11594,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.crystal_palace();
 							},
-							ap: [8112000665]
+							ap: [8112000666]
 						}
 					]
 				},
@@ -11628,7 +11628,7 @@ export const useLogicStore = defineStore('logic', () => {
 									save.data.items.boots >= 2
 								);
 							},
-							ap: [8112000667]
+							ap: [8112000668]
 						}
 					]
 				},
@@ -11648,7 +11648,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.crystal_palace() && (save.data.items.red_key || (save.data.items.blue_key && flags.partner('bombette') && save.data.items.boots >= 2));
 							},
-							ap: [8112000664]
+							ap: [8112000665]
 						}
 					]
 				},
@@ -11676,7 +11676,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.crystal_palace() && (save.data.items.red_key || (save.data.items.blue_key && flags.partner('bombette') && save.data.items.boots >= 2));
 							},
-							ap: [8112000666]
+							ap: [8112000667]
 						}
 					]
 				},
@@ -11704,7 +11704,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.crystal_palace() && (save.data.items.red_key || (save.data.items.blue_key && flags.partner('bombette'))) && save.data.items.boots >= 2;
 							},
-							ap: [8112000668]
+							ap: [8112000669]
 						}
 					]
 				},
@@ -11741,7 +11741,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.crystal_palace() && save.data.items.red_key && flags.partner('bombette');
 							},
-							ap: [8112000678]
+							ap: [8112000679]
 						}
 					]
 				},
@@ -11769,7 +11769,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.crystal_palace() && save.data.items.blue_key && save.data.items.boots >= 2 && flags.partner('bombette');
 							},
-							ap: [8112000669]
+							ap: [8112000670]
 						},
 						{
 							name: 'Block back of the mirror',
@@ -11780,7 +11780,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.crystal_palace() && save.data.items.blue_key && save.data.items.boots >= 2 && flags.partner('bombette');
 							},
-							ap: [8112000670]
+							ap: [8112000671]
 						}
 					]
 				},
@@ -11816,7 +11816,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.crystal_palace() && save.data.items.red_key && flags.partner('bombette') && flags.partner('kooper') && save.data.items.hammer >= 1 && flags.panels();
 							},
-							ap: [8112000673]
+							ap: [8112000674]
 						},
 						{
 							name: '? block',
@@ -11834,7 +11834,7 @@ export const useLogicStore = defineStore('logic', () => {
 									flags.ultra_jump_blocks()
 								);
 							},
-							ap: [8112000672]
+							ap: [8112000673]
 						}
 					]
 				},
@@ -11862,7 +11862,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.crystal_palace() && save.data.items.red_key && flags.partner('bombette') && flags.partner('kooper') && save.data.items.hammer >= 1;
 							},
-							ap: [8112000676]
+							ap: [8112000677]
 						}
 					]
 				},
@@ -11882,7 +11882,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.crystal_palace() && save.data.items.red_key && flags.partner('bombette') && flags.partner('kooper') && save.data.items.hammer >= 1 && flags.panels();
 							},
-							ap: [8112000675]
+							ap: [8112000676]
 						},
 						{
 							name: '? block',
@@ -11900,7 +11900,7 @@ export const useLogicStore = defineStore('logic', () => {
 									flags.ultra_jump_blocks()
 								);
 							},
-							ap: [8112000674]
+							ap: [8112000675]
 						}
 					]
 				},
@@ -11928,7 +11928,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.crystal_palace() && save.data.items.red_key && flags.partner('bombette') && flags.partner('kooper') && save.data.items.hammer >= 1;
 							},
-							ap: [8112000677]
+							ap: [8112000678]
 						}
 					]
 				},
@@ -12113,7 +12113,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.west_bowser_castle() && save.data.items.castle_key >= 1 && flags.partner('lakilester') && flags.jump_coin_blocks();
 							},
-							ap: [8112000692]
+							ap: [8112000693]
 						}
 					]
 				},
@@ -12149,7 +12149,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.west_bowser_castle() && save.data.items.castle_key >= 1 && save.data.items.boots >= 2;
 							},
-							ap: [8112000686]
+							ap: [8112000687]
 						},
 						{
 							name: 'Bottom right crate',
@@ -12160,7 +12160,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.west_bowser_castle() && save.data.items.castle_key >= 1 && save.data.items.boots >= 2;
 							},
-							ap: [8112000687]
+							ap: [8112000688]
 						}
 					]
 				},
@@ -12180,7 +12180,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.west_bowser_castle();
 							},
-							ap: [8112000682]
+							ap: [8112000683]
 						},
 						{
 							name: '? block',
@@ -12191,7 +12191,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.west_bowser_castle() && save.data.items.castle_key >= 1 && flags.partner('lakilester') && flags.jump_coin_blocks();
 							},
-							ap: [8112000681]
+							ap: [8112000682]
 						}
 					]
 				},
@@ -12234,7 +12234,7 @@ export const useLogicStore = defineStore('logic', () => {
 									flags.partner('parakarry')
 								);
 							},
-							ap: [8112000685]
+							ap: [8112000686]
 						}
 					]
 				},
@@ -12261,7 +12261,7 @@ export const useLogicStore = defineStore('logic', () => {
 									flags.partner('parakarry')
 								);
 							},
-							ap: [8112000683]
+							ap: [8112000684]
 						},
 						{
 							name: 'On the second island',
@@ -12279,7 +12279,7 @@ export const useLogicStore = defineStore('logic', () => {
 									flags.partner('parakarry')
 								);
 							},
-							ap: [8112000684]
+							ap: [8112000685]
 						}
 					]
 				},
@@ -12315,7 +12315,7 @@ export const useLogicStore = defineStore('logic', () => {
 									flags.partner('watt')
 								);
 							},
-							ap: [8112000679]
+							ap: [8112000680]
 						}
 					]
 				},
@@ -12343,7 +12343,7 @@ export const useLogicStore = defineStore('logic', () => {
 									flags.partner('watt')
 								);
 							},
-							ap: [8112000680]
+							ap: [8112000681]
 						}
 					]
 				},
@@ -12379,7 +12379,7 @@ export const useLogicStore = defineStore('logic', () => {
 									flags.partner('watt')
 								);
 							},
-							ap: [8112000695]
+							ap: [8112000696]
 						},
 						{
 							name: 'Shop item 2',
@@ -12398,7 +12398,7 @@ export const useLogicStore = defineStore('logic', () => {
 									flags.partner('watt')
 								);
 							},
-							ap: [8112000696]
+							ap: [8112000697]
 						},
 						{
 							name: 'Shop item 3',
@@ -12417,7 +12417,7 @@ export const useLogicStore = defineStore('logic', () => {
 									flags.partner('watt')
 								);
 							},
-							ap: [8112000697]
+							ap: [8112000698]
 						},
 						{
 							name: 'Shop item 4',
@@ -12436,7 +12436,7 @@ export const useLogicStore = defineStore('logic', () => {
 									flags.partner('watt')
 								);
 							},
-							ap: [8112000698]
+							ap: [8112000699]
 						},
 						{
 							name: 'Shop item 5',
@@ -12455,7 +12455,7 @@ export const useLogicStore = defineStore('logic', () => {
 									flags.partner('watt')
 								);
 							},
-							ap: [8112000699]
+							ap: [8112000700]
 						},
 						{
 							name: 'Shop item 6',
@@ -12474,7 +12474,7 @@ export const useLogicStore = defineStore('logic', () => {
 									flags.partner('watt')
 								);
 							},
-							ap: [8112000700]
+							ap: [8112000701]
 						}
 					]
 				},
@@ -12502,7 +12502,7 @@ export const useLogicStore = defineStore('logic', () => {
 									flags.partner('watt')
 								);
 							},
-							ap: [8112000693]
+							ap: [8112000694]
 						}
 					]
 				},
@@ -12530,7 +12530,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.east_bowser_castle();
 							},
-							ap: [8112000706]
+							ap: [8112000707]
 						}
 					]
 				},
@@ -12550,7 +12550,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.east_bowser_castle();
 							},
-							ap: [8112000707]
+							ap: [8112000708]
 						}
 					]
 				},
@@ -12590,7 +12590,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.east_bowser_castle();
 							},
-							ap: [8112000704]
+							ap: [8112000705]
 						},
 						{
 							name: '? block',
@@ -12601,7 +12601,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.east_bowser_castle();
 							},
-							ap: [8112000703]
+							ap: [8112000704]
 						}
 					]
 				},
@@ -12621,7 +12621,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.east_bowser_castle();
 							},
-							ap: [8112000705]
+							ap: [8112000706]
 						}
 					]
 				},
@@ -12649,7 +12649,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.east_bowser_castle();
 							},
-							ap: [8112000688]
+							ap: [8112000689]
 						},
 						{
 							name: '? block east of the door',
@@ -12660,7 +12660,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.east_bowser_castle();
 							},
-							ap: [8112000689]
+							ap: [8112000690]
 						},
 						{
 							name: '? block near the bottom of the stairs',
@@ -12671,7 +12671,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.east_bowser_castle();
 							},
-							ap: [8112000690]
+							ap: [8112000691]
 						},
 						{
 							name: 'Item on the ledge of the stairs',
@@ -12682,7 +12682,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.east_bowser_castle();
 							},
-							ap: [8112000691]
+							ap: [8112000692]
 						}
 					]
 				},
@@ -12710,7 +12710,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.east_bowser_castle();
 							},
-							ap: [8112000694]
+							ap: [8112000695]
 						}
 					]
 				},
@@ -12738,7 +12738,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.east_bowser_castle();
 							},
-							ap: [8112000702]
+							ap: [8112000703]
 						}
 					]
 				},
@@ -12774,7 +12774,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.east_bowser_castle();
 							},
-							ap: [8112000701]
+							ap: [8112000702]
 						}
 					]
 				},
@@ -12846,7 +12846,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.peach_castle();
 							},
-							ap: [8112000709]
+							ap: [8112000710]
 						}
 					]
 				},
