@@ -3,11 +3,10 @@ import { reactive } from 'vue';
 
 export const useTrackerStore = defineStore('tracker', () => {
 	const startingLocations = {
-		random: 4294967295,
-		goomba_village: 257,
-		toad_town: 65796,
-		dry_dry_outpost: 590080,
-		yoshi_village: 1114882
+		goomba_village: 1,
+		toad_town: 0,
+		dry_dry_outpost: 2,
+		yoshi_village: 5
 	};
 
 	const items = reactive({
@@ -47,10 +46,11 @@ export const useTrackerStore = defineStore('tracker', () => {
 				enabled: true,
 				max: 1
 			},
-			starrod: {
-				name: 'Star Rod',
-				enabled: true,
-				max: 1
+			starbeam: {
+				name: 'Star Beam',
+				enabled: false,
+				max: 1,
+				ap: [8112000724]
 			},
 			power_stars: {
 				name: 'Power Stars',
@@ -74,77 +74,77 @@ export const useTrackerStore = defineStore('tracker', () => {
 				name: 'Goombario',
 				enabled: true,
 				max: 3,
-				ap: [8112000752],
-				ap_rank: [8112000734, 8112000743]
+				ap: [8112000743],
+				ap_rank: [8112000725, 8112000734]
 			},
 			kooper: {
 				name: 'Kooper',
 				enabled: true,
 				max: 3,
-				ap: [8112000753],
-				ap_rank: [8112000735, 8112000744]
+				ap: [8112000744],
+				ap_rank: [8112000726, 8112000735]
 			},
 			bombette: {
 				name: 'Bombette',
 				enabled: true,
 				max: 3,
-				ap: [8112000754],
-				ap_rank: [8112000736, 8112000745]
+				ap: [8112000745],
+				ap_rank: [8112000727, 8112000736]
 			},
 			parakarry: {
 				name: 'Parakarry',
 				enabled: true,
 				max: 3,
-				ap: [8112000755],
-				ap_rank: [8112000737, 8112000746]
+				ap: [8112000746],
+				ap_rank: [8112000728, 8112000737]
 			},
 			bow: {
 				name: 'Bow',
 				enabled: true,
 				max: 3,
-				ap: [8112000760],
-				ap_rank: [8112000742, 8112000751]
+				ap: [8112000751],
+				ap_rank: [8112000733, 8112000742]
 			},
 			watt: {
 				name: 'Watt',
 				enabled: true,
 				max: 3,
-				ap: [8112000757],
-				ap_rank: [8112000739, 8112000748]
+				ap: [8112000748],
+				ap_rank: [8112000730, 8112000739]
 			},
 			sushie: {
 				name: 'Sushie',
 				enabled: true,
 				max: 3,
-				ap: [8112000758],
-				ap_rank: [8112000740, 8112000749]
+				ap: [8112000749],
+				ap_rank: [8112000731, 8112000740]
 			},
 			lakilester: {
 				name: 'Lakilester',
 				enabled: true,
 				max: 3,
-				ap: [8112000759],
-				ap_rank: [8112000741, 8112000750]
-			},
-			ultra_stone: {
-				name: 'Ultra Stone',
-				enabled: true,
-				max: 3,
-				ap: [8112000015]
+				ap: [8112000750],
+				ap_rank: [8112000732, 8112000741]
 			}
+			// ultra_stone: {
+			// 	name: 'Ultra Stone',
+			// 	enabled: true,
+			// 	max: 3,
+			// 	ap: [8112000015]
+			// }
 		},
 		equipments: {
 			boots: {
 				name: ['Jumpless', 'Boots', 'Super Boots', 'Ultra Boots'],
 				enabled: true,
 				max: 3,
-				ap: [8112000707, 8112000708, 8112000709]
+				ap: [8112000698, 8112000699, 8112000700]
 			},
 			hammer: {
 				name: ['Hammerless', 'Hammer', 'Super Hammer', 'Ultra Hammer'],
 				enabled: true,
 				max: 3,
-				ap: [8112000710, 8112000711, 8112000712]
+				ap: [8112000701, 8112000702, 8112000703]
 			}
 		},
 		items: {
@@ -994,6 +994,10 @@ export const useTrackerStore = defineStore('tracker', () => {
 				type: 'number',
 				min: 1,
 				max: 4
+			},
+			shuffle_star_beam: {
+				enabled: true,
+				type: 'switch'
 			},
 			star_hunt_enabled: {
 				enabled: true,

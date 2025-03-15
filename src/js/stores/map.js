@@ -280,8 +280,7 @@ export const useMapStore = defineStore('map', () => {
 				break;
 		}
 
-		if (panelKey == 'ap_hints') {
-			// && !ap.state.connected
+		if (panelKey == 'ap_hints' && !ap.state.connected) {
 			visible = false;
 		}
 

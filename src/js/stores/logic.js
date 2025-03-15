@@ -1,5 +1,3 @@
-//TODO: Add tricks tracker
-
 import { defineStore } from 'pinia';
 import { computed, reactive, ref } from 'vue';
 
@@ -348,6 +346,31 @@ export const useLogicStore = defineStore('logic', () => {
 				return true;
 			}
 		},
+		lcl_free_stars_count: () => {
+			if (save.data.configs.logic.limit_chapter_logic) {
+				let count = 0;
+
+				const stars = {
+					1: 'eldstar',
+					2: 'mamar',
+					3: 'skolar',
+					4: 'muskular',
+					5: 'misstar',
+					6: 'klevar',
+					7: 'kalmar'
+				};
+
+				for (const [id, star] of Object.entries(stars)) {
+					if (!save.data.items[`${star}_chapter_disabled`]) {
+						count++;
+					}
+				}
+
+				return 7 - count;
+			} else {
+				return 0;
+			}
+		},
 
 		//Locations
 		goomba_village: () => {
@@ -581,7 +604,7 @@ export const useLogicStore = defineStore('logic', () => {
 			if (save.data.configs.randomizer.star_hunt_enabled) {
 				return save.data.items.power_stars >= save.data.configs.randomizer.star_hunt_star_count;
 			} else {
-				return flags.toad_town() && flags.star_spirits_count() >= 7 && flags.jump_ledges();
+				return flags.toad_town() && flags.jump_ledges() && flags.star_spirits_count() >= 7;
 			}
 		},
 		west_bowser_castle: () => {
@@ -604,7 +627,7 @@ export const useLogicStore = defineStore('logic', () => {
 			if (save.data.configs.randomizer.fast_bowser_castle) {
 				return flags.star_haven();
 			} else {
-				return flags.east_bowser_castle() && save.data.items.castle_key >= 5;
+				return (flags.east_bowser_castle() && save.data.items.castle_key >= 5) || (flags.star_haven() && save.data.configs.logic.fast_bowser_castle);
 			}
 		}
 	});
@@ -2348,7 +2371,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.rowf_shop;
 							},
 							available: () => {
-								return flags.toad_town() && flags.star_spirits_count() >= 1;
+								return flags.toad_town() && flags.star_spirits_count() - flags.lcl_free_stars_count() >= 1;
 							},
 							ap: [8112000071]
 						},
@@ -2359,7 +2382,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.rowf_shop;
 							},
 							available: () => {
-								return flags.toad_town() && flags.star_spirits_count() >= 1;
+								return flags.toad_town() && flags.star_spirits_count() - flags.lcl_free_stars_count() >= 1;
 							},
 							ap: [8112000072]
 						},
@@ -2370,7 +2393,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.rowf_shop;
 							},
 							available: () => {
-								return flags.toad_town() && flags.star_spirits_count() >= 1;
+								return flags.toad_town() && flags.star_spirits_count() - flags.lcl_free_stars_count() >= 1;
 							},
 							ap: [8112000073]
 						},
@@ -2381,7 +2404,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.rowf_shop;
 							},
 							available: () => {
-								return flags.toad_town() && flags.star_spirits_count() >= 2;
+								return flags.toad_town() && flags.star_spirits_count() - flags.lcl_free_stars_count() >= 2;
 							},
 							ap: [8112000074]
 						},
@@ -2392,7 +2415,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.rowf_shop;
 							},
 							available: () => {
-								return flags.toad_town() && flags.star_spirits_count() >= 2;
+								return flags.toad_town() && flags.star_spirits_count() - flags.lcl_free_stars_count() >= 2;
 							},
 							ap: [8112000075]
 						},
@@ -2403,7 +2426,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.rowf_shop;
 							},
 							available: () => {
-								return flags.toad_town() && flags.star_spirits_count() >= 2;
+								return flags.toad_town() && flags.star_spirits_count() - flags.lcl_free_stars_count() >= 2;
 							},
 							ap: [8112000076]
 						},
@@ -2414,7 +2437,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.rowf_shop;
 							},
 							available: () => {
-								return flags.toad_town() && flags.star_spirits_count() >= 3;
+								return flags.toad_town() && flags.star_spirits_count() - flags.lcl_free_stars_count() >= 3;
 							},
 							ap: [8112000077]
 						},
@@ -2425,7 +2448,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.rowf_shop;
 							},
 							available: () => {
-								return flags.toad_town() && flags.star_spirits_count() >= 3;
+								return flags.toad_town() && flags.star_spirits_count() - flags.lcl_free_stars_count() >= 3;
 							},
 							ap: [8112000078]
 						},
@@ -2436,7 +2459,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.rowf_shop;
 							},
 							available: () => {
-								return flags.toad_town() && flags.star_spirits_count() >= 3;
+								return flags.toad_town() && flags.star_spirits_count() - flags.lcl_free_stars_count() >= 3;
 							},
 							ap: [8112000079]
 						},
@@ -2447,7 +2470,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.rowf_shop;
 							},
 							available: () => {
-								return flags.toad_town() && flags.star_spirits_count() >= 4;
+								return flags.toad_town() && flags.star_spirits_count() - flags.lcl_free_stars_count() >= 4;
 							},
 							ap: [8112000080]
 						},
@@ -2458,7 +2481,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.rowf_shop;
 							},
 							available: () => {
-								return flags.toad_town() && flags.star_spirits_count() >= 4;
+								return flags.toad_town() && flags.star_spirits_count() - flags.lcl_free_stars_count() >= 4;
 							},
 							ap: [8112000081]
 						},
@@ -2469,7 +2492,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.rowf_shop;
 							},
 							available: () => {
-								return flags.toad_town() && flags.star_spirits_count() >= 4;
+								return flags.toad_town() && flags.star_spirits_count() - flags.lcl_free_stars_count() >= 4;
 							},
 							ap: [8112000082]
 						},
@@ -3304,7 +3327,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.coin_blocks;
 							},
 							available: () => {
-								return flags.sewers() && ((save.data.items.boots >= 2 && flags.partner('sushie')) || (flags.rip_cheato() && flags.partner('bombette'))) && save.data.items.boots >= 2;
+								return flags.sewers() && ((save.data.items.boots >= 2 && flags.partner('sushie')) || (flags.rip_cheato() && flags.partner('bombette'))) && save.data.items.boots > 2;
 							},
 							ap: [8112000137]
 						},
@@ -3315,7 +3338,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.coin_blocks;
 							},
 							available: () => {
-								return flags.sewers() && ((save.data.items.boots >= 2 && flags.partner('sushie')) || (flags.rip_cheato() && flags.partner('bombette'))) && save.data.items.boots >= 2;
+								return flags.sewers() && ((save.data.items.boots >= 2 && flags.partner('sushie')) || (flags.rip_cheato() && flags.partner('bombette'))) && save.data.items.boots > 2;
 							},
 							ap: [8112000138]
 						},
@@ -3326,7 +3349,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.coin_blocks;
 							},
 							available: () => {
-								return flags.sewers() && ((save.data.items.boots >= 2 && flags.partner('sushie')) || (flags.rip_cheato() && flags.partner('bombette'))) && save.data.items.boots >= 2;
+								return flags.sewers() && ((save.data.items.boots >= 2 && flags.partner('sushie')) || (flags.rip_cheato() && flags.partner('bombette'))) && save.data.items.boots > 2;
 							},
 							ap: [8112000139]
 						},
@@ -3337,7 +3360,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.coin_blocks;
 							},
 							available: () => {
-								return flags.sewers() && ((save.data.items.boots >= 2 && flags.partner('sushie')) || (flags.rip_cheato() && flags.partner('bombette'))) && save.data.items.boots >= 2;
+								return flags.sewers() && ((save.data.items.boots >= 2 && flags.partner('sushie')) || (flags.rip_cheato() && flags.partner('bombette'))) && save.data.items.boots > 2;
 							},
 							ap: [8112000140]
 						}

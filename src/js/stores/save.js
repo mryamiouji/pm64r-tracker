@@ -930,7 +930,7 @@ export const useSaveStore = defineStore('save', () => {
 			// tracker.configs.randomizer.star_hunt_ends_game.enabled = newValue;
 
 			tracker.items.stars.power_stars.enabled = newValue;
-			tracker.items.stars.starrod.enabled = !newValue;
+			// tracker.items.stars.starrod.enabled = !newValue;
 		}
 	);
 
@@ -946,6 +946,15 @@ export const useSaveStore = defineStore('save', () => {
 		() => currentSave.configs.logic.fast_bowser_castle,
 		(newValue, oldValue) => {
 			tracker.items.items.chapter8.castle_key.enabled = !newValue;
+		}
+	);
+
+	watch(
+		() => currentSave.configs.randomizer.shuffle_star_beam,
+		(newValue, oldValue) => {
+			if (tracker.items.stars.starbeam) {
+				tracker.items.stars.starbeam.enabled = newValue;
+			}
 		}
 	);
 

@@ -1081,31 +1081,13 @@
 								<h2>Notes</h2>
 								<textarea class="text-white w-full h-full !font-serif bg-sky-700 p-1" v-model="save.data.notes"></textarea>
 							</template>
-							<!-- <template v-if="grid_item.i == 'ap_hints'">
+							<template v-if="grid_item.i == 'ap_hints' && ap.state.connected">
 								<h2>Archipelago hints</h2>
-								<template v-for="hint in ap.state.hints" :key="hint.location">
-									<div class="mb-2 flex items-center" v-if="!hint.found && ap.searchAPId('item', hint.item).length">
-										<img
-											v-if="ap.searchAPId('item', hint.item).length == 3 && ap.searchAPId('item', hint.item)[0] != 'partners'"
-											class="w-6 mr-3"
-											:src="`images/${ap.searchAPId('item', hint.item)[0]}/${ap.searchAPId('item', hint.item)[1]}.webp`" />
-
-										<div v-if="ap.searchAPId('item', hint.item).length == 3 && ap.searchAPId('item', hint.item)[0] == 'partners'" class="w-6 mr-3 relative">
-											<img :src="`images/${ap.searchAPId('item', hint.item)[0]}/${ap.searchAPId('item', hint.item)[1]}.webp`" />
-											<img v-if="ap.apPartnerIsRankUp(hint.item)" class="absolute bottom-0 right-level1 h-[15px]" src="/images/partners/partner_level.webp" />
-										</div>
-										<img
-											v-else-if="ap.searchAPId('item', hint.item).length == 4 && ap.searchAPId('item', hint.item)[0] == 'items'"
-											class="w-6 mr-3"
-											:src="`images/${ap.searchAPId('item', hint.item)[0]}/${ap.searchAPId('item', hint.item)[1]}/${ap.searchAPId('item', hint.item)[2]}.webp`" />
-										<img
-											v-else-if="ap.searchAPId('item', hint.item).length == 4 && ap.searchAPId('item', hint.item)[0] == 'letters'"
-											class="w-6 mr-3"
-											:src="`images/${ap.searchAPId('item', hint.item)[0]}/${ap.searchAPId('item', hint.item)[2]}.webp`" />
-										<p>{{ ap.searchAPId('location', hint.location) }}</p>
-									</div>
-								</template>
-							</template> -->
+								<div class="flex justify-between">
+									<p>Points: {{ ap.state.hints.points }}</p>
+									<p>Cost: {{ ap.state.hints.cost }}</p>
+								</div>
+							</template>
 						</div>
 					</GridItem>
 				</template>
@@ -1277,7 +1259,7 @@
 			<div v-if="ap.state.connected" class="flex flex-col gap-4">
 				<div class="flex justify-between w-30">
 					<p>Connected to:</p>
-					<p>ws://{{ ap.connectionInfos.hostname }}:{{ ap.connectionInfos.port }}</p>
+					<p>{{ ap.connectionInfos.hostname }}:{{ ap.connectionInfos.port }}</p>
 				</div>
 				<div class="flex justify-between w-30">
 					<p>Player name:</p>
@@ -1288,15 +1270,10 @@
 					<p>{{ ap.state.seed }}</p>
 				</div>
 				<div class="flex justify-between w-30">
-					<p>Hint points ({{ ap.state.hintReward }} per check):</p>
-					<p>{{ ap.state.hintPoints }} / Cost: {{ ap.state.hintCost }}</p>
-				</div>
-				<div class="flex justify-between w-30">
 					<p>Checked locations:</p>
 					<p>{{ ap.checkedLocationsCount }}</p>
 				</div>
 				<button class="bg-sky-600 hover:bg-sky-800 w-full rounded-md" type="button" @click="apDisconnect()">Disconnect</button>
-				<button class="bg-sky-600 hover:bg-sky-800 w-full rounded-md" type="button" @click="apSync()">Force sync</button>
 				<h2>Important notes</h2>
 				<p>- Chuck star pieces are concidered bonus star pieces, so archipelago don't send them to the tracker;</p>
 				<p>- To keep track of the item counts, the tracker resets them each sync. So if you check items manually, they will be reset and resynced;</p>
@@ -1307,8 +1284,15 @@
 					Connect to an
 					<a target="_blank" href="https://archipelago.gg">Archipelago.gg</a>
 					server to play with others.
+				</p>
+				<p>
+					Works on
+					<a href="https://github.com/ArchipelagoMW/Archipelago/releases/tag/0.5.1" target="_blank">Archipelago version 0.5.1</a>
+					or greater.
 					<br />
-					Works on version 0.4.5 or greater.
+					Need version
+					<a href="https://github.com/JKBSunshine/PMR_APWorld/releases/tag/v0.5.0" target="_blank">0.5.0 of the APWorld</a>
+					or greater.
 				</p>
 				<p>If you have a game to load, connect first, then load.</p>
 				<div class="flex justify-between w-30">
@@ -1327,15 +1311,8 @@
 					<p>Player name (case sensitive):</p>
 					<input class="rounded-md" type="text" v-model="ap.connectionInfos.name" />
 				</div>
-				<div class="flex justify-between w-30">
-					<p>Configs YAML:</p>
-					<input class="rounded-md w-64 text-white" type="file" accept=".yaml" @change="ap.setYaml" />
-				</div>
 
 				<button class="bg-sky-600 hover:bg-sky-800 w-full rounded-md" type="button" @click="apConnect()">Connect</button>
-				<h2>Important notes</h2>
-				<p>- The tracker will load configs from the yaml automatically. If no YAML is given, you'll have to set them manually;</p>
-				<p>- The tracker does not reset configs each connection. You don't have to import a YAML each time you connect if you're on the same run;</p>
 			</div>
 		</Modal>
 
@@ -1420,7 +1397,11 @@
 				:key="config">
 				<p class="capitalize">{{ config.titlize() }}</p>
 				<div class="flex" v-if="configConfigs.type == 'switch'">
-					<input :id="`config_${config}`" type="checkbox" v-model="save.data.configs.randomizer[config]" />
+					<input
+						:id="`config_${config}`"
+						type="checkbox"
+						:checked="save.data.configs.randomizer[config]"
+						@change="(event) => (save.data.configs.randomizer[config] = event.target.checked)" />
 					<label :for="`config_${config}`" />
 				</div>
 				<select :id="`config_${config}`" class="rounded-md" v-if="configConfigs.type == 'select'" v-model="save.data.configs.randomizer[config]">
@@ -1451,7 +1432,7 @@
 				:key="config">
 				<p class="capitalize">{{ config.titlize() }}</p>
 				<div class="flex" v-if="configValue.type == 'switch'">
-					<input :id="`config_${config}`" type="checkbox" v-model="save.data.configs.logic[config]" />
+					<input :id="`config_${config}`" type="checkbox" :checked="save.data.configs.logic[config]" @change="(event) => (save.data.configs.logic[config] = event.target.checked)" />
 					<label :for="`config_${config}`" />
 				</div>
 				<select :id="`config_${config}`" class="rounded-md" v-if="configValue.type == 'select'" v-model="save.data.configs.logic[config]">
@@ -1593,6 +1574,15 @@
 					<a href="https://discord.gg/4Z5G69ZNJg" target="_blank">PMR Discord</a>
 					in the channel "Discussion & Support > pmr-tracker".
 				</p>
+				<p class="text-lg mt-3">Version 10</p>
+				<div class="ml-5">
+					<p>Archipelago: Implemented latest archipelago.js v.2.0.4.</p>
+					<p>Archipelago: Fixed IDs since latest Paper Mario APworld update.</p>
+					<p>Archipelago: Automatically check stars in LCL on Star Summit.</p>
+					<p>Archipelago: Implemented Hint System.</p>
+					<p>Fixed some logic with Fast Bowser Castle and Peach's Castle.</p>
+					<p>Added Star Beam Shuffle.</p>
+				</div>
 				<p class="text-lg mt-3">Version 9</p>
 				<div class="ml-5">
 					<p>Archipelago: Fixed item ids bugfix when star beam was added.</p>
@@ -1685,7 +1675,7 @@ const disableItemsModalVisible = ref(false);
 const tutorialModalVisible = ref(false);
 
 const version = ref(localStorage.getItem('version'));
-const currentVersion = 9;
+const currentVersion = 10;
 
 if (version.value == null || version.value <= currentVersion) {
 	tutorialModalVisible.value = true;
@@ -2191,9 +2181,5 @@ const apConnect = () => {
 
 const apDisconnect = () => {
 	ap.disconnect();
-};
-
-const apSync = () => {
-	ap.sync();
 };
 </script>
