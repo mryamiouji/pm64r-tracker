@@ -515,7 +515,7 @@ export const useTrackerStore = defineStore('tracker', () => {
 					enabled: true,
 					max: 5,
 					required: true,
-					ap: [8112000376, 8112000377, 8112000378, 8112000379, 8112000380]
+					ap: [8112000376, 8112000377, 8112000378, 8112000379, 8112000380, 8112000026]
 				}
 			},
 			other: {
