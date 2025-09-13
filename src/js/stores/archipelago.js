@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { computed, reactive, watch } from 'vue';
+import { computed, nextTick, reactive, watch } from 'vue';
 import { Client } from 'archipelago.js';
 
 import { toast } from 'vue3-toastify';
@@ -40,8 +40,8 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 		name: localStorage.getItem('ap.name'), // Replace with the player slot name.
 		version: {
 			major: 0,
-			minor: 5,
-			build: 1
+			minor: 6,
+			build: 2
 		},
 		password: ''
 	});
@@ -151,7 +151,7 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 				save.data.configs.logic.koopa_koot_coins = configs.koot_coins;
 				save.data.configs.logic.dojo_randomized = configs.dojo > 0;
 				save.data.configs.logic.trading_event_randomized = configs.trading_events > 0;
-				save.data.configs.logic.limit_chapter_logic = configs.require_specific_spirits;
+				save.data.configs.logic.limit_chapter_logic = configs.require_spirits;
 				save.data.configs.logic.cook_without_frying_pan = configs.cook_without_frying_pan;
 
 				let stars = {
@@ -163,17 +163,23 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 					6: 'klevar',
 					7: 'kalmar'
 				};
-				if (configs.require_specific_spirits) {
+
+				if (configs.required_spirits) {
+					for (const [id, star] of Object.entries(stars)) {
+						save.data.items[star] = true;
+						save.data.items[star + '_chapter_disabled'] = true;
+					}
+
 					configs.required_spirits.forEach((star) => {
 						if (stars[star]) {
 							delete stars[star];
 						}
 					});
-				}
 
-				for (const [id, star] of Object.entries(stars)) {
-					save.data.items[star] = true;
-					save.data.items[star + '_chapter_disabled'] = true;
+					for (const [id, star] of Object.entries(stars)) {
+						save.data.items[star] = false;
+						save.data.items[star + '_chapter_disabled'] = false;
+					}
 				}
 
 				console.info('AP client package', client.package.findPackage(client.game));
@@ -196,11 +202,15 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 				});
 
 				client.room.on('hintCostUpdated', (cost) => {
-					state.hints.cost = cost;
+					nextTick(() => {
+						state.hints.cost = cost;
+					});
 				});
 
 				client.room.on('hintPointsUpdated', (points) => {
-					state.hints.points = points;
+					nextTick(() => {
+						state.hints.points = points;
+					});
 				});
 
 				client.room.on('locationsChecked', (locations) => {
@@ -243,7 +253,9 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 					}
 					// console.log('Found:', query, 'in', previousKey1, previousKey2, previousKey3, previousKey4, previousKey5, 'x', occurences);
 
-					switch (type) {
+					switch (
+						type //TODO: Starbeam not working?
+					) {
 						case 'item':
 							for (let i = 0; i < occurences; i++) {
 								if (save.data.items[previousKey1] !== undefined) {

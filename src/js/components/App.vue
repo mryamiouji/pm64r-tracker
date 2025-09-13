@@ -110,14 +110,14 @@
 							<font-awesome-icon :icon="['fas', 'trash']" />
 						</button>
 						<button
-							class="hidden lg:flex flex items-center bg-sky-950 hover:bg-sky-800 w-fit rounded-md p-3 ml-10"
+							class="hidden lg:flex items-center bg-sky-950 hover:bg-sky-800 w-fit rounded-md p-3 ml-10"
 							type="button"
 							v-tooltip="{ content: 'How to use?', delay: { show: 0 } }"
 							@click="tutorialModalVisible = true">
 							<font-awesome-icon :icon="['far', 'circle-question']" />
 							<p class="hidden xl:block ml-4">How to use</p>
 						</button>
-						<button class="hidden lg:flex flex items-center bg-sky-950 hover:bg-sky-800 w-fit rounded-md p-3" v-tooltip="{ content: 'Github', delay: { show: 0 } }" @click="openGithub()">
+						<button class="hidden lg:flex items-center bg-sky-950 hover:bg-sky-800 w-fit rounded-md p-3" v-tooltip="{ content: 'Github', delay: { show: 0 } }" @click="openGithub()">
 							<font-awesome-icon :icon="['fab', 'github']" />
 						</button>
 					</div>
@@ -1574,6 +1574,14 @@
 					<a href="https://discord.gg/4Z5G69ZNJg" target="_blank">PMR Discord</a>
 					in the channel "Discussion & Support > pmr-tracker".
 				</p>
+				<p class="text-lg mt-3">Version 12</p>
+				<div class="ml-5">
+					<p>Archipelago: Fix IDs.</p>
+				</div>
+				<p class="text-lg mt-3">Version 11</p>
+				<div class="ml-5">
+					<p>Archipelago: Fixed hints that updated 1 tick too late.</p>
+				</div>
 				<p class="text-lg mt-3">Version 10</p>
 				<div class="ml-5">
 					<p>Archipelago: Implemented latest archipelago.js v.2.0.4.</p>
@@ -1675,7 +1683,7 @@ const disableItemsModalVisible = ref(false);
 const tutorialModalVisible = ref(false);
 
 const version = ref(localStorage.getItem('version'));
-const currentVersion = 10;
+const currentVersion = 12;
 
 if (version.value == null || version.value <= currentVersion) {
 	tutorialModalVisible.value = true;

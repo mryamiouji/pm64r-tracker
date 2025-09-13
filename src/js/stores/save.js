@@ -64,6 +64,7 @@ export const useSaveStore = defineStore('save', () => {
 			misstar_chapter_disabled: false,
 			klevar_chapter_disabled: false,
 			kalmar_chapter_disabled: false,
+			starbeam: false,
 			starrod: false,
 			goombario: 0,
 			kooper: 0,
@@ -321,6 +322,7 @@ export const useSaveStore = defineStore('save', () => {
 			defaultSaveClone.items.misstar_chapter_disabled = currentSave.items.misstar_chapter_disabled;
 			defaultSaveClone.items.klevar_chapter_disabled = currentSave.items.klevar_chapter_disabled;
 			defaultSaveClone.items.kalmar_chapter_disabled = currentSave.items.kalmar_chapter_disabled;
+			defaultSaveClone.items.starbeam = currentSave.items.starbeam; //TODO: Remove when starbeam auto check is working
 			defaultSaveClone.items.starrod = currentSave.items.starrod;
 
 			defaultSaveClone.items.rip_cheato = currentSave.items.rip_cheato;
