@@ -215,7 +215,8 @@ export const useSaveStore = defineStore('save', () => {
 		},
 		merlow_items: {},
 		checks: {},
-		ap_activity: []
+		ap_activity: [],
+		user_checked_hints: {}
 	});
 
 	const defaultRandomizerConfigs = {
@@ -372,6 +373,7 @@ export const useSaveStore = defineStore('save', () => {
 
 			// Preserve the AP activity feed across reconnects / item-receive resets
 			defaultSaveClone.ap_activity = currentSave.ap_activity;
+			defaultSaveClone.user_checked_hints = currentSave.user_checked_hints;
 		}
 
 		if (noChecks) {

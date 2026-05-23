@@ -1151,7 +1151,12 @@
 								</datalist>
 								<div class="overflow-y-auto mt-3" style="max-height: calc(100% - 110px)">
 									<p v-if="!ap.state.hints.list.length" class="text-sm opacity-70">No hints yet.</p>
-									<div v-for="(hint, hintIndex) in ap.state.hints.list" :key="hintIndex" class="text-sm border-b border-sky-800 py-1" :class="{ 'opacity-50 line-through': hint.found }">
+									<div
+										v-for="(hint, hintIndex) in ap.state.hints.list"
+										:key="hintIndex"
+										class="text-sm border-b border-sky-800 py-1"
+										:class="{ 'opacity-50 line-through': hint.found || hint.userChecked, 'cursor-pointer hover:bg-sky-900': !hint.found }"
+										@click="ap.toggleHintUserCheck(hint)">
 										<p><span class="font-bold">{{ hint.itemName }}</span> is at <span class="italic">{{ hint.locationName }}</span></p>
 										<p class="text-xs opacity-80">{{ hint.sendingPlayer }} &rarr; {{ hint.receivingPlayer }}</p>
 									</div>

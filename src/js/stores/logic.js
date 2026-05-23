@@ -287,8 +287,7 @@ export const useLogicStore = defineStore('logic', () => {
 			const starKey = stars[chapter];
 			if (!starKey) return false;
 			if (save.data.items[starKey]) return false;
-			if (!flags.dungeon_requirements(chapter)) return false;
-			return flags.dungeon_checks_depleted(chapter);
+			return flags.dungeon_requirements(chapter);
 		},
 		dungeon_checks_depleted: (dungeon) => {
 			let stars = {

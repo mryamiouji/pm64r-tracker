@@ -119,6 +119,29 @@ const stars_dungeon_shuffle_images = computed(() => {
 
 const starChapterMap = { eldstar: 1, mamar: 2, skolar: 3, muskular: 4, misstar: 5, klevar: 6, kalmar: 7 };
 
+// Koopa Koot's favor delivery sequence (vanilla PM64 order). Crystal Ball is excluded —
+// it's a Merluvlee→Merlee item, not part of the Koot chain.
+const kootFavorOrder = [
+	'koopa_legends',
+	'sleepy_sheep',
+	'tape',
+	'koopa_tea',
+	'luigi_autograph',
+	'empty_wallet',
+	'tasty_tonic',
+	'merluvlee_autograph',
+	'life_shroom',
+	'nutty_cake',
+	'old_photo',
+	'koopasta',
+	'glasses',
+	'lime',
+	'kooky_cookie',
+	'package',
+	'coconut',
+	'red_jar'
+];
+
 const readyToComplete = computed(() => {
 	if (props.imageFolder === 'stars' && starChapterMap[props.itemKey]) {
 		return logic.flags.can_complete_chapter(starChapterMap[props.itemKey]);
@@ -128,7 +151,17 @@ const readyToComplete = computed(() => {
 		if (!hasItem) return false;
 		const alreadyTurnedIn = save.data.items.hand_ins?.koopa_koot_favors?.[props.itemKey] >= 1;
 		if (alreadyTurnedIn) return false;
-		return logic.flags.koopa_village() && logic.flags.can_koot();
+		if (!logic.flags.koopa_village() || !logic.flags.can_koot()) return false;
+
+		// Koot accepts favors strictly in order — gate on all earlier favors being delivered.
+		// Items outside the sequence (e.g. Crystal Ball, which is for Merlee, not Koot) don't get the highlight.
+		const idx = kootFavorOrder.indexOf(props.itemKey);
+		if (idx === -1) return false;
+		for (let i = 0; i < idx; i++) {
+			const prev = kootFavorOrder[i];
+			if (!(save.data.items.hand_ins?.koopa_koot_favors?.[prev] >= 1)) return false;
+		}
+		return true;
 	}
 	return false;
 });
@@ -169,16 +202,7 @@ const showMerlow = computed(() => {
 
 <style scoped>
 .ready-pulse {
-	box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.9);
-	animation: ready-pulse-anim 1.4s ease-in-out infinite;
-}
-@keyframes ready-pulse-anim {
-	0%,
-	100% {
-		box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.9), 0 0 8px 2px rgba(34, 197, 94, 0.6);
-	}
-	50% {
-		box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.9), 0 0 14px 4px rgba(34, 197, 94, 0.9);
-	}
+	/* Tailwind sky-500 = rgb(14, 165, 233) */
+	box-shadow: 0 0 0 2px rgb(14, 165, 233);
 }
 </style>

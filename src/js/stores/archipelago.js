@@ -98,6 +98,33 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 
 	watch(() => save.data.ap_activity, persistActivity, { deep: true });
 
+	// Per-game persistence for the user's manual hint check-marks (server-checked hints aren't included)
+	const hintId = (hint) => `${hint.locationName}::${hint.sendingPlayer}`;
+
+	const restoreUserHintChecks = () => {
+		if (!activityGameKey) return;
+		if (!save.data.user_checked_hints || typeof save.data.user_checked_hints !== 'object') save.data.user_checked_hints = {};
+		const arr = save.data.user_checked_hints[activityGameKey] || [];
+		if (!arr.length) return;
+		const set = new Set(arr);
+		state.hints.list.forEach((hint) => {
+			if (set.has(hintId(hint))) hint.userChecked = true;
+		});
+	};
+
+	const toggleHintUserCheck = (hint) => {
+		if (!hint || hint.found) return;
+		hint.userChecked = !hint.userChecked;
+		if (!activityGameKey) return;
+		if (!save.data.user_checked_hints || typeof save.data.user_checked_hints !== 'object') save.data.user_checked_hints = {};
+		if (!Array.isArray(save.data.user_checked_hints[activityGameKey])) save.data.user_checked_hints[activityGameKey] = [];
+		const arr = save.data.user_checked_hints[activityGameKey];
+		const id = hintId(hint);
+		const idx = arr.indexOf(id);
+		if (hint.userChecked && idx === -1) arr.push(id);
+		if (!hint.userChecked && idx !== -1) arr.splice(idx, 1);
+	};
+
 	const connectionInfos = reactive({
 		hostname: localStorage.getItem('ap.hostname'), // Replace with the actual AP server hostname.
 		port: parseInt(localStorage.getItem('ap.port')), // Replace with the actual AP server port.
@@ -162,11 +189,13 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 					locationName: hint.item?.locationName ?? '',
 					sendingPlayer: hint.item?.sender?.alias ?? '',
 					receivingPlayer: hint.item?.receiver?.alias ?? '',
-					found: hint.found === true
+					found: hint.found === true,
+					userChecked: false
 				});
 
 				state.hints.list = (client.items.hints || []).map(toPlainHint);
 				loadActivityForGame(`${state.seed}::${connectionInfos.name}`);
+				restoreUserHintChecks();
 
 				try {
 					const pkg = client.package.findPackage(client.game);
@@ -177,13 +206,19 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 
 				client.items.on('hintsInitialized', (hints) => {
 					state.hints.list = hints.map(toPlainHint);
+					restoreUserHintChecks();
 				});
 
 				client.items.on('hintReceived', (hint) => {
-					state.hints.list.push(toPlainHint(hint));
+					const plain = toPlainHint(hint);
+					state.hints.list.push(plain);
 					// Re-sync points/cost from room — server doesn't always emit hintPointsUpdated for !hint
 					state.hints.points = client.room.hintPoints;
 					state.hints.cost = client.room.hintCost;
+					toast.info(`Hint: ${plain.itemName} is at ${plain.locationName} (${plain.sendingPlayer} → ${plain.receivingPlayer})`, {
+						duration: 10000,
+						theme: 'colored'
+					});
 				});
 
 				client.items.on('hintFound', (hint) => {
@@ -320,8 +355,8 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 
 				client.room.on('locationsChecked', (locations) => {
 					console.log('Locations checked:', locations);
-					state.checkedLocations.push(locations[0]);
 					locations.forEach((locationId) => {
+						state.checkedLocations.push(locationId);
 						pushActivity({
 							kind: 'location',
 							name: client.package.lookupLocationName(client.game, locationId) || `Location #${locationId}`
@@ -688,6 +723,7 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 		searchAPId,
 		apPartnerIsRankUp,
 		checkedLocationsCount,
-		apAskHint
+		apAskHint,
+		toggleHintUserCheck
 	};
 });
