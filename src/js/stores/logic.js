@@ -1095,7 +1095,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return true;
 							},
 							available: () => {
-								return flags.goomba_village() && flags.jump_ledges() && flags.yellow_blocks();
+								return flags.goomba_village() && flags.yellow_blocks();
 							},
 							ap: [8112000021]
 						},
@@ -1106,7 +1106,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return true;
 							},
 							available: () => {
-								return flags.goomba_village() && flags.jump_ledges() && flags.yellow_blocks();
+								return flags.goomba_village() && flags.yellow_blocks();
 							},
 							ap: [8112000020]
 						},
@@ -1117,7 +1117,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.foliage_coins;
 							},
 							available: () => {
-								return flags.goomba_village() && flags.jump_ledges() && flags.yellow_blocks();
+								return flags.goomba_village() && flags.yellow_blocks();
 							},
 							ap: [8112000029]
 						},
@@ -1128,7 +1128,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.foliage_coins;
 							},
 							available: () => {
-								return flags.goomba_village() && flags.jump_ledges() && flags.yellow_blocks();
+								return flags.goomba_village() && flags.yellow_blocks();
 							},
 							ap: [8112000028]
 						},
@@ -1139,7 +1139,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.foliage_coins;
 							},
 							available: () => {
-								return flags.goomba_village() && flags.jump_ledges() && flags.yellow_blocks();
+								return flags.goomba_village() && flags.yellow_blocks();
 							},
 							ap: [8112000022]
 						},
@@ -1150,7 +1150,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.foliage_coins;
 							},
 							available: () => {
-								return flags.goomba_village() && flags.jump_ledges() && flags.yellow_blocks();
+								return flags.goomba_village() && flags.yellow_blocks();
 							},
 							ap: [8112000023]
 						},
@@ -1161,7 +1161,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.foliage_coins;
 							},
 							available: () => {
-								return flags.goomba_village() && flags.jump_ledges() && flags.yellow_blocks();
+								return flags.goomba_village() && flags.yellow_blocks();
 							},
 							ap: [8112000024]
 						},
@@ -1172,7 +1172,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.foliage_coins;
 							},
 							available: () => {
-								return flags.goomba_village() && flags.jump_ledges() && flags.yellow_blocks();
+								return flags.goomba_village() && flags.yellow_blocks();
 							},
 							ap: [8112000025]
 						},
@@ -1183,7 +1183,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.foliage_coins;
 							},
 							available: () => {
-								return flags.goomba_village() && flags.jump_ledges() && flags.yellow_blocks();
+								return flags.goomba_village() && flags.yellow_blocks();
 							},
 							ap: [8112000026]
 						},
@@ -1194,7 +1194,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.foliage_coins;
 							},
 							available: () => {
-								return flags.goomba_village() && flags.jump_ledges() && flags.yellow_blocks();
+								return flags.goomba_village() && flags.yellow_blocks();
 							},
 							ap: [8112000027]
 						},
@@ -1205,7 +1205,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.super_and_multicoin_blocks_randomized;
 							},
 							available: () => {
-								return flags.goomba_village() && flags.jump_ledges() && flags.yellow_blocks() && flags.ground_blocks();
+								return flags.goomba_village() && flags.yellow_blocks() && flags.ground_blocks();
 							},
 							ap: [8112000030]
 						}
@@ -1280,7 +1280,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.coin_blocks;
 							},
 							available: () => {
-								return flags.goomba_village() && flags.jump_ledges();
+								return flags.goomba_village();
 							},
 							ap: [8112000012]
 						},
@@ -1344,7 +1344,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.foliage_coins;
 							},
 							available: () => {
-								return flags.goomba_village() && flags.trees();
+								return flags.goomba_village() && flags.jump_ledges() && flags.trees();
 							},
 							ap: [8112000032]
 						}

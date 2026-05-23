@@ -104,7 +104,7 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 
 				try {
 					const pkg = client.package.findPackage(client.game);
-					state.itemNames = Object.keys(pkg?.item_name_to_id || {}).sort();
+					state.itemNames = Object.keys(pkg?.itemTable || {}).sort();
 				} catch {
 					state.itemNames = [];
 				}

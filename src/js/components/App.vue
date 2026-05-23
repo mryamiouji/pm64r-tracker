@@ -1124,8 +1124,21 @@
 									<p>Cost: {{ ap.state.hints.cost }}</p>
 								</div>
 								<div class="flex gap-2 mt-2">
-									<input class="flex-1 rounded-md px-2 text-sm text-black" type="text" list="ap-item-suggestions" placeholder="Item name (e.g. Star Beam)" v-model="hintRequestInput" @keyup.enter="requestApHint()" />
-									<button class="bg-sky-800 hover:bg-sky-700 rounded-md px-3 text-sm" type="button" @click="requestApHint()">Get hint</button>
+									<input
+										class="flex-1 rounded-md px-2 text-sm text-black disabled:opacity-50 disabled:cursor-not-allowed"
+										type="text"
+										list="ap-item-suggestions"
+										:placeholder="ap.state.hints.points < ap.state.hints.cost ? 'Not enough points' : 'Item name (e.g. Star Beam)'"
+										:disabled="ap.state.hints.points < ap.state.hints.cost"
+										v-model="hintRequestInput"
+										@keyup.enter="requestApHint()" />
+									<button
+										class="bg-sky-800 hover:bg-sky-700 rounded-md px-3 text-sm disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-sky-800"
+										type="button"
+										:disabled="ap.state.hints.points < ap.state.hints.cost"
+										@click="requestApHint()">
+										Get hint
+									</button>
 								</div>
 								<datalist id="ap-item-suggestions">
 									<option v-for="name in ap.state.itemNames" :key="name" :value="name" />
