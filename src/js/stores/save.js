@@ -213,7 +213,8 @@ export const useSaveStore = defineStore('save', () => {
 			hand_ins: {}
 		},
 		merlow_items: {},
-		checks: {}
+		checks: {},
+		ap_activity: []
 	});
 
 	const defaultRandomizerConfigs = {
@@ -284,7 +285,9 @@ export const useSaveStore = defineStore('save', () => {
 		deactivate_items_tooltips: false,
 		notes: false,
 		ap_hints: true,
-		ap_activity: true
+		ap_activity: true,
+		ap_activity_show_items: true,
+		ap_activity_show_locations: true
 	};
 
 	const resetTrackerConfigs = () => {
@@ -905,6 +908,13 @@ export const useSaveStore = defineStore('save', () => {
 			for (const [key, value] of Object.entries(defaultRandomizerConfigs)) {
 				if (currentSave.configs.randomizer[key] === undefined) {
 					currentSave.configs.randomizer[key] = value;
+				}
+			}
+			// Same for tracker configs (so newly added toggles render correctly for old saves)
+			if (currentSave.configs.tracker === undefined) currentSave.configs.tracker = {};
+			for (const [key, value] of Object.entries(defaultTrackerConfigs)) {
+				if (currentSave.configs.tracker[key] === undefined) {
+					currentSave.configs.tracker[key] = value;
 				}
 			}
 		} else {

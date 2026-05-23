@@ -36,12 +36,89 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 	});
 
 	const ACTIVITY_MAX = 50;
+	const ACTIVITY_STORAGE_KEY = 'ap.activity';
+	const ACTIVITY_BUFFER_SIZE = 2;
+	let activityGameKey = null;
+
 	const pushActivity = (entry) => {
 		state.activity.unshift({ ...entry, at: Date.now() });
 		if (state.activity.length > ACTIVITY_MAX) {
 			state.activity.length = ACTIVITY_MAX;
 		}
 	};
+
+	const readActivityStorage = () => {
+		try {
+			const raw = localStorage.getItem(ACTIVITY_STORAGE_KEY);
+			if (!raw) return [];
+			const parsed = JSON.parse(raw);
+			return Array.isArray(parsed) ? parsed : [];
+		} catch {
+			return [];
+		}
+	};
+
+	const writeActivityStorage = (games) => {
+		try {
+			localStorage.setItem(ACTIVITY_STORAGE_KEY, JSON.stringify(games));
+		} catch {}
+	};
+
+	const loadActivityForGame = (gameKey) => {
+		activityGameKey = gameKey;
+		const games = readActivityStorage();
+		const found = games.find((g) => g.gameKey === gameKey);
+		if (found && Array.isArray(found.list)) {
+			state.activity = [...found.list];
+		} else {
+			state.activity = [];
+			games.push({ gameKey, list: [] });
+			while (games.length > ACTIVITY_BUFFER_SIZE) games.shift();
+			writeActivityStorage(games);
+		}
+	};
+
+	const persistActivity = () => {
+		if (!activityGameKey) return;
+		const games = readActivityStorage();
+		const existing = games.findIndex((g) => g.gameKey === activityGameKey);
+		const entry = { gameKey: activityGameKey, list: state.activity };
+		if (existing !== -1) {
+			games[existing] = entry;
+		} else {
+			games.push(entry);
+			while (games.length > ACTIVITY_BUFFER_SIZE) games.shift();
+		}
+		writeActivityStorage(games);
+	};
+
+	let syncingActivity = false;
+
+	// Mirror state.activity -> save.data.ap_activity (so it goes into the exported save file)
+	watch(
+		() => state.activity,
+		(val) => {
+			persistActivity();
+			if (syncingActivity) return;
+			syncingActivity = true;
+			save.data.ap_activity = [...val];
+			syncingActivity = false;
+		},
+		{ deep: true }
+	);
+
+	// Reverse: when save.data.ap_activity changes externally (e.g. via importSave), restore state.activity
+	watch(
+		() => save.data.ap_activity,
+		(val) => {
+			if (syncingActivity) return;
+			if (!Array.isArray(val)) return;
+			syncingActivity = true;
+			state.activity = [...val];
+			syncingActivity = false;
+		},
+		{ deep: true }
+	);
 
 	const connectionInfos = reactive({
 		hostname: localStorage.getItem('ap.hostname'), // Replace with the actual AP server hostname.
@@ -111,7 +188,7 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 				});
 
 				state.hints.list = (client.items.hints || []).map(toPlainHint);
-				state.activity = [];
+				loadActivityForGame(`${state.seed}::${connectionInfos.name}`);
 
 				try {
 					const pkg = client.package.findPackage(client.game);
@@ -126,6 +203,9 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 
 				client.items.on('hintReceived', (hint) => {
 					state.hints.list.push(toPlainHint(hint));
+					// Re-sync points/cost from room — server doesn't always emit hintPointsUpdated for !hint
+					state.hints.points = client.room.hintPoints;
+					state.hints.cost = client.room.hintCost;
 				});
 
 				client.items.on('hintFound', (hint) => {
@@ -614,6 +694,10 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 	const apAskHint = (itemName) => {
 		if (!state.connected || !itemName || !itemName.trim()) {
 			return;
+		}
+		// Optimistic deduction so the UI reacts immediately (also re-synced on hintReceived)
+		if (state.hints.points >= state.hints.cost) {
+			state.hints.points = Math.max(0, state.hints.points - state.hints.cost);
 		}
 		client.messages.say(`!hint ${itemName.trim()}`);
 	};

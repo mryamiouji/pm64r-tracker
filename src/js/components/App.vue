@@ -1104,10 +1104,19 @@
 								<textarea class="text-white w-full h-full !font-serif bg-sky-700 p-1" v-model="save.data.notes"></textarea>
 							</template>
 							<template v-if="grid_item.i == 'ap_activity' && ap.state.connected">
-								<h2>Recent activity</h2>
+								<div class="flex items-center justify-between gap-3">
+									<h2>Recent activity</h2>
+									<button
+										type="button"
+										class="w-8 h-8 flex items-center justify-center rounded-md bg-sky-800 hover:bg-sky-700 text-white transition-colors"
+										v-tooltip="{ content: 'Activity filters', delay: { show: 0 } }"
+										@click="activitySettingsModalVisible = true">
+										<font-awesome-icon :icon="['fas', 'filter']" />
+									</button>
+								</div>
 								<div class="overflow-y-auto mt-2" style="max-height: calc(100% - 40px)">
-									<p v-if="!ap.state.activity.length" class="text-sm opacity-70">Nothing yet.</p>
-									<div v-for="(entry, entryIndex) in ap.state.activity" :key="entryIndex" class="text-sm border-b border-sky-800 py-1 flex justify-between gap-2">
+									<p v-if="!filteredActivity.length" class="text-sm opacity-70">Nothing yet.</p>
+									<div v-for="(entry, entryIndex) in filteredActivity" :key="entryIndex" class="text-sm border-b border-sky-800 py-1 flex justify-between gap-2">
 										<div class="min-w-0">
 											<span v-if="entry.kind === 'item'" class="text-emerald-300">+ {{ entry.name }}</span>
 											<span v-else class="text-amber-300">✓ {{ entry.name }}</span>
@@ -1581,6 +1590,30 @@
 			</template>
 		</Modal>
 
+		<!-- Activity filters Modal -->
+		<Modal :show="activitySettingsModalVisible" @onClose="activitySettingsModalVisible = false">
+			<p class="text-2xl mb-4">Recent activity filters</p>
+			<div class="flex flex-col gap-3">
+				<div class="flex items-center justify-between gap-3">
+					<p class="text-emerald-300">+ Items received</p>
+					<div class="flex items-center">
+						<input id="filter_items" type="checkbox" v-model="save.data.configs.tracker.ap_activity_show_items" />
+						<label for="filter_items" />
+					</div>
+				</div>
+				<div class="flex items-center justify-between gap-3">
+					<p class="text-amber-300">✓ Locations checked</p>
+					<div class="flex items-center">
+						<input id="filter_locations" type="checkbox" v-model="save.data.configs.tracker.ap_activity_show_locations" />
+						<label for="filter_locations" />
+					</div>
+				</div>
+			</div>
+			<div class="mt-6 flex justify-end">
+				<button class="bg-sky-800 hover:bg-sky-700 rounded-md px-4 py-2" type="button" @click="activitySettingsModalVisible = false">Close</button>
+			</div>
+		</Modal>
+
 		<!-- Tutorial Modal -->
 		<Modal :show="tutorialModalVisible" @onClose="tutorialModalVisible = false" :large="true">
 			<div class="about">
@@ -1732,7 +1765,7 @@
 </template>
 
 <script setup>
-import { reactive, ref, watch } from 'vue';
+import { computed, reactive, ref, watch } from 'vue';
 
 import { useSaveStore } from '../stores/save';
 import { useTrackerStore } from '../stores/tracker';
@@ -1758,6 +1791,7 @@ const logicSettingsModalVisible = ref(false);
 const trackerSettingsModalVisible = ref(false);
 const disableItemsModalVisible = ref(false);
 const tutorialModalVisible = ref(false);
+const activitySettingsModalVisible = ref(false);
 
 const hintRequestInput = ref('');
 const requestApHint = () => {
@@ -1774,6 +1808,16 @@ const formatActivityTime = (ts) => {
 	const h = Math.floor(m / 60);
 	return `${h}h`;
 };
+
+const filteredActivity = computed(() => {
+	const showItems = save.data.configs.tracker.ap_activity_show_items !== false;
+	const showLocations = save.data.configs.tracker.ap_activity_show_locations !== false;
+	return ap.state.activity.filter((entry) => {
+		if (entry.kind === 'item') return showItems;
+		if (entry.kind === 'location') return showLocations;
+		return true;
+	});
+});
 
 const version = ref(localStorage.getItem('version'));
 const currentVersion = 13;
