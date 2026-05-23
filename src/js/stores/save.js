@@ -367,6 +367,9 @@ export const useSaveStore = defineStore('save', () => {
 
 			defaultSaveClone.items.rip_cheato = currentSave.items.rip_cheato;
 			defaultSaveClone.items.chuck_quizmo = currentSave.items.chuck_quizmo;
+
+			// Preserve the AP activity feed across reconnects / item-receive resets
+			defaultSaveClone.ap_activity = currentSave.ap_activity;
 		}
 
 		if (noChecks) {
