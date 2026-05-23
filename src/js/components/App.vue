@@ -1597,9 +1597,20 @@
 					<a href="https://discord.gg/4Z5G69ZNJg" target="_blank">PMR Discord</a>
 					in the channel "Discussion & Support > pmr-tracker".
 				</p>
+				<p class="text-lg mt-3">Version 13</p>
+				<div class="ml-5">
+					<p>Fixed empty starting-location dropdown on new saves.</p>
+					<p>Added Bosses tracking.</p>
+					é.
+					<p>Added Boss Shuffle: Shift + Left click on a boss cycles which boss landed at that slot.</p>
+					<p>Added a Shuffle Bosses toggle in the randomizer settings.</p>
+					<p>Archipelago: Fixed IDs.</p>
+					<p>Archipelago: Added 4 missing locations (Dry Dry Outpost shop items 2/4/5 + Star Sanctuary Gift of the Stars).</p>
+					<p>Archipelago: Fixed bug where every star chapter was disabled on connect when "require specific spirits" was off.</p>
+				</div>
 				<p class="text-lg mt-3">Version 12</p>
 				<div class="ml-5">
-					<p>Archipelago: Fix IDs.</p>
+					<p>Archipelago: Fixed IDs.</p>
 				</div>
 				<p class="text-lg mt-3">Version 11</p>
 				<div class="ml-5">
@@ -1706,7 +1717,7 @@ const disableItemsModalVisible = ref(false);
 const tutorialModalVisible = ref(false);
 
 const version = ref(localStorage.getItem('version'));
-const currentVersion = 12;
+const currentVersion = 13;
 
 if (version.value == null || version.value <= currentVersion) {
 	tutorialModalVisible.value = true;
