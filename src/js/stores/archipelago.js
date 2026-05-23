@@ -89,7 +89,24 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 				state.seed = client.room.seedName;
 				state.hints.points = client.room.hintPoints;
 				state.hints.cost = client.room.hintCost;
-				state.hints.list = client.items.hints;
+				state.hints.list = [...(client.items.hints || [])];
+
+				client.items.on('hintsInitialized', (hints) => {
+					state.hints.list = [...hints];
+				});
+
+				client.items.on('hintReceived', (hint) => {
+					state.hints.list.push(hint);
+				});
+
+				client.items.on('hintFound', (hint) => {
+					const idx = state.hints.list.findIndex(
+						(h) => h.item.locationName === hint.item.locationName && h.item.sendingPlayer?.alias === hint.item.sendingPlayer?.alias
+					);
+					if (idx !== -1) {
+						state.hints.list.splice(idx, 1, hint);
+					}
+				});
 
 				save.resetSave(true, true, false);
 
@@ -166,12 +183,7 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 					7: 'kalmar'
 				};
 
-				if (configs.required_spirits) {
-					for (const [id, star] of Object.entries(stars)) {
-						save.data.items[star] = true;
-						save.data.items[star + '_chapter_disabled'] = true;
-					}
-
+				if (configs.require_spirits && configs.required_spirits) {
 					configs.required_spirits.forEach((star) => {
 						if (stars[star]) {
 							delete stars[star];
@@ -562,7 +574,12 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 		return returnVal;
 	};
 
-	const apAskHint = () => {};
+	const apAskHint = (itemName) => {
+		if (!state.connected || !itemName || !itemName.trim()) {
+			return;
+		}
+		client.messages.say(`!hint ${itemName.trim()}`);
+	};
 
 	return {
 		connect,

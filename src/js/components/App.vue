@@ -1105,9 +1105,20 @@
 							</template>
 							<template v-if="grid_item.i == 'ap_hints' && ap.state.connected">
 								<h2>Archipelago hints</h2>
-								<div class="flex justify-between">
+								<div class="flex justify-between mt-1">
 									<p>Points: {{ ap.state.hints.points }}</p>
 									<p>Cost: {{ ap.state.hints.cost }}</p>
+								</div>
+								<div class="flex gap-2 mt-2">
+									<input class="flex-1 rounded-md px-2 text-sm text-black" type="text" placeholder="Item name (e.g. Star Beam)" v-model="hintRequestInput" @keyup.enter="requestApHint()" />
+									<button class="bg-sky-800 hover:bg-sky-700 rounded-md px-3 text-sm" type="button" @click="requestApHint()">Get hint</button>
+								</div>
+								<div class="overflow-y-auto mt-3" style="max-height: calc(100% - 110px)">
+									<p v-if="!ap.state.hints.list.length" class="text-sm opacity-70">No hints yet.</p>
+									<div v-for="(hint, hintIndex) in ap.state.hints.list" :key="hintIndex" class="text-sm border-b border-sky-800 py-1" :class="{ 'opacity-50 line-through': hint.found }">
+										<p><span class="font-bold">{{ hint.item.name }}</span> is at <span class="italic">{{ hint.item.locationName }}</span></p>
+										<p class="text-xs opacity-80">{{ hint.item.sendingPlayer?.alias }}'s world &rarr; {{ hint.item.receivingPlayer?.alias }}</p>
+									</div>
 								</div>
 							</template>
 						</div>
@@ -1309,11 +1320,11 @@
 				</p>
 				<p>
 					Works on
-					<a href="https://github.com/ArchipelagoMW/Archipelago/releases/tag/0.5.1" target="_blank">Archipelago version 0.5.1</a>
+					<a href="https://github.com/ArchipelagoMW/Archipelago/releases/tag/0.6.6" target="_blank">Archipelago version 0.6.6</a>
 					or greater.
 					<br />
 					Need version
-					<a href="https://github.com/JKBSunshine/PMR_APWorld/releases/tag/v0.5.0" target="_blank">0.5.0 of the APWorld</a>
+					<a href="https://github.com/JKBSunshine/PMR_APWorld/releases/tag/v0.6.4" target="_blank">0.6.4 of the APWorld</a>
 					or greater.
 				</p>
 				<p>If you have a game to load, connect first, then load.</p>
@@ -1601,7 +1612,6 @@
 				<div class="ml-5">
 					<p>Fixed empty starting-location dropdown on new saves.</p>
 					<p>Added Bosses tracking.</p>
-					é.
 					<p>Added Boss Shuffle: Shift + Left click on a boss cycles which boss landed at that slot.</p>
 					<p>Added a Shuffle Bosses toggle in the randomizer settings.</p>
 					<p>Archipelago: Fixed IDs.</p>
@@ -1715,6 +1725,12 @@ const logicSettingsModalVisible = ref(false);
 const trackerSettingsModalVisible = ref(false);
 const disableItemsModalVisible = ref(false);
 const tutorialModalVisible = ref(false);
+
+const hintRequestInput = ref('');
+const requestApHint = () => {
+	ap.apAskHint(hintRequestInput.value);
+	hintRequestInput.value = '';
+};
 
 const version = ref(localStorage.getItem('version'));
 const currentVersion = 13;
