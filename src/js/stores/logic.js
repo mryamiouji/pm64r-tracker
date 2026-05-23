@@ -2818,7 +2818,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toad_town() && flags.deliver_letters() && save.data.items.letters.dane_t >= 1 && save.data.items.boots >= 1;
 							},
-							ap: [8112000090]
+							ap: [8112000089]
 						},
 						{
 							name: 'Dane T. 2',
@@ -2829,7 +2829,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toad_town() && flags.deliver_letters() && save.data.items.letters.dane_t >= 2 && save.data.items.boots >= 1;
 							},
-							ap: [8112000089]
+							ap: [8112000090]
 						}
 					]
 				}
@@ -6427,6 +6427,17 @@ export const useLogicStore = defineStore('logic', () => {
 							ap: [8112000298]
 						},
 						{
+							name: 'Shop item 2',
+							icon: '/images/checks/shopsanity.webp',
+							exists: () => {
+								return save.data.configs.logic.shopsanity;
+							},
+							available: () => {
+								return flags.dry_dry_desert();
+							},
+							ap: [8112000299]
+						},
+						{
 							name: 'Shop item 3',
 							icon: '/images/checks/shopsanity.webp',
 							exists: () => {
@@ -6436,6 +6447,28 @@ export const useLogicStore = defineStore('logic', () => {
 								return flags.dry_dry_desert();
 							},
 							ap: [8112000300]
+						},
+						{
+							name: 'Shop item 4',
+							icon: '/images/checks/shopsanity.webp',
+							exists: () => {
+								return save.data.configs.logic.shopsanity;
+							},
+							available: () => {
+								return flags.dry_dry_desert();
+							},
+							ap: [8112000301]
+						},
+						{
+							name: 'Shop item 5',
+							icon: '/images/checks/shopsanity.webp',
+							exists: () => {
+								return save.data.configs.logic.shopsanity;
+							},
+							available: () => {
+								return flags.dry_dry_desert();
+							},
+							ap: [8112000302]
 						},
 						{
 							name: 'Shop item 6',
@@ -12015,7 +12048,19 @@ export const useLogicStore = defineStore('logic', () => {
 					y: 1,
 					w: 1,
 					h: 4,
-					checks: []
+					checks: [
+						{
+							name: 'Gift of the Stars',
+							icon: null,
+							exists: () => {
+								return true;
+							},
+							available: () => {
+								return flags.star_haven();
+							},
+							ap: [8112000162]
+						}
+					]
 				},
 				star_haven_west: {
 					name: 'Star Haven West',

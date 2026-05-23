@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { computed, reactive, watch } from 'vue';
+import { computed, nextTick, reactive, watch } from 'vue';
 import { Client } from 'archipelago.js';
 
 import { toast } from 'vue3-toastify';
@@ -119,6 +119,8 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 				save.data.configs.randomizer.shuffle_dungeon_entrances = configs.shuffle_dungeon_entrances;
 				save.data.configs.randomizer.magical_seed_required = configs.magical_seeds;
 				save.data.configs.randomizer.shuffle_star_beam = configs.shuffle_star_beam;
+				// Bosses are not implemented in Archipelago yet — force off on connect
+				save.data.configs.randomizer.shuffle_bosses = false;
 				save.data.configs.randomizer.star_hunt_enabled = configs.power_star_hunt;
 				save.data.configs.randomizer.star_hunt_star_count = configs.total_power_stars;
 
@@ -169,11 +171,11 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 							delete stars[star];
 						}
 					});
-				}
 
-				for (const [id, star] of Object.entries(stars)) {
-					save.data.items[star] = true;
-					save.data.items[star + '_chapter_disabled'] = true;
+					for (const [id, star] of Object.entries(stars)) {
+						save.data.items[star] = true;
+						save.data.items[star + '_chapter_disabled'] = true;
+					}
 				}
 
 				console.info('AP client package', client.package.findPackage(client.game));
@@ -196,11 +198,15 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 				});
 
 				client.room.on('hintCostUpdated', (cost) => {
-					state.hints.cost = cost;
+					nextTick(() => {
+						state.hints.cost = cost;
+					});
 				});
 
 				client.room.on('hintPointsUpdated', (points) => {
-					state.hints.points = points;
+					nextTick(() => {
+						state.hints.points = points;
+					});
 				});
 
 				client.room.on('locationsChecked', (locations) => {
@@ -243,7 +249,9 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 					}
 					// console.log('Found:', query, 'in', previousKey1, previousKey2, previousKey3, previousKey4, previousKey5, 'x', occurences);
 
-					switch (type) {
+					switch (
+						type //TODO: Starbeam not working?
+					) {
 						case 'item':
 							for (let i = 0; i < occurences; i++) {
 								if (save.data.items[previousKey1] !== undefined) {

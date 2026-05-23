@@ -64,7 +64,26 @@ export const useSaveStore = defineStore('save', () => {
 			misstar_chapter_disabled: false,
 			klevar_chapter_disabled: false,
 			kalmar_chapter_disabled: false,
+			starbeam: false,
 			starrod: false,
+			goomba_king: false,
+			koopa_bros: false,
+			tutankoopa: false,
+			tubba_blubba: false,
+			general_guy: false,
+			lava_piranha: false,
+			huff_n_puff: false,
+			crystal_king: false,
+			bowser: false,
+			goomba_king_boss_shuffle: 0,
+			koopa_bros_boss_shuffle: 0,
+			tutankoopa_boss_shuffle: 0,
+			tubba_blubba_boss_shuffle: 0,
+			general_guy_boss_shuffle: 0,
+			lava_piranha_boss_shuffle: 0,
+			huff_n_puff_boss_shuffle: 0,
+			crystal_king_boss_shuffle: 0,
+			bowser_boss_shuffle: 0,
 			goombario: 0,
 			kooper: 0,
 			bombette: 0,
@@ -209,7 +228,8 @@ export const useSaveStore = defineStore('save', () => {
 		gear_shuffle: 'vanilla',
 		shuffle_dungeon_entrances: false,
 		magical_seed_required: 4,
-		starting_location: 65796,
+		starting_location: null,
+		shuffle_bosses: false,
 		star_hunt_enabled: false,
 		star_hunt_star_count: 120,
 		star_hunt_ends_game: false
@@ -321,7 +341,26 @@ export const useSaveStore = defineStore('save', () => {
 			defaultSaveClone.items.misstar_chapter_disabled = currentSave.items.misstar_chapter_disabled;
 			defaultSaveClone.items.klevar_chapter_disabled = currentSave.items.klevar_chapter_disabled;
 			defaultSaveClone.items.kalmar_chapter_disabled = currentSave.items.kalmar_chapter_disabled;
+			defaultSaveClone.items.starbeam = currentSave.items.starbeam; //TODO: Remove when starbeam auto check is working
 			defaultSaveClone.items.starrod = currentSave.items.starrod;
+			defaultSaveClone.items.goomba_king = currentSave.items.goomba_king;
+			defaultSaveClone.items.koopa_bros = currentSave.items.koopa_bros;
+			defaultSaveClone.items.tutankoopa = currentSave.items.tutankoopa;
+			defaultSaveClone.items.tubba_blubba = currentSave.items.tubba_blubba;
+			defaultSaveClone.items.general_guy = currentSave.items.general_guy;
+			defaultSaveClone.items.lava_piranha = currentSave.items.lava_piranha;
+			defaultSaveClone.items.huff_n_puff = currentSave.items.huff_n_puff;
+			defaultSaveClone.items.crystal_king = currentSave.items.crystal_king;
+			defaultSaveClone.items.bowser = currentSave.items.bowser;
+			defaultSaveClone.items.goomba_king_boss_shuffle = currentSave.items.goomba_king_boss_shuffle;
+			defaultSaveClone.items.koopa_bros_boss_shuffle = currentSave.items.koopa_bros_boss_shuffle;
+			defaultSaveClone.items.tutankoopa_boss_shuffle = currentSave.items.tutankoopa_boss_shuffle;
+			defaultSaveClone.items.tubba_blubba_boss_shuffle = currentSave.items.tubba_blubba_boss_shuffle;
+			defaultSaveClone.items.general_guy_boss_shuffle = currentSave.items.general_guy_boss_shuffle;
+			defaultSaveClone.items.lava_piranha_boss_shuffle = currentSave.items.lava_piranha_boss_shuffle;
+			defaultSaveClone.items.huff_n_puff_boss_shuffle = currentSave.items.huff_n_puff_boss_shuffle;
+			defaultSaveClone.items.crystal_king_boss_shuffle = currentSave.items.crystal_king_boss_shuffle;
+			defaultSaveClone.items.bowser_boss_shuffle = currentSave.items.bowser_boss_shuffle;
 
 			defaultSaveClone.items.rip_cheato = currentSave.items.rip_cheato;
 			defaultSaveClone.items.chuck_quizmo = currentSave.items.chuck_quizmo;
@@ -856,6 +895,12 @@ export const useSaveStore = defineStore('save', () => {
 
 		if (save) {
 			Object.assign(currentSave, JSON.parse(save));
+			// Fill in any randomizer config defaults missing from the persisted save
+			for (const [key, value] of Object.entries(defaultRandomizerConfigs)) {
+				if (currentSave.configs.randomizer[key] === undefined) {
+					currentSave.configs.randomizer[key] = value;
+				}
+			}
 		} else {
 			resetSave();
 			resetConfigs();

@@ -13,6 +13,7 @@ export const useLayoutStore = defineStore('layout', () => {
 
 	//Default layouts
 	const starsLayout = { x: 0, y: 0, w: 25, h: 12, i: 'stars' };
+	const bossesLayout = { x: 0, y: 12, w: 25, h: 12, i: 'bosses' };
 	const partnersLayout = { x: 25, y: 0, w: 29, h: 12, i: 'partners' };
 	const equipmentsLayout = { x: 0, y: 12, w: 8, h: 12, i: 'equipments' };
 	const itemsCompactLayout = { x: 0, y: 0, w: 30, h: 50, i: 'items_compact' };
@@ -47,6 +48,7 @@ export const useLayoutStore = defineStore('layout', () => {
 		trackerLayout.value = [];
 
 		trackerLayout.value.push(Object.assign({}, starsLayout));
+		trackerLayout.value.push(Object.assign({}, bossesLayout));
 		trackerLayout.value.push(Object.assign({}, partnersLayout));
 		trackerLayout.value.push(Object.assign({}, equipmentsLayout));
 		// trackerLayout.value.push(Object.assign({}, itemsCompactLayout));
@@ -81,6 +83,10 @@ export const useLayoutStore = defineStore('layout', () => {
 
 		if (layout) {
 			trackerLayout.value = JSON.parse(layout);
+			// Migrate layouts saved before the bosses card existed
+			if (trackerLayout.value.find((l) => l.i === 'bosses') === undefined) {
+				trackerLayout.value.push(Object.assign({}, bossesLayout));
+			}
 		} else {
 			restoreDefaultLayout();
 		}
@@ -119,6 +125,7 @@ export const useLayoutStore = defineStore('layout', () => {
 
 				//Add compact items per chapters layout
 				trackerLayout.value.push(Object.assign({}, starsLayout));
+				trackerLayout.value.push(Object.assign({}, bossesLayout));
 				trackerLayout.value.push(Object.assign({}, partnersLayout));
 				trackerLayout.value.push(Object.assign({}, equipmentsLayout));
 				trackerLayout.value.push(Object.assign({}, itemsPerChapterLayout));

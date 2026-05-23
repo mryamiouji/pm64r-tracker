@@ -110,14 +110,14 @@
 							<font-awesome-icon :icon="['fas', 'trash']" />
 						</button>
 						<button
-							class="hidden lg:flex flex items-center bg-sky-950 hover:bg-sky-800 w-fit rounded-md p-3 ml-10"
+							class="hidden lg:flex items-center bg-sky-950 hover:bg-sky-800 w-fit rounded-md p-3 ml-10"
 							type="button"
 							v-tooltip="{ content: 'How to use?', delay: { show: 0 } }"
 							@click="tutorialModalVisible = true">
 							<font-awesome-icon :icon="['far', 'circle-question']" />
 							<p class="hidden xl:block ml-4">How to use</p>
 						</button>
-						<button class="hidden lg:flex flex items-center bg-sky-950 hover:bg-sky-800 w-fit rounded-md p-3" v-tooltip="{ content: 'Github', delay: { show: 0 } }" @click="openGithub()">
+						<button class="hidden lg:flex items-center bg-sky-950 hover:bg-sky-800 w-fit rounded-md p-3" v-tooltip="{ content: 'Github', delay: { show: 0 } }" @click="openGithub()">
 							<font-awesome-icon :icon="['fab', 'github']" />
 						</button>
 					</div>
@@ -204,6 +204,28 @@
 												</div>
 											</template>
 										</VDropdown>
+									</template>
+								</div>
+							</template>
+							<template v-if="grid_item.i == 'bosses'">
+								<h2>Bosses</h2>
+								<div
+									class="flex flex-wrap mt-3"
+									:class="[
+										`gap-x-${save.data.configs.tracker.item_gap !== undefined ? save.data.configs.tracker.item_gap : 0.5}`,
+										`gap-y-${save.data.configs.tracker.item_gap !== undefined ? save.data.configs.tracker.item_gap + 1.5 : 2}`
+									]">
+									<template v-for="(trackerItemConfigs, trackerItemKey) in tracker.items.bosses" :key="trackerItemKey">
+										<Item
+											v-if="trackerItemConfigs.enabled && !save.data.configs.invisible_items[grid_item.i][trackerItemKey]"
+											@click="trackerLeftClick($event, trackerItemKey, trackerItemConfigs)"
+											@contextmenu="trackerRightClick($event, trackerItemKey, trackerItemConfigs)"
+											:itemName="trackerItemConfigs.name"
+											:itemKey="trackerItemKey"
+											imageFolder="bosses"
+											:itemCount="save.data.items[trackerItemKey]"
+											:itemCountMax="trackerItemConfigs.max"
+											:initial="trackerItemConfigs.initial" />
 									</template>
 								</div>
 							</template>
@@ -1550,6 +1572,7 @@
 					<p>Right click on the map tracker: Checks all the available checks of the map</p>
 					<p>Ctrl + Left click on stars: Increment the difficulty marker on the stars</p>
 					<p>Shift + Left click on stars: Increment the dungeon shuffle on the stars</p>
+					<p>Shift + Left click on bosses: Increment the boss shuffle on the bosses</p>
 					<p>Shift + Left click on the items: Mark the item as handed the the final NPC</p>
 					<p>Shift + Right click on items: Mark the item as a Merlow's reward</p>
 					<p>Middle mouse click: Mark chapter as disabled (Limited Chapter Logic)</p>
@@ -1574,6 +1597,10 @@
 					<a href="https://discord.gg/4Z5G69ZNJg" target="_blank">PMR Discord</a>
 					in the channel "Discussion & Support > pmr-tracker".
 				</p>
+				<p class="text-lg mt-3">Version 11</p>
+				<div class="ml-5">
+					<p>Archipelago: Fixed hints that updated 1 tick too late.</p>
+				</div>
 				<p class="text-lg mt-3">Version 10</p>
 				<div class="ml-5">
 					<p>Archipelago: Implemented latest archipelago.js v.2.0.4.</p>
@@ -1758,6 +1785,26 @@ const trackerLeftClick = (event, key, configs, itemSubCategory = null) => {
 				} else {
 					save.data.items[`${key}_dungeon_shuffle`]++;
 				}
+			}
+		} else if (
+			key == 'goomba_king' ||
+			key == 'koopa_bros' ||
+			key == 'tutankoopa' ||
+			key == 'tubba_blubba' ||
+			key == 'general_guy' ||
+			key == 'lava_piranha' ||
+			key == 'huff_n_puff' ||
+			key == 'crystal_king' ||
+			key == 'bowser'
+		) {
+			if (save.data.items[`${key}_boss_shuffle`] == undefined) {
+				save.data.items[`${key}_boss_shuffle`] = 0;
+			}
+
+			if (save.data.items[`${key}_boss_shuffle`] >= 9) {
+				save.data.items[`${key}_boss_shuffle`] = 0;
+			} else {
+				save.data.items[`${key}_boss_shuffle`]++;
 			}
 		} else {
 			if (save.data.items.hand_ins === undefined) {

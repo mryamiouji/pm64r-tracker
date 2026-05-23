@@ -14,6 +14,7 @@
 			<img class="absolute bottom-0 h-[15px]" :class="[`right-level${i}`]" src="/images/partners/partner_level.webp" />
 		</template>
 		<img v-if="imageFolder == 'stars' && stars_dungeon_shuffle_images" class="absolute top-0 left-0 h-[20px]" :src="`/images/stars/${stars_dungeon_shuffle_images}.webp`" />
+		<img v-if="imageFolder == 'bosses' && bosses_boss_shuffle_images" class="absolute top-0 left-0 h-[20px]" :src="`/images/bosses/${bosses_boss_shuffle_images}.webp`" />
 		<p v-if="imageFolder == 'stars' && save.data.items[`${itemKey}_difficulty`]" class="absolute w-fit whitespace-nowrap bottom-[-10px] right-0">{{ save.data.items[`${itemKey}_difficulty`] }}</p>
 		<font-awesome-icon v-if="imageFolder == 'stars' && save.data.items[`${itemKey}_chapter_disabled`]" class="absolute text-red-600 z-10 top-0 right-0" :icon="['fas', 'ban']" />
 		<p
@@ -109,6 +110,25 @@ const stars_dungeon_shuffle_images = computed(() => {
 			6: 'klevar',
 			7: 'kalmar'
 		}[save.data.items[`${props.itemKey}_dungeon_shuffle`]];
+	} else {
+		return null;
+	}
+});
+
+const bosses_boss_shuffle_images = computed(() => {
+	if (props.imageFolder == 'bosses') {
+		return {
+			0: null,
+			1: 'goomba_king',
+			2: 'koopa_bros',
+			3: 'tutankoopa',
+			4: 'tubba_blubba',
+			5: 'general_guy',
+			6: 'lava_piranha',
+			7: 'huff_n_puff',
+			8: 'crystal_king',
+			9: 'bowser'
+		}[save.data.items[`${props.itemKey}_boss_shuffle`]];
 	} else {
 		return null;
 	}

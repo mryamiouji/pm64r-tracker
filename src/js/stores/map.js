@@ -250,7 +250,7 @@ export const useMapStore = defineStore('map', () => {
 		}
 	};
 
-	// Panels available: stars, partners, equipments, items_compact, items_per_chapter, prologue, chapter1, chapter2, chapter3, chapter4, chapter5, chapter6, chapter7, chapter8, other, misc, letters, koopa_koot_favors, trading_event_toad, map
+	// Panels available: stars, bosses, partners, equipments, items_compact, items_per_chapter, prologue, chapter1, chapter2, chapter3, chapter4, chapter5, chapter6, chapter7, chapter8, other, misc, letters, koopa_koot_favors, trading_event_toad, map
 	const panelVisible = (panelKey) => {
 		let visible = true;
 
@@ -281,6 +281,10 @@ export const useMapStore = defineStore('map', () => {
 		}
 
 		if (panelKey == 'ap_hints' && !ap.state.connected) {
+			visible = false;
+		}
+
+		if (panelKey == 'bosses' && !save.data.configs.randomizer.shuffle_bosses) {
 			visible = false;
 		}
 

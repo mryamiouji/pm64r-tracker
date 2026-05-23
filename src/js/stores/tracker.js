@@ -3,6 +3,7 @@ import { reactive } from 'vue';
 
 export const useTrackerStore = defineStore('tracker', () => {
 	const startingLocations = {
+		random: null,
 		goomba_village: 1,
 		toad_town: 0,
 		dry_dry_outpost: 2,
@@ -48,7 +49,7 @@ export const useTrackerStore = defineStore('tracker', () => {
 			},
 			starbeam: {
 				name: 'Star Beam',
-				enabled: false,
+				enabled: true,
 				max: 1,
 				ap: [8112000724]
 			},
@@ -69,62 +70,74 @@ export const useTrackerStore = defineStore('tracker', () => {
 				]
 			}
 		},
+		bosses: {
+			// Bosses are not implemented in Archipelago yet — manual-only, panel hides when AP is connected
+			goomba_king: { name: 'Goomba King', enabled: true, max: 1 },
+			koopa_bros: { name: 'Koopa Bros.', enabled: true, max: 1 },
+			tutankoopa: { name: 'Tutankoopa', enabled: true, max: 1 },
+			tubba_blubba: { name: 'Tubba Blubba', enabled: true, max: 1 },
+			general_guy: { name: 'General Guy', enabled: true, max: 1 },
+			lava_piranha: { name: 'Lava Piranha', enabled: true, max: 1 },
+			huff_n_puff: { name: 'Huff N. Puff', enabled: true, max: 1 },
+			crystal_king: { name: 'Crystal King', enabled: true, max: 1 },
+			bowser: { name: 'Bowser', enabled: true, max: 1 }
+		},
 		partners: {
 			goombario: {
 				name: 'Goombario',
 				enabled: true,
 				max: 3,
-				ap: [8112000743],
-				ap_rank: [8112000725, 8112000734]
+				ap: [8112000750],
+				ap_rank: [8112000732, 8112000741]
 			},
 			kooper: {
 				name: 'Kooper',
 				enabled: true,
 				max: 3,
-				ap: [8112000744],
-				ap_rank: [8112000726, 8112000735]
+				ap: [8112000751],
+				ap_rank: [8112000733, 8112000742]
 			},
 			bombette: {
 				name: 'Bombette',
 				enabled: true,
 				max: 3,
-				ap: [8112000745],
-				ap_rank: [8112000727, 8112000736]
+				ap: [8112000752],
+				ap_rank: [8112000734, 8112000743]
 			},
 			parakarry: {
 				name: 'Parakarry',
 				enabled: true,
 				max: 3,
-				ap: [8112000746],
-				ap_rank: [8112000728, 8112000737]
+				ap: [8112000753],
+				ap_rank: [8112000735, 8112000744]
 			},
 			bow: {
 				name: 'Bow',
 				enabled: true,
 				max: 3,
-				ap: [8112000751],
-				ap_rank: [8112000733, 8112000742]
+				ap: [8112000758],
+				ap_rank: [8112000740, 8112000749]
 			},
 			watt: {
 				name: 'Watt',
 				enabled: true,
 				max: 3,
-				ap: [8112000748],
-				ap_rank: [8112000730, 8112000739]
+				ap: [8112000755],
+				ap_rank: [8112000737, 8112000746]
 			},
 			sushie: {
 				name: 'Sushie',
 				enabled: true,
 				max: 3,
-				ap: [8112000749],
-				ap_rank: [8112000731, 8112000740]
+				ap: [8112000756],
+				ap_rank: [8112000738, 8112000747]
 			},
 			lakilester: {
 				name: 'Lakilester',
 				enabled: true,
 				max: 3,
-				ap: [8112000750],
-				ap_rank: [8112000732, 8112000741]
+				ap: [8112000757],
+				ap_rank: [8112000739, 8112000748]
 			}
 			// ultra_stone: {
 			// 	name: 'Ultra Stone',
@@ -305,7 +318,7 @@ export const useTrackerStore = defineStore('tracker', () => {
 					enabled: true,
 					max: 1,
 					required: true,
-					ap: [8112000193, 8112000170, 8112000698]
+					ap: [8112000193, 8112000170]
 				},
 				cookbook: {
 					name: 'Cookbook',
@@ -351,7 +364,7 @@ export const useTrackerStore = defineStore('tracker', () => {
 					enabled: true,
 					max: 4,
 					required: true,
-					ap: [8112000043]
+					ap: [8112000043, 8112000044, 8112000045, 8112000046]
 				},
 				// pink_magical_seed: {
 				// 	name: 'Red Magical Seed',
@@ -387,7 +400,7 @@ export const useTrackerStore = defineStore('tracker', () => {
 					max: 1,
 					required: false,
 					initial: 'R',
-					ap: [8112000701, 8112000702]
+					ap: [8112000159]
 				},
 				yellow_berry: {
 					name: 'Yellow Berry',
@@ -395,7 +408,7 @@ export const useTrackerStore = defineStore('tracker', () => {
 					max: 1,
 					required: false,
 					initial: 'Y',
-					ap: [8112000703, 8112000704]
+					ap: [8112000160]
 				},
 				blue_berry: {
 					name: 'Blue Berry',
@@ -403,14 +416,14 @@ export const useTrackerStore = defineStore('tracker', () => {
 					max: 2,
 					required: false,
 					initial: 'B',
-					ap: [8112000699, 8112000699, 8112000700, 8112000700]
+					ap: [8112000158]
 				},
 				bubble_berry: {
 					name: 'Bubble Berry',
 					enabled: true,
 					max: 1,
 					required: false,
-					ap: [8112000705, 8112000706]
+					ap: [8112000161]
 				},
 				crystal_berry: {
 					name: 'Crystal Berry',
@@ -996,6 +1009,10 @@ export const useTrackerStore = defineStore('tracker', () => {
 				max: 4
 			},
 			shuffle_star_beam: {
+				enabled: true,
+				type: 'switch'
+			},
+			shuffle_bosses: {
 				enabled: true,
 				type: 'switch'
 			},
