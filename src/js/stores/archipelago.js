@@ -104,7 +104,7 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 			save.data.ap_activity = [...val];
 			syncingActivity = false;
 		},
-		{ deep: true }
+		{ deep: true, flush: 'sync' }
 	);
 
 	// Reverse: when save.data.ap_activity changes externally (e.g. via importSave), restore state.activity
@@ -117,7 +117,7 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 			state.activity = [...val];
 			syncingActivity = false;
 		},
-		{ deep: true }
+		{ deep: true, flush: 'sync' }
 	);
 
 	const connectionInfos = reactive({
