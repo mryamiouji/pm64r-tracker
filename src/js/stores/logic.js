@@ -2570,7 +2570,7 @@ export const useLogicStore = defineStore('logic', () => {
 						},
 						{
 							name: 'Give Coconut to Trading Event Toad',
-							icon: '/images/checks/trading_event_randomized',
+							icon: '/images/checks/trading_event_randomized.webp',
 							exists: () => {
 								return save.data.configs.logic.trading_event_randomized;
 							},
@@ -5394,7 +5394,7 @@ export const useLogicStore = defineStore('logic', () => {
 					checks: [
 						{
 							name: 'Give Nutty Cake',
-							icon: '/images/checks/trading_event_randomized',
+							icon: '/images/checks/trading_event_randomized.webp',
 							exists: () => {
 								return save.data.configs.logic.trading_event_randomized;
 							},
@@ -6527,7 +6527,9 @@ export const useLogicStore = defineStore('logic', () => {
 								return true;
 							},
 							available: () => {
-								return flags.dry_dry_desert() && save.data.items.boots >= 1;
+								// With puzzles randomized, the rooftop checks need the Lemon delivered to Sheek
+								const lemonReq = !save.data.configs.logic.puzzles_randomized || save.data.items.lemon;
+								return flags.dry_dry_desert() && save.data.items.boots >= 1 && lemonReq;
 							},
 							ap: [8112000306]
 						},
@@ -6538,7 +6540,8 @@ export const useLogicStore = defineStore('logic', () => {
 								return true;
 							},
 							available: () => {
-								return flags.dry_dry_desert() && save.data.items.boots >= 1;
+								const lemonReq = !save.data.configs.logic.puzzles_randomized || save.data.items.lemon;
+								return flags.dry_dry_desert() && save.data.items.boots >= 1 && lemonReq;
 							},
 							ap: [8112000304]
 						},
@@ -6549,7 +6552,8 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.panels;
 							},
 							available: () => {
-								return flags.dry_dry_desert() && flags.panels();
+								const lemonReq = !save.data.configs.logic.puzzles_randomized || save.data.items.lemon;
+								return flags.dry_dry_desert() && flags.panels() && lemonReq;
 							},
 							ap: [8112000308]
 						},
@@ -6560,7 +6564,8 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.letters_randomized;
 							},
 							available: () => {
-								return flags.dry_dry_desert() && flags.deliver_letters() && save.data.items.letters.mr_e;
+								const lemonReq = !save.data.configs.logic.puzzles_randomized || save.data.items.lemon;
+								return flags.dry_dry_desert() && flags.deliver_letters() && save.data.items.letters.mr_e && lemonReq;
 							},
 							ap: [8112000307]
 						},
@@ -6571,6 +6576,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.koopa_koot;
 							},
 							available: () => {
+								const lemonReq = !save.data.configs.logic.puzzles_randomized || save.data.items.lemon;
 								return (
 									flags.dry_dry_desert() &&
 									save.data.items.boots >= 1 &&
@@ -6581,7 +6587,8 @@ export const useLogicStore = defineStore('logic', () => {
 									save.data.items.koopa_koot_favors.koopa_tea &&
 									save.data.items.koopa_koot_favors.luigi_autograph &&
 									save.data.items.koopa_koot_favors.empty_wallet &&
-									save.data.items.koopa_koot_favors.tasty_tonic
+									save.data.items.koopa_koot_favors.tasty_tonic &&
+									lemonReq
 								);
 							},
 							ap: [8112000305]

@@ -496,7 +496,7 @@
 												]">
 												<template v-for="(trackerItemConfigs, trackerItemKey) in tracker.items.items.chapter2" :key="trackerItemKey">
 													<Item
-														v-if="trackerItemConfigs.enabled && !save.data.configs.invisible_items['items']['chapter2'][trackerItemKey]"
+														v-if="trackerItemConfigs.enabled && !save.data.configs.invisible_items['items']['chapter2'][trackerItemKey] && (trackerItemKey !== 'lemon' || save.data.configs.logic.puzzles_randomized)"
 														@click="trackerLeftClick($event, trackerItemKey, trackerItemConfigs)"
 														@contextmenu="trackerRightClick($event, trackerItemKey, trackerItemConfigs)"
 														:itemName="trackerItemConfigs.name"
@@ -747,7 +747,7 @@
 									]">
 									<template v-for="(trackerItemConfigs, trackerItemKey) in tracker.items.items.chapter2" :key="trackerItemKey">
 										<Item
-											v-if="trackerItemConfigs.enabled && !save.data.configs.invisible_items['items'][grid_item.i][trackerItemKey]"
+											v-if="trackerItemConfigs.enabled && !save.data.configs.invisible_items['items'][grid_item.i][trackerItemKey] && (trackerItemKey !== 'lemon' || save.data.configs.logic.puzzles_randomized)"
 											@click="trackerLeftClick($event, trackerItemKey, trackerItemConfigs)"
 											@contextmenu="trackerRightClick($event, trackerItemKey, trackerItemConfigs)"
 											:itemName="trackerItemConfigs.name"
@@ -1116,13 +1116,10 @@
 								</div>
 								<div class="overflow-y-auto mt-2" style="max-height: calc(100% - 40px)">
 									<p v-if="!filteredActivity.length" class="text-sm opacity-70">Nothing yet.</p>
-									<div v-for="(entry, entryIndex) in filteredActivity" :key="entryIndex" class="text-sm border-b border-sky-800 py-1 flex justify-between gap-2">
-										<div class="min-w-0">
-											<span v-if="entry.kind === 'item'" class="text-emerald-300">+ {{ entry.name }}</span>
-											<span v-else class="text-amber-300">✓ {{ entry.name }}</span>
-											<span v-if="entry.from" class="text-xs opacity-70"> from {{ entry.from }}</span>
-										</div>
-										<span class="text-xs opacity-60 shrink-0">{{ formatActivityTime(entry.at) }}</span>
+									<div v-for="(entry, entryIndex) in filteredActivity" :key="entryIndex" class="text-sm border-b border-sky-800 py-1">
+										<span v-if="entry.kind === 'item'" class="text-emerald-300">+ {{ entry.name }}</span>
+										<span v-else class="text-amber-300">✓ {{ entry.name }}</span>
+										<span v-if="entry.from" class="text-xs opacity-70"> from {{ entry.from }}</span>
 									</div>
 								</div>
 							</template>
@@ -1797,16 +1794,6 @@ const hintRequestInput = ref('');
 const requestApHint = () => {
 	ap.apAskHint(hintRequestInput.value);
 	hintRequestInput.value = '';
-};
-
-const formatActivityTime = (ts) => {
-	const diff = Math.max(0, Date.now() - ts);
-	const s = Math.floor(diff / 1000);
-	if (s < 60) return `${s}s`;
-	const m = Math.floor(s / 60);
-	if (m < 60) return `${m}m`;
-	const h = Math.floor(m / 60);
-	return `${h}h`;
 };
 
 const filteredActivity = computed(() => {

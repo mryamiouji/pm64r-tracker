@@ -187,6 +187,12 @@ export const useTrackerStore = defineStore('tracker', () => {
 				}
 			},
 			chapter2: {
+				lemon: {
+					name: 'Lemon (give to Sheek)',
+					enabled: true,
+					max: 1,
+					required: false
+				},
 				parakarry_letters: {
 					name: "Parakarry's Letters",
 					enabled: true,
@@ -1153,6 +1159,10 @@ export const useTrackerStore = defineStore('tracker', () => {
 				type: 'switch'
 			},
 			cook_without_frying_pan: {
+				enabled: true,
+				type: 'switch'
+			},
+			puzzles_randomized: {
 				enabled: true,
 				type: 'switch'
 			}

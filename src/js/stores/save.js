@@ -101,6 +101,7 @@ export const useSaveStore = defineStore('save', () => {
 			sushie_rank: 0,
 			lakilester_rank: 0,
 			ultra_stone: false,
+			lemon: false,
 			boots: 0,
 			hammer: 0,
 			dolly: false,
@@ -262,7 +263,8 @@ export const useSaveStore = defineStore('save', () => {
 		dojo_randomized: false,
 		trading_event_randomized: false,
 		limit_chapter_logic: false,
-		cook_without_frying_pan: false
+		cook_without_frying_pan: false,
+		puzzles_randomized: false
 	};
 
 	const defaultTrackerConfigs = {
