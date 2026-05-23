@@ -40,8 +40,8 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 		name: localStorage.getItem('ap.name'), // Replace with the player slot name.
 		version: {
 			major: 0,
-			minor: 5,
-			build: 1
+			minor: 6,
+			build: 2
 		},
 		password: ''
 	});
@@ -153,7 +153,7 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 				save.data.configs.logic.koopa_koot_coins = configs.koot_coins;
 				save.data.configs.logic.dojo_randomized = configs.dojo > 0;
 				save.data.configs.logic.trading_event_randomized = configs.trading_events > 0;
-				save.data.configs.logic.limit_chapter_logic = configs.require_specific_spirits;
+				save.data.configs.logic.limit_chapter_logic = configs.require_spirits;
 				save.data.configs.logic.cook_without_frying_pan = configs.cook_without_frying_pan;
 
 				let stars = {
@@ -165,7 +165,13 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 					6: 'klevar',
 					7: 'kalmar'
 				};
-				if (configs.require_specific_spirits) {
+
+				if (configs.required_spirits) {
+					for (const [id, star] of Object.entries(stars)) {
+						save.data.items[star] = true;
+						save.data.items[star + '_chapter_disabled'] = true;
+					}
+
 					configs.required_spirits.forEach((star) => {
 						if (stars[star]) {
 							delete stars[star];

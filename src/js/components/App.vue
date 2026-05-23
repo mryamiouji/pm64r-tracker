@@ -1597,6 +1597,10 @@
 					<a href="https://discord.gg/4Z5G69ZNJg" target="_blank">PMR Discord</a>
 					in the channel "Discussion & Support > pmr-tracker".
 				</p>
+				<p class="text-lg mt-3">Version 12</p>
+				<div class="ml-5">
+					<p>Archipelago: Fix IDs.</p>
+				</div>
 				<p class="text-lg mt-3">Version 11</p>
 				<div class="ml-5">
 					<p>Archipelago: Fixed hints that updated 1 tick too late.</p>
@@ -1702,7 +1706,7 @@ const disableItemsModalVisible = ref(false);
 const tutorialModalVisible = ref(false);
 
 const version = ref(localStorage.getItem('version'));
-const currentVersion = 10;
+const currentVersion = 12;
 
 if (version.value == null || version.value <= currentVersion) {
 	tutorialModalVisible.value = true;
