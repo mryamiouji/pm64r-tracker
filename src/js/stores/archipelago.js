@@ -99,7 +99,18 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 				state.seed = client.room.seedName;
 				state.hints.points = client.room.hintPoints;
 				state.hints.cost = client.room.hintCost;
-				state.hints.list = [...(client.items.hints || [])];
+				// Hint objects from archipelago.js use TypeScript private fields which break
+				// when Vue wraps them in reactive Proxies (e.g. the `.found` getter throws).
+				// Convert to plain snapshot objects so the UI can render them safely.
+				const toPlainHint = (hint) => ({
+					itemName: hint.item?.name ?? '',
+					locationName: hint.item?.locationName ?? '',
+					sendingPlayer: hint.item?.sender?.alias ?? '',
+					receivingPlayer: hint.item?.receiver?.alias ?? '',
+					found: hint.found === true
+				});
+
+				state.hints.list = (client.items.hints || []).map(toPlainHint);
 				state.activity = [];
 
 				try {
@@ -110,19 +121,18 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 				}
 
 				client.items.on('hintsInitialized', (hints) => {
-					state.hints.list = [...hints];
+					state.hints.list = hints.map(toPlainHint);
 				});
 
 				client.items.on('hintReceived', (hint) => {
-					state.hints.list.push(hint);
+					state.hints.list.push(toPlainHint(hint));
 				});
 
 				client.items.on('hintFound', (hint) => {
-					const idx = state.hints.list.findIndex(
-						(h) => h.item.locationName === hint.item.locationName && h.item.sendingPlayer?.alias === hint.item.sendingPlayer?.alias
-					);
+					const plain = toPlainHint(hint);
+					const idx = state.hints.list.findIndex((h) => h.locationName === plain.locationName && h.sendingPlayer === plain.sendingPlayer);
 					if (idx !== -1) {
-						state.hints.list.splice(idx, 1, hint);
+						state.hints.list.splice(idx, 1, plain);
 					}
 				});
 
@@ -232,7 +242,7 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 						state.itemsReceived.push(item.id);
 						pushActivity({
 							kind: 'item',
-							name: item.name || client.package.findItemName(item.id, client.game) || `Item #${item.id}`,
+							name: item.name || client.package.lookupItemName(client.game, item.id) || `Item #${item.id}`,
 							from: item.sender?.alias || item.sender?.name || null
 						});
 					});
@@ -256,7 +266,7 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 					locations.forEach((locationId) => {
 						pushActivity({
 							kind: 'location',
-							name: client.package.findLocationName(locationId, client.game) || `Location #${locationId}`
+							name: client.package.lookupLocationName(client.game, locationId) || `Location #${locationId}`
 						});
 					});
 				});
