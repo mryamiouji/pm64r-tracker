@@ -1,4 +1,3 @@
-import './bootstrap';
 import './utils';
 
 import { createApp } from 'vue';

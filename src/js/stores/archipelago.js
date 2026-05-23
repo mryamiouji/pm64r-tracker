@@ -30,8 +30,18 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 			points: 0,
 			cost: 0,
 			list: []
-		}
+		},
+		activity: [],
+		itemNames: []
 	});
+
+	const ACTIVITY_MAX = 50;
+	const pushActivity = (entry) => {
+		state.activity.unshift({ ...entry, at: Date.now() });
+		if (state.activity.length > ACTIVITY_MAX) {
+			state.activity.length = ACTIVITY_MAX;
+		}
+	};
 
 	const connectionInfos = reactive({
 		hostname: localStorage.getItem('ap.hostname'), // Replace with the actual AP server hostname.
@@ -90,6 +100,14 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 				state.hints.points = client.room.hintPoints;
 				state.hints.cost = client.room.hintCost;
 				state.hints.list = [...(client.items.hints || [])];
+				state.activity = [];
+
+				try {
+					const pkg = client.package.findPackage(client.game);
+					state.itemNames = Object.keys(pkg?.item_name_to_id || {}).sort();
+				} catch {
+					state.itemNames = [];
+				}
 
 				client.items.on('hintsInitialized', (hints) => {
 					state.hints.list = [...hints];
@@ -212,6 +230,11 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 					console.log('Items received:', items);
 					items.forEach((item) => {
 						state.itemsReceived.push(item.id);
+						pushActivity({
+							kind: 'item',
+							name: item.name || client.package.findItemName(item.id, client.game) || `Item #${item.id}`,
+							from: item.sender?.alias || item.sender?.name || null
+						});
 					});
 				});
 
@@ -230,6 +253,12 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 				client.room.on('locationsChecked', (locations) => {
 					console.log('Locations checked:', locations);
 					state.checkedLocations.push(locations[0]);
+					locations.forEach((locationId) => {
+						pushActivity({
+							kind: 'location',
+							name: client.package.findLocationName(locationId, client.game) || `Location #${locationId}`
+						});
+					});
 				});
 			})
 			.catch((error) => {
@@ -267,9 +296,7 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 					}
 					// console.log('Found:', query, 'in', previousKey1, previousKey2, previousKey3, previousKey4, previousKey5, 'x', occurences);
 
-					switch (
-						type //TODO: Starbeam not working?
-					) {
+					switch (type) {
 						case 'item':
 							for (let i = 0; i < occurences; i++) {
 								if (save.data.items[previousKey1] !== undefined) {

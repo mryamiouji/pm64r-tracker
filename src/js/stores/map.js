@@ -280,7 +280,11 @@ export const useMapStore = defineStore('map', () => {
 				break;
 		}
 
-		if (panelKey == 'ap_hints' && !ap.state.connected) {
+		if (panelKey == 'ap_hints' && (!ap.state.connected || save.data.configs.tracker.ap_hints === false)) {
+			visible = false;
+		}
+
+		if (panelKey == 'ap_activity' && (!ap.state.connected || save.data.configs.tracker.ap_activity === false)) {
 			visible = false;
 		}
 

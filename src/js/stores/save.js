@@ -279,11 +279,12 @@ export const useSaveStore = defineStore('save', () => {
 		compact_item_show_favors: false,
 		compact_item_show_trading_events: false,
 		compact_items_per_chapters: false,
-		compact_items_per_chapters: false,
 		competitive_mode: false,
 		missing_items_in_grayscale: false,
 		deactivate_items_tooltips: false,
-		notes: false
+		notes: false,
+		ap_hints: true,
+		ap_activity: true
 	};
 
 	const resetTrackerConfigs = () => {
@@ -341,7 +342,6 @@ export const useSaveStore = defineStore('save', () => {
 			defaultSaveClone.items.misstar_chapter_disabled = currentSave.items.misstar_chapter_disabled;
 			defaultSaveClone.items.klevar_chapter_disabled = currentSave.items.klevar_chapter_disabled;
 			defaultSaveClone.items.kalmar_chapter_disabled = currentSave.items.kalmar_chapter_disabled;
-			defaultSaveClone.items.starbeam = currentSave.items.starbeam; //TODO: Remove when starbeam auto check is working
 			defaultSaveClone.items.starrod = currentSave.items.starrod;
 			defaultSaveClone.items.goomba_king = currentSave.items.goomba_king;
 			defaultSaveClone.items.koopa_bros = currentSave.items.koopa_bros;
@@ -419,9 +419,15 @@ export const useSaveStore = defineStore('save', () => {
 		) {
 			let randomizer_seed = currentSave.randomizer_seed;
 			const pmr_endpoint = 'https://paper-mario-randomizer-server.ue.r.appspot.com/randomizer_settings/';
-			axios.get(pmr_endpoint + currentSave.randomizer_seed).then((response) => {
-				let randomizerData = response.data;
-				console.log(randomizerData);
+			fetch(pmr_endpoint + currentSave.randomizer_seed)
+				.then((response) => {
+					if (!response.ok) {
+						throw new Error(`Failed to load seed: HTTP ${response.status}`);
+					}
+					return response.json();
+				})
+				.then((randomizerData) => {
+					console.log(randomizerData);
 
 				resetConfigs();
 				resetSave();

@@ -1,7 +1,7 @@
 <template>
 	<div
 		class="relative flex items-center justify-center cursor-pointer"
-		:class="size"
+		:class="[size, { 'ready-pulse rounded-md': readyToComplete }]"
 		v-tooltip="save.data.configs.tracker.deactivate_items_tooltips ? null : { content: itemName, delay: { show: tooltipDelay } }">
 		<img
 			class="h-full w-auto"
@@ -61,8 +61,10 @@
 <script setup>
 import { computed } from 'vue';
 import { useSaveStore } from '../../stores/save';
+import { useLogicStore } from '../../stores/logic';
 
 const save = useSaveStore();
+const logic = useLogicStore();
 
 const props = defineProps({
 	tooltipDelay: {
@@ -115,6 +117,22 @@ const stars_dungeon_shuffle_images = computed(() => {
 	}
 });
 
+const starChapterMap = { eldstar: 1, mamar: 2, skolar: 3, muskular: 4, misstar: 5, klevar: 6, kalmar: 7 };
+
+const readyToComplete = computed(() => {
+	if (props.imageFolder === 'stars' && starChapterMap[props.itemKey]) {
+		return logic.flags.can_complete_chapter(starChapterMap[props.itemKey]);
+	}
+	if (props.imageFolder === 'koopa_koot_favors') {
+		const hasItem = !!save.data.items.koopa_koot_favors?.[props.itemKey];
+		if (!hasItem) return false;
+		const alreadyTurnedIn = save.data.items.hand_ins?.koopa_koot_favors?.[props.itemKey] >= 1;
+		if (alreadyTurnedIn) return false;
+		return logic.flags.koopa_village() && logic.flags.can_koot();
+	}
+	return false;
+});
+
 const bosses_boss_shuffle_images = computed(() => {
 	if (props.imageFolder == 'bosses') {
 		return {
@@ -148,3 +166,19 @@ const showMerlow = computed(() => {
 	return false;
 });
 </script>
+
+<style scoped>
+.ready-pulse {
+	box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.9);
+	animation: ready-pulse-anim 1.4s ease-in-out infinite;
+}
+@keyframes ready-pulse-anim {
+	0%,
+	100% {
+		box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.9), 0 0 8px 2px rgba(34, 197, 94, 0.6);
+	}
+	50% {
+		box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.9), 0 0 14px 4px rgba(34, 197, 94, 0.9);
+	}
+}
+</style>

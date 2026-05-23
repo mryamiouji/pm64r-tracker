@@ -282,6 +282,14 @@ export const useLogicStore = defineStore('logic', () => {
 				return getTotalAvailableChecksOnMap(mapCategories[found_dungeon]) - getTotalAvailableCheckedChecksOnMap(mapCategories[found_dungeon]);
 			}
 		},
+		can_complete_chapter: (chapter) => {
+			const stars = { 1: 'eldstar', 2: 'mamar', 3: 'skolar', 4: 'muskular', 5: 'misstar', 6: 'klevar', 7: 'kalmar' };
+			const starKey = stars[chapter];
+			if (!starKey) return false;
+			if (save.data.items[starKey]) return false;
+			if (!flags.dungeon_requirements(chapter)) return false;
+			return flags.dungeon_checks_depleted(chapter);
+		},
 		dungeon_checks_depleted: (dungeon) => {
 			let stars = {
 				1: 'eldstar',
@@ -1444,7 +1452,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.goomba_village() && flags.deliver_letters() && save.data.items.letters.goompapa >= 1;
 							},
-							ap: [8112000005] // TODO: Wrong id?
+							ap: [8112000005]
 						},
 						{
 							name: 'Goompapa 2',
@@ -1701,7 +1709,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toad_town() && flags.deliver_letters() && save.data.items.letters.muss_t;
 							},
-							ap: [8112000709] // wRONG ID?
+							ap: [8112000709]
 						}
 					]
 				},
@@ -6490,7 +6498,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.deliver_letters() && save.data.items.letters.little_mouser;
 							},
-							ap: [8112000296] // TODO: Wrong ID?
+							ap: [8112000296]
 						},
 						{
 							name: 'Buy Dusty Hammer, Dried Pasta, Dusty Hammer, Dried Shroom',
@@ -6554,7 +6562,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.deliver_letters() && save.data.items.letters.mr_e;
 							},
-							ap: [8112000307] // TODO : Wrong id?
+							ap: [8112000307]
 						},
 						{
 							name: 'Talk to Merlee after Merluvlee requests her Crystal Ball',
@@ -7241,7 +7249,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.boo_mansion() && flags.deliver_letters() && save.data.items.letters.franky && save.data.items.boo_portrait;
 							},
-							ap: [8112000385] //TODO: wrong id?
+							ap: [8112000385]
 						},
 						{
 							name: 'By the couch',
@@ -11404,7 +11412,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.leave_shiver_city() && flags.jump_ledges() && flags.deliver_letters() && save.data.items.letters.frost_t;
 							},
-							ap: [8112000654] //TODO: wrong id?
+							ap: [8112000654]
 						},
 						{
 							name: 'Talk to Merle',

@@ -1316,6 +1316,16 @@ export const useTrackerStore = defineStore('tracker', () => {
 				tooltip: 'Shows a widget to take notes.',
 				enabled: true,
 				type: 'switch'
+			},
+			ap_hints: {
+				tooltip: 'Shows the Archipelago hints panel when connected to an AP server.',
+				enabled: true,
+				type: 'switch'
+			},
+			ap_activity: {
+				tooltip: 'Shows the Archipelago recent activity feed when connected to an AP server.',
+				enabled: true,
+				type: 'switch'
 			}
 		}
 	});

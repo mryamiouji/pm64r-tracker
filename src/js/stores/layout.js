@@ -38,6 +38,7 @@ export const useLayoutStore = defineStore('layout', () => {
 
 	const notesLayout = { x: 0, y: 112, w: 20, h: 20, i: 'notes' };
 	const apHintsLayout = { x: 0, y: 132, w: 20, h: 20, i: 'ap_hints' };
+	const apActivityLayout = { x: 20, y: 132, w: 20, h: 20, i: 'ap_activity' };
 
 	const restoreDefaultLayout = () => {
 		if (save.data.configs.tracker.compact_items_per_chapters || save.data.configs.tracker.compact_items) {
@@ -76,6 +77,7 @@ export const useLayoutStore = defineStore('layout', () => {
 		}
 
 		trackerLayout.value.push(Object.assign({}, apHintsLayout));
+		trackerLayout.value.push(Object.assign({}, apActivityLayout));
 	};
 
 	const loadLayout = () => {
@@ -86,6 +88,10 @@ export const useLayoutStore = defineStore('layout', () => {
 			// Migrate layouts saved before the bosses card existed
 			if (trackerLayout.value.find((l) => l.i === 'bosses') === undefined) {
 				trackerLayout.value.push(Object.assign({}, bossesLayout));
+			}
+			// Migrate layouts saved before the AP activity feed existed
+			if (trackerLayout.value.find((l) => l.i === 'ap_activity') === undefined) {
+				trackerLayout.value.push(Object.assign({}, apActivityLayout));
 			}
 		} else {
 			restoreDefaultLayout();
@@ -143,6 +149,7 @@ export const useLayoutStore = defineStore('layout', () => {
 				}
 
 				trackerLayout.value.push(Object.assign({}, apHintsLayout));
+				trackerLayout.value.push(Object.assign({}, apActivityLayout));
 			} else {
 				//Add normal items layouts
 				if (!save.data.configs.tracker.compact_items) {

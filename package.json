@@ -16,7 +16,6 @@
 		"@fortawesome/free-solid-svg-icons": "^6.4.2",
 		"@fortawesome/vue-fontawesome": "^3.0.3",
 		"archipelago.js": "^2.0.4",
-		"axios": "^1.5.1",
 		"floating-vue": "^2.0.0-beta.24",
 		"grid-layout-plus": "^1.0.3",
 		"pinia": "^2.1.7",

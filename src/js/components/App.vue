@@ -1103,6 +1103,20 @@
 								<h2>Notes</h2>
 								<textarea class="text-white w-full h-full !font-serif bg-sky-700 p-1" v-model="save.data.notes"></textarea>
 							</template>
+							<template v-if="grid_item.i == 'ap_activity' && ap.state.connected">
+								<h2>Recent activity</h2>
+								<div class="overflow-y-auto mt-2" style="max-height: calc(100% - 40px)">
+									<p v-if="!ap.state.activity.length" class="text-sm opacity-70">Nothing yet.</p>
+									<div v-for="(entry, entryIndex) in ap.state.activity" :key="entryIndex" class="text-sm border-b border-sky-800 py-1 flex justify-between gap-2">
+										<div class="min-w-0">
+											<span v-if="entry.kind === 'item'" class="text-emerald-300">+ {{ entry.name }}</span>
+											<span v-else class="text-amber-300">✓ {{ entry.name }}</span>
+											<span v-if="entry.from" class="text-xs opacity-70"> from {{ entry.from }}</span>
+										</div>
+										<span class="text-xs opacity-60 shrink-0">{{ formatActivityTime(entry.at) }}</span>
+									</div>
+								</div>
+							</template>
 							<template v-if="grid_item.i == 'ap_hints' && ap.state.connected">
 								<h2>Archipelago hints</h2>
 								<div class="flex justify-between mt-1">
@@ -1110,9 +1124,12 @@
 									<p>Cost: {{ ap.state.hints.cost }}</p>
 								</div>
 								<div class="flex gap-2 mt-2">
-									<input class="flex-1 rounded-md px-2 text-sm text-black" type="text" placeholder="Item name (e.g. Star Beam)" v-model="hintRequestInput" @keyup.enter="requestApHint()" />
+									<input class="flex-1 rounded-md px-2 text-sm text-black" type="text" list="ap-item-suggestions" placeholder="Item name (e.g. Star Beam)" v-model="hintRequestInput" @keyup.enter="requestApHint()" />
 									<button class="bg-sky-800 hover:bg-sky-700 rounded-md px-3 text-sm" type="button" @click="requestApHint()">Get hint</button>
 								</div>
+								<datalist id="ap-item-suggestions">
+									<option v-for="name in ap.state.itemNames" :key="name" :value="name" />
+								</datalist>
 								<div class="overflow-y-auto mt-3" style="max-height: calc(100% - 110px)">
 									<p v-if="!ap.state.hints.list.length" class="text-sm opacity-70">No hints yet.</p>
 									<div v-for="(hint, hintIndex) in ap.state.hints.list" :key="hintIndex" class="text-sm border-b border-sky-800 py-1" :class="{ 'opacity-50 line-through': hint.found }">
@@ -1730,6 +1747,16 @@ const hintRequestInput = ref('');
 const requestApHint = () => {
 	ap.apAskHint(hintRequestInput.value);
 	hintRequestInput.value = '';
+};
+
+const formatActivityTime = (ts) => {
+	const diff = Math.max(0, Date.now() - ts);
+	const s = Math.floor(diff / 1000);
+	if (s < 60) return `${s}s`;
+	const m = Math.floor(s / 60);
+	if (m < 60) return `${m}m`;
+	const h = Math.floor(m / 60);
+	return `${h}h`;
 };
 
 const version = ref(localStorage.getItem('version'));
