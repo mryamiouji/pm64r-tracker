@@ -31,7 +31,6 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 			cost: 0,
 			list: []
 		},
-		activity: [],
 		itemNames: []
 	});
 
@@ -40,11 +39,16 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 	const ACTIVITY_BUFFER_SIZE = 2;
 	let activityGameKey = null;
 
+	// Single source of truth: save.data.ap_activity. Auto-persists with save (export-friendly).
+	const activityList = () => {
+		if (!Array.isArray(save.data.ap_activity)) save.data.ap_activity = [];
+		return save.data.ap_activity;
+	};
+
 	const pushActivity = (entry) => {
-		state.activity.unshift({ ...entry, at: Date.now() });
-		if (state.activity.length > ACTIVITY_MAX) {
-			state.activity.length = ACTIVITY_MAX;
-		}
+		const list = activityList();
+		list.unshift({ ...entry, at: Date.now() });
+		if (list.length > ACTIVITY_MAX) list.length = ACTIVITY_MAX;
 	};
 
 	const readActivityStorage = () => {
@@ -69,9 +73,9 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 		const games = readActivityStorage();
 		const found = games.find((g) => g.gameKey === gameKey);
 		if (found && Array.isArray(found.list)) {
-			state.activity = [...found.list];
+			save.data.ap_activity = [...found.list];
 		} else {
-			state.activity = [];
+			save.data.ap_activity = [];
 			games.push({ gameKey, list: [] });
 			while (games.length > ACTIVITY_BUFFER_SIZE) games.shift();
 			writeActivityStorage(games);
@@ -82,7 +86,7 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 		if (!activityGameKey) return;
 		const games = readActivityStorage();
 		const existing = games.findIndex((g) => g.gameKey === activityGameKey);
-		const entry = { gameKey: activityGameKey, list: state.activity };
+		const entry = { gameKey: activityGameKey, list: save.data.ap_activity || [] };
 		if (existing !== -1) {
 			games[existing] = entry;
 		} else {
@@ -92,33 +96,7 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 		writeActivityStorage(games);
 	};
 
-	let syncingActivity = false;
-
-	// Mirror state.activity -> save.data.ap_activity (so it goes into the exported save file)
-	watch(
-		() => state.activity,
-		(val) => {
-			persistActivity();
-			if (syncingActivity) return;
-			syncingActivity = true;
-			save.data.ap_activity = [...val];
-			syncingActivity = false;
-		},
-		{ deep: true, flush: 'sync' }
-	);
-
-	// Reverse: when save.data.ap_activity changes externally (e.g. via importSave), restore state.activity
-	watch(
-		() => save.data.ap_activity,
-		(val) => {
-			if (syncingActivity) return;
-			if (!Array.isArray(val)) return;
-			syncingActivity = true;
-			state.activity = [...val];
-			syncingActivity = false;
-		},
-		{ deep: true, flush: 'sync' }
-	);
+	watch(() => save.data.ap_activity, persistActivity, { deep: true });
 
 	const connectionInfos = reactive({
 		hostname: localStorage.getItem('ap.hostname'), // Replace with the actual AP server hostname.

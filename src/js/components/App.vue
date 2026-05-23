@@ -1812,7 +1812,7 @@ const formatActivityTime = (ts) => {
 const filteredActivity = computed(() => {
 	const showItems = save.data.configs.tracker.ap_activity_show_items !== false;
 	const showLocations = save.data.configs.tracker.ap_activity_show_locations !== false;
-	return ap.state.activity.filter((entry) => {
+	return (save.data.ap_activity || []).filter((entry) => {
 		if (entry.kind === 'item') return showItems;
 		if (entry.kind === 'location') return showLocations;
 		return true;

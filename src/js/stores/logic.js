@@ -2826,7 +2826,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toad_town() && flags.deliver_letters() && save.data.items.letters.dane_t >= 1 && save.data.items.boots >= 1;
 							},
-							ap: [8112000089]
+							ap: [8112000090]
 						},
 						{
 							name: 'Dane T. 2',
@@ -2837,7 +2837,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toad_town() && flags.deliver_letters() && save.data.items.letters.dane_t >= 2 && save.data.items.boots >= 1;
 							},
-							ap: [8112000090]
+							ap: [8112000089]
 						}
 					]
 				}
