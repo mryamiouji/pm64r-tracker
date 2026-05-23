@@ -1634,6 +1634,9 @@
 					<p>Archipelago: Fixed IDs.</p>
 					<p>Archipelago: Added 4 missing locations (Dry Dry Outpost shop items 2/4/5 + Star Sanctuary Gift of the Stars).</p>
 					<p>Archipelago: Fixed bug where every star chapter was disabled on connect when "require specific spirits" was off.</p>
+					<p>Archipelago: Hints panel now lets you request hints, see your hint list, and watch hints turn green-strikethrough as their locations get checked. Item-name autocomplete makes typing the request painless.</p>
+					<p>Archipelago: New Recent Activity feed shows items received and locations checked live, with timestamps.</p>
+					<p>Tracker settings: Added toggles to hide the Archipelago hints and activity panels.</p>
 				</div>
 				<p class="text-lg mt-3">Version 12</p>
 				<div class="ml-5">
