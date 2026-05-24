@@ -23,6 +23,8 @@ jobs:
 
       - run: cp -r images dist/
 
+      - run: cp -r favicon dist/
+
       - uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

@@ -16,10 +16,10 @@ jobs:
         include:
           - os: windows-latest
             target: --win portable
-            artifact: dist-electron/PM64R-Tracker-*-portable.exe
+            artifact: dist-electron/PM64RTracker.exe
           - os: ubuntu-latest
             target: --linux AppImage
-            artifact: dist-electron/PM64R-Tracker-*.AppImage
+            artifact: dist-electron/PM64RTracker.AppImage
 
     runs-on: ${{ matrix.os }}
     steps:
@@ -36,6 +36,10 @@ jobs:
       - name: Copy images into dist
         shell: bash
         run: cp -r images dist/
+
+      - name: Copy favicon into dist
+        shell: bash
+        run: cp -r favicon dist/
 
       - name: Build Electron package
         run: npx electron-builder ${{ matrix.target }} --publish never
@@ -58,17 +62,24 @@ jobs:
         with:
           path: artifacts
 
+      - name: Compute version tag
+        id: version
+        shell: bash
+        # Offset = 2 so first push (run #1) → v1.3, next → v1.4, etc.
+        # If release.yml has already run N times, change the offset to (3 - N - 1).
+        run: echo "tag=v1.$(( ${{ github.run_number }} + 2 ))" >> "$GITHUB_OUTPUT"
+
       - name: Create release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v0.0.${{ github.run_number }}
-          name: v0.0.${{ github.run_number }}
+          tag_name: ${{ steps.version.outputs.tag }}
+          name: ${{ steps.version.outputs.tag }}
           body: |
             Auto-built from commit ${{ github.sha }}
 
             **Downloads:**
-            - **Windows**: `PM64R-Tracker-*-portable.exe`
-            - **Linux**: `PM64R-Tracker-*.AppImage`
+            - **Windows**: `PM64RTracker.exe`
+            - **Linux**: `PM64RTracker.AppImage`
           files: artifacts/**/*
           generate_release_notes: true
         env:
