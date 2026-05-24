@@ -7,7 +7,8 @@ let loadAppContent;
 
 if (!isDev) {
 	// Lazy-require so dev mode doesn't need this loaded
-	const serve = require('electron-serve');
+	// electron-serve v3 is ESM-only; CommonJS require returns { default: serve }
+	const serve = require('electron-serve').default;
 	loadAppContent = serve({ directory: path.join(__dirname, '..', 'dist') });
 }
 
@@ -20,6 +21,7 @@ const createWindow = async () => {
 		title: 'PM64 Randomizer Tracker',
 		autoHideMenuBar: true,
 		backgroundColor: '#0c4a6e',
+		icon: path.join(__dirname, '..', 'favicon', 'web-app-manifest-512x512.png'),
 		webPreferences: {
 			contextIsolation: true,
 			nodeIntegration: false

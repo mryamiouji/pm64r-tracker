@@ -32,29 +32,26 @@ export default defineConfig(({ mode }) => ({
 				name: 'Paper Mario 64 Randomizer Tracker',
 				icons: [
 					{
-						src: '/favicon/favicon-16x16.png',
-						sizes: '16x16',
-						type: 'image/png'
-					},
-					{
-						src: '/favicon/favicon-32x32.png',
-						sizes: '32x32',
-						type: 'image/png'
-					},
-					{
-						src: '/favicon/android-chrome-96x96.png',
+						src: '/favicon/favicon-96x96.png',
 						sizes: '96x96',
 						type: 'image/png'
 					},
 					{
-						src: '/favicon/android-chrome-96x96.png',
-						sizes: '96x96',
-						type: 'image/png'
-					},
-					{
-						src: '/favicon/mstile-150x150.png',
+						src: '/favicon/web-app-manifest-192x192.png',
+						sizes: '192x192',
 						type: 'image/png',
-						sizes: '212x212'
+						purpose: 'any maskable'
+					},
+					{
+						src: '/favicon/web-app-manifest-512x512.png',
+						sizes: '512x512',
+						type: 'image/png',
+						purpose: 'any maskable'
+					},
+					{
+						src: '/favicon/apple-touch-icon.png',
+						sizes: '180x180',
+						type: 'image/png'
 					}
 				],
 				start_url: '/?source=pwa',

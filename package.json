@@ -11,7 +11,9 @@
 		"preview": "vite preview",
 		"copy-images": "node -e \"require('fs').cpSync('images','dist/images',{recursive:true})\"",
 		"dev:electron": "concurrently -k -n vite,electron -c blue,magenta \"vite\" \"wait-on http://localhost:5173 && electron .\"",
-		"build:electron": "vite build --mode electron && npm run copy-images && electron-builder --win portable --linux AppImage"
+		"build:electron": "vite build --mode electron && npm run copy-images",
+		"build:win": "npm run build:electron && electron-builder --win portable",
+		"build:linux": "npm run build:electron && electron-builder --linux AppImage"
 	},
 	"dependencies": {
 		"@fortawesome/fontawesome-svg-core": "^1.2.36",
@@ -55,12 +57,14 @@
 		],
 		"win": {
 			"target": "portable",
-			"artifactName": "PM64R-Tracker-${version}-portable.${ext}"
+			"artifactName": "PM64RTracker.${ext}",
+			"icon": "favicon/web-app-manifest-512x512.png"
 		},
 		"linux": {
 			"target": "AppImage",
 			"category": "Game",
-			"artifactName": "PM64R-Tracker-${version}.${ext}"
+			"artifactName": "PM64RTracker.${ext}",
+			"icon": "favicon/web-app-manifest-512x512.png"
 		}
 	}
 }
