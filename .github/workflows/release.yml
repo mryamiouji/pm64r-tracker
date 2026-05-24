@@ -1,0 +1,75 @@
+name: Build Electron Release
+
+on:
+  push:
+    branches: [current]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            target: --win portable
+            artifact: dist-electron/PM64R-Tracker-*-portable.exe
+          - os: ubuntu-latest
+            target: --linux AppImage
+            artifact: dist-electron/PM64R-Tracker-*.AppImage
+
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - run: npm ci
+
+      - run: npx vite build --mode electron
+
+      - name: Copy images into dist
+        shell: bash
+        run: cp -r images dist/
+
+      - name: Build Electron package
+        run: npx electron-builder ${{ matrix.target }} --publish never
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.os }}-package
+          path: ${{ matrix.artifact }}
+          if-no-files-found: error
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v0.0.${{ github.run_number }}
+          name: v0.0.${{ github.run_number }}
+          body: |
+            Auto-built from commit ${{ github.sha }}
+
+            **Downloads:**
+            - **Windows**: `PM64R-Tracker-*-portable.exe`
+            - **Linux**: `PM64R-Tracker-*.AppImage`
+          files: artifacts/**/*
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
