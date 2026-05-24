@@ -3,11 +3,15 @@
 	"private": true,
 	"version": "0.0.0",
 	"type": "module",
+	"main": "electron/main.cjs",
 	"scripts": {
 		"dev": "vite",
 		"devforce": "vite --force",
 		"build": "vite build",
-		"preview": "vite preview"
+		"preview": "vite preview",
+		"copy-images": "node -e \"require('fs').cpSync('images','dist/images',{recursive:true})\"",
+		"dev:electron": "concurrently -k -n vite,electron -c blue,magenta \"vite\" \"wait-on http://localhost:5173 && electron .\"",
+		"build:electron": "vite build --mode electron && npm run copy-images && electron-builder --win portable --linux AppImage"
 	},
 	"dependencies": {
 		"@fortawesome/fontawesome-svg-core": "^1.2.36",
@@ -16,6 +20,7 @@
 		"@fortawesome/free-solid-svg-icons": "^6.4.2",
 		"@fortawesome/vue-fontawesome": "^3.0.3",
 		"archipelago.js": "^2.0.4",
+		"electron-serve": "^3.0.1",
 		"floating-vue": "^2.0.0-beta.24",
 		"grid-layout-plus": "^1.0.3",
 		"pinia": "^2.1.7",
@@ -26,10 +31,36 @@
 	"devDependencies": {
 		"@vitejs/plugin-vue": "^6.0.7",
 		"autoprefixer": "^10.4.16",
+		"concurrently": "^9.2.1",
+		"electron": "^42.2.0",
+		"electron-builder": "^26.8.1",
 		"postcss": "^8.4.31",
 		"sass": "^1.100.0",
 		"tailwindcss": "^3.3.3",
 		"vite": "^8.0.14",
-		"vite-plugin-pwa": "^1.3.0"
+		"vite-plugin-pwa": "^1.3.0",
+		"wait-on": "^8.0.5"
+	},
+	"build": {
+		"appId": "com.mryami.pm64r-tracker",
+		"productName": "PM64R Tracker",
+		"copyright": "Copyright © MrYami",
+		"directories": {
+			"output": "dist-electron"
+		},
+		"files": [
+			"dist/**/*",
+			"electron/**/*",
+			"package.json"
+		],
+		"win": {
+			"target": "portable",
+			"artifactName": "PM64R-Tracker-${version}-portable.${ext}"
+		},
+		"linux": {
+			"target": "AppImage",
+			"category": "Game",
+			"artifactName": "PM64R-Tracker-${version}.${ext}"
+		}
 	}
 }
