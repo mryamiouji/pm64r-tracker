@@ -1031,6 +1031,12 @@ export const useTrackerStore = defineStore('tracker', () => {
 				type: 'number',
 				min: 1,
 				max: 120
+			},
+			star_hunt_star_way_count: {
+				enabled: false,
+				type: 'number',
+				min: 0,
+				max: 120
 			}
 			// star_hunt_ends_game: {
 			// 	enabled: false,

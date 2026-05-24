@@ -235,6 +235,7 @@ export const useSaveStore = defineStore('save', () => {
 		shuffle_bosses: false,
 		star_hunt_enabled: false,
 		star_hunt_star_count: 120,
+		star_hunt_star_way_count: 120,
 		star_hunt_ends_game: false
 	};
 
@@ -995,6 +996,7 @@ export const useSaveStore = defineStore('save', () => {
 		() => currentSave.configs.randomizer.star_hunt_enabled,
 		(newValue, oldValue) => {
 			tracker.configs.randomizer.star_hunt_star_count.enabled = newValue;
+			tracker.configs.randomizer.star_hunt_star_way_count.enabled = newValue;
 			// tracker.configs.randomizer.star_hunt_ends_game.enabled = newValue;
 
 			tracker.items.stars.power_stars.enabled = newValue;

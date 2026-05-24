@@ -618,7 +618,7 @@ export const useLogicStore = defineStore('logic', () => {
 		},
 		star_haven: () => {
 			if (save.data.configs.randomizer.star_hunt_enabled) {
-				return save.data.items.power_stars >= save.data.configs.randomizer.star_hunt_star_count;
+				return save.data.items.power_stars >= save.data.configs.randomizer.star_hunt_star_way_count;
 			} else {
 				return flags.toad_town() && flags.jump_ledges() && flags.star_spirits_count() >= 7;
 			}
