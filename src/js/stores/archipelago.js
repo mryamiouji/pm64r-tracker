@@ -261,6 +261,7 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 				save.data.configs.randomizer.shuffle_bosses = false;
 				save.data.configs.randomizer.star_hunt_enabled = configs.power_star_hunt;
 				save.data.configs.randomizer.star_hunt_star_count = configs.total_power_stars;
+				save.data.configs.randomizer.star_hunt_star_way_count = configs.star_way_power_stars;
 
 				// Logic settings
 				save.data.configs.logic.fast_bowser_castle = configs.bowser_castle_mode !== 0;
