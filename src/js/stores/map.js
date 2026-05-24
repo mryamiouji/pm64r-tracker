@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 
 import { useSaveStore } from './save';
 import { useLogicStore } from './logic';
@@ -225,8 +225,12 @@ export const useMapStore = defineStore('map', () => {
 		}
 	};
 
+	// Guard so star→check and check→star syncs don't loop
+	let syncingStarCheck = false;
+
 	const selectCheck = (mapCategoryKey, mapKey, checkKey) => {
-		if (logic.checks[mapCategoryKey].maps[mapKey].checks[checkKey].dungeon) {
+		const check = logic.checks[mapCategoryKey].maps[mapKey].checks[checkKey];
+		if (check.dungeon) {
 			//TODO: Open the right map category corresponding to the dungeon
 		} else {
 			if (save.data.checks[mapCategoryKey] == undefined) {
@@ -239,6 +243,12 @@ export const useMapStore = defineStore('map', () => {
 			if (!save.data.checks[mapCategoryKey][mapKey].includes(parseInt(checkKey))) {
 				save.data.checks[mapCategoryKey][mapKey].push(parseInt(checkKey));
 			}
+
+			if (check.linkedStar && !syncingStarCheck) {
+				syncingStarCheck = true;
+				save.data.items[check.linkedStar] = true;
+				syncingStarCheck = false;
+			}
 		}
 	};
 
@@ -248,7 +258,50 @@ export const useMapStore = defineStore('map', () => {
 				save.data.checks[mapCategoryKey][mapKey].splice(save.data.checks[mapCategoryKey][mapKey].indexOf(checkKey), 1);
 			}
 		}
+		const check = logic.checks[mapCategoryKey]?.maps?.[mapKey]?.checks?.[checkKey];
+		if (check?.linkedStar && !syncingStarCheck) {
+			syncingStarCheck = true;
+			save.data.items[check.linkedStar] = false;
+			syncingStarCheck = false;
+		}
 	};
+
+	// Reverse sync: when a star item toggles, find its boss check and mirror
+	const findBossCheckPath = (starKey) => {
+		for (const [chapterKey, chapter] of Object.entries(logic.checks)) {
+			for (const [mapKey, m] of Object.entries(chapter.maps || {})) {
+				const checks = m.checks || [];
+				for (let i = 0; i < checks.length; i++) {
+					if (checks[i].linkedStar === starKey) return { chapterKey, mapKey, checkIndex: i };
+				}
+			}
+		}
+		return null;
+	};
+
+	['eldstar', 'mamar', 'skolar', 'muskular', 'misstar', 'klevar', 'kalmar'].forEach((star) => {
+		watch(
+			() => save.data.items[star],
+			(newVal, oldVal) => {
+				if (newVal === oldVal || syncingStarCheck) return;
+				const path = findBossCheckPath(star);
+				if (!path) return;
+				const { chapterKey, mapKey, checkIndex } = path;
+				syncingStarCheck = true;
+				if (newVal) {
+					if (save.data.checks[chapterKey] == undefined) save.data.checks[chapterKey] = {};
+					if (save.data.checks[chapterKey][mapKey] == undefined) save.data.checks[chapterKey][mapKey] = [];
+					if (!save.data.checks[chapterKey][mapKey].includes(checkIndex)) {
+						save.data.checks[chapterKey][mapKey].push(checkIndex);
+					}
+				} else if (save.data.checks[chapterKey]?.[mapKey]) {
+					const idx = save.data.checks[chapterKey][mapKey].indexOf(checkIndex);
+					if (idx !== -1) save.data.checks[chapterKey][mapKey].splice(idx, 1);
+				}
+				syncingStarCheck = false;
+			}
+		);
+	});
 
 	// Panels available: stars, bosses, partners, equipments, items_compact, items_per_chapter, prologue, chapter1, chapter2, chapter3, chapter4, chapter5, chapter6, chapter7, chapter8, other, misc, letters, koopa_koot_favors, trading_event_toad, map
 	const panelVisible = (panelKey) => {

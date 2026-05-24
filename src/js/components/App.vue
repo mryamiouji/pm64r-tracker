@@ -1685,6 +1685,7 @@
 					<p>Archipelago: Hints panel now lets you request hints, see your hint list, and watch hints turn green-strikethrough as their locations get checked. Item-name autocomplete makes typing the request painless.</p>
 					<p>Archipelago: New Recent Activity feed shows items received and locations checked live, with timestamps.</p>
 					<p>Tracker settings: Added toggles to hide the Archipelago hints and activity panels.</p>
+					<p>Added puzzle shuffle logic.</p>
 				</div>
 				<p class="text-lg mt-3">Version 12</p>
 				<div class="ml-5">
@@ -1835,6 +1836,10 @@ const starMenuType = ref('difficulty');
 const _importSaveFileInput = ref(null);
 
 const trackerLeftClick = (event, key, configs, itemSubCategory = null) => {
+	// Suppress browser defaults for modifier-clicks (e.g., Ctrl+click opening a context menu on some setups)
+	if (event.ctrlKey || event.shiftKey) {
+		event.preventDefault();
+	}
 	if (event.ctrlKey) {
 		if (save.data.configs.tracker.star_menu_enabled) {
 			showStarMenu.eldstar = false;

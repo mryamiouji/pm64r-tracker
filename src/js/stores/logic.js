@@ -287,7 +287,16 @@ export const useLogicStore = defineStore('logic', () => {
 			const starKey = stars[chapter];
 			if (!starKey) return false;
 			if (save.data.items[starKey]) return false;
-			return flags.dungeon_requirements(chapter);
+			if (!flags.lcl(chapter)) return false;
+			// Find the linked boss check and use its own available() — i.e. "can you actually reach the star?"
+			for (const chap of Object.values(checks)) {
+				for (const m of Object.values(chap.maps || {})) {
+					for (const c of m.checks || []) {
+						if (c.linkedStar === starKey) return c.available();
+					}
+				}
+			}
+			return false;
 		},
 		dungeon_checks_depleted: (dungeon) => {
 			let stars = {
@@ -4620,6 +4629,8 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.koopa_koot;
 							},
 							available: () => {
+								// With puzzles randomized, the Red Jar must be bought via shop code in DDO
+								const ddoShopReq = !save.data.configs.logic.puzzles_randomized || flags.dry_dry_desert();
 								return (
 									flags.koopa_village() &&
 									flags.can_koot() &&
@@ -4644,7 +4655,8 @@ export const useLogicStore = defineStore('logic', () => {
 									save.data.items.koopa_koot_favors.kooky_cookie &&
 									save.data.items.koopa_koot_favors.package &&
 									save.data.items.koopa_koot_favors.coconut &&
-									save.data.items.koopa_koot_favors.red_jar
+									save.data.items.koopa_koot_favors.red_jar &&
+									ddoShopReq
 								);
 							},
 							ap: [8112000230]
@@ -4916,6 +4928,7 @@ export const useLogicStore = defineStore('logic', () => {
 						{
 							name: 'Eldstar',
 							icon: '/images/checks/stars/eldstar.webp',
+							linkedStar: 'eldstar',
 							exists: () => {
 								return true;
 							},
@@ -6919,11 +6932,14 @@ export const useLogicStore = defineStore('logic', () => {
 						{
 							name: 'Mamar',
 							icon: '/images/checks/stars/mamar.webp',
+							linkedStar: 'mamar',
 							exists: () => {
 								return true;
 							},
 							available: () => {
-								return flags.dry_dry_ruins() && save.data.items.ruins_key >= 3 && save.data.items.pyramid_stone && save.data.items.diamond_stone && save.data.items.lunar_stone;
+								// With puzzles randomized, all 3 stones are required to solve the Ruins Stones puzzle and reach Tutankoopa
+								const stonesReq = !save.data.configs.logic.puzzles_randomized || (save.data.items.pyramid_stone && save.data.items.diamond_stone && save.data.items.lunar_stone);
+								return flags.dry_dry_ruins() && save.data.items.ruins_key >= 3 && stonesReq;
 							}
 						}
 					]
@@ -7600,6 +7616,7 @@ export const useLogicStore = defineStore('logic', () => {
 						{
 							name: 'Tubba Blubba',
 							icon: '/images/checks/stars/skolar.webp',
+							linkedStar: 'skolar',
 							exists: () => {
 								return true;
 							},
@@ -9124,7 +9141,9 @@ export const useLogicStore = defineStore('logic', () => {
 								return true;
 							},
 							available: () => {
-								return flags.toybox() && save.data.items.toy_train && save.data.items.cake && flags.partner('bombette') && save.data.items.hammer >= 1;
+								// With puzzles randomized, the Mystery Note is required to reach this area
+								const mysteryNoteReq = !save.data.configs.logic.puzzles_randomized || save.data.items.mystery_note;
+								return flags.toybox() && save.data.items.toy_train && save.data.items.cake && flags.partner('bombette') && save.data.items.hammer >= 1 && mysteryNoteReq;
 							},
 							ap: [8112000441]
 						}
@@ -9148,11 +9167,14 @@ export const useLogicStore = defineStore('logic', () => {
 						{
 							name: 'Muskular',
 							icon: '/images/checks/stars/muskular.webp',
+							linkedStar: 'muskular',
 							exists: () => {
 								return true;
 							},
 							available: () => {
-								return flags.toybox() && save.data.items.toy_train && save.data.items.cake && flags.partner('bombette') && flags.partner('watt') && save.data.items.hammer >= 1;
+								// With puzzles randomized, the Mystery Note is required to reach General Guy via the east-exit route
+								const mysteryNoteReq = !save.data.configs.logic.puzzles_randomized || save.data.items.mystery_note;
+								return flags.toybox() && save.data.items.toy_train && save.data.items.cake && flags.partner('bombette') && flags.partner('watt') && save.data.items.hammer >= 1 && mysteryNoteReq;
 							}
 						}
 					]
@@ -10387,6 +10409,7 @@ export const useLogicStore = defineStore('logic', () => {
 						{
 							name: 'Misstar',
 							icon: '/images/checks/stars/misstar.webp',
+							linkedStar: 'misstar',
 							exists: () => {
 								return true;
 							},
@@ -11057,6 +11080,7 @@ export const useLogicStore = defineStore('logic', () => {
 						{
 							name: 'Klevar',
 							icon: '/images/checks/stars/klevar.webp',
+							linkedStar: 'klevar',
 							exists: () => {
 								return true;
 							},
@@ -12020,6 +12044,7 @@ export const useLogicStore = defineStore('logic', () => {
 						{
 							name: 'Kalmar',
 							icon: '/images/checks/stars/kalmar.webp',
+							linkedStar: 'kalmar',
 							exists: () => {
 								return true;
 							},
