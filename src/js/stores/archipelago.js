@@ -30,8 +30,100 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 			points: 0,
 			cost: 0,
 			list: []
-		}
+		},
+		itemNames: []
 	});
+
+	const ACTIVITY_MAX = 50;
+	const ACTIVITY_STORAGE_KEY = 'ap.activity';
+	const ACTIVITY_BUFFER_SIZE = 2;
+	let activityGameKey = null;
+
+	// Single source of truth: save.data.ap_activity. Auto-persists with save (export-friendly).
+	const activityList = () => {
+		if (!Array.isArray(save.data.ap_activity)) save.data.ap_activity = [];
+		return save.data.ap_activity;
+	};
+
+	const pushActivity = (entry) => {
+		const list = activityList();
+		list.unshift({ ...entry, at: Date.now() });
+		if (list.length > ACTIVITY_MAX) list.length = ACTIVITY_MAX;
+	};
+
+	const readActivityStorage = () => {
+		try {
+			const raw = localStorage.getItem(ACTIVITY_STORAGE_KEY);
+			if (!raw) return [];
+			const parsed = JSON.parse(raw);
+			return Array.isArray(parsed) ? parsed : [];
+		} catch {
+			return [];
+		}
+	};
+
+	const writeActivityStorage = (games) => {
+		try {
+			localStorage.setItem(ACTIVITY_STORAGE_KEY, JSON.stringify(games));
+		} catch {}
+	};
+
+	const loadActivityForGame = (gameKey) => {
+		activityGameKey = gameKey;
+		const games = readActivityStorage();
+		const found = games.find((g) => g.gameKey === gameKey);
+		if (found && Array.isArray(found.list)) {
+			save.data.ap_activity = [...found.list];
+		} else {
+			save.data.ap_activity = [];
+			games.push({ gameKey, list: [] });
+			while (games.length > ACTIVITY_BUFFER_SIZE) games.shift();
+			writeActivityStorage(games);
+		}
+	};
+
+	const persistActivity = () => {
+		if (!activityGameKey) return;
+		const games = readActivityStorage();
+		const existing = games.findIndex((g) => g.gameKey === activityGameKey);
+		const entry = { gameKey: activityGameKey, list: save.data.ap_activity || [] };
+		if (existing !== -1) {
+			games[existing] = entry;
+		} else {
+			games.push(entry);
+			while (games.length > ACTIVITY_BUFFER_SIZE) games.shift();
+		}
+		writeActivityStorage(games);
+	};
+
+	watch(() => save.data.ap_activity, persistActivity, { deep: true });
+
+	// Per-game persistence for the user's manual hint check-marks (server-checked hints aren't included)
+	const hintId = (hint) => `${hint.locationName}::${hint.sendingPlayer}`;
+
+	const restoreUserHintChecks = () => {
+		if (!activityGameKey) return;
+		if (!save.data.user_checked_hints || typeof save.data.user_checked_hints !== 'object') save.data.user_checked_hints = {};
+		const arr = save.data.user_checked_hints[activityGameKey] || [];
+		if (!arr.length) return;
+		const set = new Set(arr);
+		state.hints.list.forEach((hint) => {
+			if (set.has(hintId(hint))) hint.userChecked = true;
+		});
+	};
+
+	const toggleHintUserCheck = (hint) => {
+		if (!hint || hint.found) return;
+		hint.userChecked = !hint.userChecked;
+		if (!activityGameKey) return;
+		if (!save.data.user_checked_hints || typeof save.data.user_checked_hints !== 'object') save.data.user_checked_hints = {};
+		if (!Array.isArray(save.data.user_checked_hints[activityGameKey])) save.data.user_checked_hints[activityGameKey] = [];
+		const arr = save.data.user_checked_hints[activityGameKey];
+		const id = hintId(hint);
+		const idx = arr.indexOf(id);
+		if (hint.userChecked && idx === -1) arr.push(id);
+		if (!hint.userChecked && idx !== -1) arr.splice(idx, 1);
+	};
 
 	const connectionInfos = reactive({
 		hostname: localStorage.getItem('ap.hostname'), // Replace with the actual AP server hostname.
@@ -89,7 +181,53 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 				state.seed = client.room.seedName;
 				state.hints.points = client.room.hintPoints;
 				state.hints.cost = client.room.hintCost;
-				state.hints.list = client.items.hints;
+				// Hint objects from archipelago.js use TypeScript private fields which break
+				// when Vue wraps them in reactive Proxies (e.g. the `.found` getter throws).
+				// Convert to plain snapshot objects so the UI can render them safely.
+				const toPlainHint = (hint) => ({
+					itemName: hint.item?.name ?? '',
+					locationName: hint.item?.locationName ?? '',
+					sendingPlayer: hint.item?.sender?.alias ?? '',
+					receivingPlayer: hint.item?.receiver?.alias ?? '',
+					found: hint.found === true,
+					userChecked: false
+				});
+
+				state.hints.list = (client.items.hints || []).map(toPlainHint);
+				loadActivityForGame(`${state.seed}::${connectionInfos.name}`);
+				restoreUserHintChecks();
+
+				try {
+					const pkg = client.package.findPackage(client.game);
+					state.itemNames = Object.keys(pkg?.itemTable || {}).sort();
+				} catch {
+					state.itemNames = [];
+				}
+
+				client.items.on('hintsInitialized', (hints) => {
+					state.hints.list = hints.map(toPlainHint);
+					restoreUserHintChecks();
+				});
+
+				client.items.on('hintReceived', (hint) => {
+					const plain = toPlainHint(hint);
+					state.hints.list.push(plain);
+					// Re-sync points/cost from room — server doesn't always emit hintPointsUpdated for !hint
+					state.hints.points = client.room.hintPoints;
+					state.hints.cost = client.room.hintCost;
+					toast.info(`Hint: ${plain.itemName} is at ${plain.locationName} (${plain.sendingPlayer} → ${plain.receivingPlayer})`, {
+						duration: 10000,
+						theme: 'colored'
+					});
+				});
+
+				client.items.on('hintFound', (hint) => {
+					const plain = toPlainHint(hint);
+					const idx = state.hints.list.findIndex((h) => h.locationName === plain.locationName && h.sendingPlayer === plain.sendingPlayer);
+					if (idx !== -1) {
+						state.hints.list.splice(idx, 1, plain);
+					}
+				});
 
 				save.resetSave(true, true, false);
 
@@ -119,6 +257,8 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 				save.data.configs.randomizer.shuffle_dungeon_entrances = configs.shuffle_dungeon_entrances;
 				save.data.configs.randomizer.magical_seed_required = configs.magical_seeds;
 				save.data.configs.randomizer.shuffle_star_beam = configs.shuffle_star_beam;
+				// Bosses are not implemented in Archipelago yet — force off on connect
+				save.data.configs.randomizer.shuffle_bosses = false;
 				save.data.configs.randomizer.star_hunt_enabled = configs.power_star_hunt;
 				save.data.configs.randomizer.star_hunt_star_count = configs.total_power_stars;
 
@@ -164,12 +304,7 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 					7: 'kalmar'
 				};
 
-				if (configs.required_spirits) {
-					for (const [id, star] of Object.entries(stars)) {
-						save.data.items[star] = true;
-						save.data.items[star + '_chapter_disabled'] = true;
-					}
-
+				if (configs.require_spirits && configs.required_spirits) {
 					configs.required_spirits.forEach((star) => {
 						if (stars[star]) {
 							delete stars[star];
@@ -177,8 +312,8 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 					});
 
 					for (const [id, star] of Object.entries(stars)) {
-						save.data.items[star] = false;
-						save.data.items[star + '_chapter_disabled'] = false;
+						save.data.items[star] = true;
+						save.data.items[star + '_chapter_disabled'] = true;
 					}
 				}
 
@@ -198,6 +333,11 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 					console.log('Items received:', items);
 					items.forEach((item) => {
 						state.itemsReceived.push(item.id);
+						pushActivity({
+							kind: 'item',
+							name: item.name || client.package.lookupItemName(client.game, item.id) || `Item #${item.id}`,
+							from: item.sender?.alias || item.sender?.name || null
+						});
 					});
 				});
 
@@ -215,7 +355,13 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 
 				client.room.on('locationsChecked', (locations) => {
 					console.log('Locations checked:', locations);
-					state.checkedLocations.push(locations[0]);
+					locations.forEach((locationId) => {
+						state.checkedLocations.push(locationId);
+						pushActivity({
+							kind: 'location',
+							name: client.package.lookupLocationName(client.game, locationId) || `Location #${locationId}`
+						});
+					});
 				});
 			})
 			.catch((error) => {
@@ -253,9 +399,7 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 					}
 					// console.log('Found:', query, 'in', previousKey1, previousKey2, previousKey3, previousKey4, previousKey5, 'x', occurences);
 
-					switch (
-						type //TODO: Starbeam not working?
-					) {
+					switch (type) {
 						case 'item':
 							for (let i = 0; i < occurences; i++) {
 								if (save.data.items[previousKey1] !== undefined) {
@@ -560,7 +704,16 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 		return returnVal;
 	};
 
-	const apAskHint = () => {};
+	const apAskHint = (itemName) => {
+		if (!state.connected || !itemName || !itemName.trim()) {
+			return;
+		}
+		// Optimistic deduction so the UI reacts immediately (also re-synced on hintReceived)
+		if (state.hints.points >= state.hints.cost) {
+			state.hints.points = Math.max(0, state.hints.points - state.hints.cost);
+		}
+		client.messages.say(`!hint ${itemName.trim()}`);
+	};
 
 	return {
 		connect,
@@ -570,6 +723,7 @@ export const useArchipelagoStore = defineStore('archipelago', () => {
 		searchAPId,
 		apPartnerIsRankUp,
 		checkedLocationsCount,
-		apAskHint
+		apAskHint,
+		toggleHintUserCheck
 	};
 });

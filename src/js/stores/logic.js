@@ -282,6 +282,22 @@ export const useLogicStore = defineStore('logic', () => {
 				return getTotalAvailableChecksOnMap(mapCategories[found_dungeon]) - getTotalAvailableCheckedChecksOnMap(mapCategories[found_dungeon]);
 			}
 		},
+		can_complete_chapter: (chapter) => {
+			const stars = { 1: 'eldstar', 2: 'mamar', 3: 'skolar', 4: 'muskular', 5: 'misstar', 6: 'klevar', 7: 'kalmar' };
+			const starKey = stars[chapter];
+			if (!starKey) return false;
+			if (save.data.items[starKey]) return false;
+			if (!flags.lcl(chapter)) return false;
+			// Find the linked boss check and use its own available() — i.e. "can you actually reach the star?"
+			for (const chap of Object.values(checks)) {
+				for (const m of Object.values(chap.maps || {})) {
+					for (const c of m.checks || []) {
+						if (c.linkedStar === starKey) return c.available();
+					}
+				}
+			}
+			return false;
+		},
 		dungeon_checks_depleted: (dungeon) => {
 			let stars = {
 				1: 'eldstar',
@@ -1087,7 +1103,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return true;
 							},
 							available: () => {
-								return flags.goomba_village() && flags.jump_ledges() && flags.yellow_blocks();
+								return flags.goomba_village() && flags.yellow_blocks();
 							},
 							ap: [8112000021]
 						},
@@ -1098,7 +1114,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return true;
 							},
 							available: () => {
-								return flags.goomba_village() && flags.jump_ledges() && flags.yellow_blocks();
+								return flags.goomba_village() && flags.yellow_blocks();
 							},
 							ap: [8112000020]
 						},
@@ -1109,7 +1125,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.foliage_coins;
 							},
 							available: () => {
-								return flags.goomba_village() && flags.jump_ledges() && flags.yellow_blocks();
+								return flags.goomba_village() && flags.yellow_blocks();
 							},
 							ap: [8112000029]
 						},
@@ -1120,7 +1136,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.foliage_coins;
 							},
 							available: () => {
-								return flags.goomba_village() && flags.jump_ledges() && flags.yellow_blocks();
+								return flags.goomba_village() && flags.yellow_blocks();
 							},
 							ap: [8112000028]
 						},
@@ -1131,7 +1147,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.foliage_coins;
 							},
 							available: () => {
-								return flags.goomba_village() && flags.jump_ledges() && flags.yellow_blocks();
+								return flags.goomba_village() && flags.yellow_blocks();
 							},
 							ap: [8112000022]
 						},
@@ -1142,7 +1158,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.foliage_coins;
 							},
 							available: () => {
-								return flags.goomba_village() && flags.jump_ledges() && flags.yellow_blocks();
+								return flags.goomba_village() && flags.yellow_blocks();
 							},
 							ap: [8112000023]
 						},
@@ -1153,7 +1169,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.foliage_coins;
 							},
 							available: () => {
-								return flags.goomba_village() && flags.jump_ledges() && flags.yellow_blocks();
+								return flags.goomba_village() && flags.yellow_blocks();
 							},
 							ap: [8112000024]
 						},
@@ -1164,7 +1180,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.foliage_coins;
 							},
 							available: () => {
-								return flags.goomba_village() && flags.jump_ledges() && flags.yellow_blocks();
+								return flags.goomba_village() && flags.yellow_blocks();
 							},
 							ap: [8112000025]
 						},
@@ -1175,7 +1191,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.foliage_coins;
 							},
 							available: () => {
-								return flags.goomba_village() && flags.jump_ledges() && flags.yellow_blocks();
+								return flags.goomba_village() && flags.yellow_blocks();
 							},
 							ap: [8112000026]
 						},
@@ -1186,7 +1202,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.foliage_coins;
 							},
 							available: () => {
-								return flags.goomba_village() && flags.jump_ledges() && flags.yellow_blocks();
+								return flags.goomba_village() && flags.yellow_blocks();
 							},
 							ap: [8112000027]
 						},
@@ -1197,7 +1213,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.super_and_multicoin_blocks_randomized;
 							},
 							available: () => {
-								return flags.goomba_village() && flags.jump_ledges() && flags.yellow_blocks() && flags.ground_blocks();
+								return flags.goomba_village() && flags.yellow_blocks() && flags.ground_blocks();
 							},
 							ap: [8112000030]
 						}
@@ -1272,7 +1288,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.coin_blocks;
 							},
 							available: () => {
-								return flags.goomba_village() && flags.jump_ledges();
+								return flags.goomba_village();
 							},
 							ap: [8112000012]
 						},
@@ -1336,7 +1352,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.foliage_coins;
 							},
 							available: () => {
-								return flags.goomba_village() && flags.trees();
+								return flags.goomba_village() && flags.jump_ledges() && flags.trees();
 							},
 							ap: [8112000032]
 						}
@@ -1444,7 +1460,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.goomba_village() && flags.deliver_letters() && save.data.items.letters.goompapa >= 1;
 							},
-							ap: [8112000005] // TODO: Wrong id?
+							ap: [8112000005]
 						},
 						{
 							name: 'Goompapa 2',
@@ -1701,7 +1717,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toad_town() && flags.deliver_letters() && save.data.items.letters.muss_t;
 							},
-							ap: [8112000709] // wRONG ID?
+							ap: [8112000709]
 						}
 					]
 				},
@@ -2562,7 +2578,7 @@ export const useLogicStore = defineStore('logic', () => {
 						},
 						{
 							name: 'Give Coconut to Trading Event Toad',
-							icon: '/images/checks/trading_event_randomized',
+							icon: '/images/checks/trading_event_randomized.webp',
 							exists: () => {
 								return save.data.configs.logic.trading_event_randomized;
 							},
@@ -2818,7 +2834,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toad_town() && flags.deliver_letters() && save.data.items.letters.dane_t >= 1 && save.data.items.boots >= 1;
 							},
-							ap: [8112000090] // TODO : wrong id?
+							ap: [8112000090]
 						},
 						{
 							name: 'Dane T. 2',
@@ -2829,7 +2845,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.toad_town() && flags.deliver_letters() && save.data.items.letters.dane_t >= 2 && save.data.items.boots >= 1;
 							},
-							ap: [8112000089] // TODO : wrong id?
+							ap: [8112000089]
 						}
 					]
 				}
@@ -4613,6 +4629,8 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.koopa_koot;
 							},
 							available: () => {
+								// With puzzles randomized, the Red Jar must be bought via shop code in DDO
+								const ddoShopReq = !save.data.configs.logic.puzzles_randomized || flags.dry_dry_desert();
 								return (
 									flags.koopa_village() &&
 									flags.can_koot() &&
@@ -4637,7 +4655,8 @@ export const useLogicStore = defineStore('logic', () => {
 									save.data.items.koopa_koot_favors.kooky_cookie &&
 									save.data.items.koopa_koot_favors.package &&
 									save.data.items.koopa_koot_favors.coconut &&
-									save.data.items.koopa_koot_favors.red_jar
+									save.data.items.koopa_koot_favors.red_jar &&
+									ddoShopReq
 								);
 							},
 							ap: [8112000230]
@@ -4909,6 +4928,7 @@ export const useLogicStore = defineStore('logic', () => {
 						{
 							name: 'Eldstar',
 							icon: '/images/checks/stars/eldstar.webp',
+							linkedStar: 'eldstar',
 							exists: () => {
 								return true;
 							},
@@ -5386,7 +5406,7 @@ export const useLogicStore = defineStore('logic', () => {
 					checks: [
 						{
 							name: 'Give Nutty Cake',
-							icon: '/images/checks/trading_event_randomized',
+							icon: '/images/checks/trading_event_randomized.webp',
 							exists: () => {
 								return save.data.configs.logic.trading_event_randomized;
 							},
@@ -6427,6 +6447,17 @@ export const useLogicStore = defineStore('logic', () => {
 							ap: [8112000298]
 						},
 						{
+							name: 'Shop item 2',
+							icon: '/images/checks/shopsanity.webp',
+							exists: () => {
+								return save.data.configs.logic.shopsanity;
+							},
+							available: () => {
+								return flags.dry_dry_desert();
+							},
+							ap: [8112000299]
+						},
+						{
 							name: 'Shop item 3',
 							icon: '/images/checks/shopsanity.webp',
 							exists: () => {
@@ -6436,6 +6467,28 @@ export const useLogicStore = defineStore('logic', () => {
 								return flags.dry_dry_desert();
 							},
 							ap: [8112000300]
+						},
+						{
+							name: 'Shop item 4',
+							icon: '/images/checks/shopsanity.webp',
+							exists: () => {
+								return save.data.configs.logic.shopsanity;
+							},
+							available: () => {
+								return flags.dry_dry_desert();
+							},
+							ap: [8112000301]
+						},
+						{
+							name: 'Shop item 5',
+							icon: '/images/checks/shopsanity.webp',
+							exists: () => {
+								return save.data.configs.logic.shopsanity;
+							},
+							available: () => {
+								return flags.dry_dry_desert();
+							},
+							ap: [8112000302]
 						},
 						{
 							name: 'Shop item 6',
@@ -6457,7 +6510,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.dry_dry_desert() && flags.deliver_letters() && save.data.items.letters.little_mouser;
 							},
-							ap: [8112000296] // TODO: Wrong ID?
+							ap: [8112000296]
 						},
 						{
 							name: 'Buy Dusty Hammer, Dried Pasta, Dusty Hammer, Dried Shroom',
@@ -6486,7 +6539,9 @@ export const useLogicStore = defineStore('logic', () => {
 								return true;
 							},
 							available: () => {
-								return flags.dry_dry_desert() && save.data.items.boots >= 1;
+								// With puzzles randomized, the rooftop checks need the Lemon delivered to Sheek
+								const lemonReq = !save.data.configs.logic.puzzles_randomized || save.data.items.lemon;
+								return flags.dry_dry_desert() && save.data.items.boots >= 1 && lemonReq;
 							},
 							ap: [8112000306]
 						},
@@ -6497,7 +6552,8 @@ export const useLogicStore = defineStore('logic', () => {
 								return true;
 							},
 							available: () => {
-								return flags.dry_dry_desert() && save.data.items.boots >= 1;
+								const lemonReq = !save.data.configs.logic.puzzles_randomized || save.data.items.lemon;
+								return flags.dry_dry_desert() && save.data.items.boots >= 1 && lemonReq;
 							},
 							ap: [8112000304]
 						},
@@ -6508,7 +6564,8 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.panels;
 							},
 							available: () => {
-								return flags.dry_dry_desert() && flags.panels();
+								const lemonReq = !save.data.configs.logic.puzzles_randomized || save.data.items.lemon;
+								return flags.dry_dry_desert() && flags.panels() && lemonReq;
 							},
 							ap: [8112000308]
 						},
@@ -6519,9 +6576,10 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.letters_randomized;
 							},
 							available: () => {
-								return flags.dry_dry_desert() && flags.deliver_letters() && save.data.items.letters.mr_e;
+								const lemonReq = !save.data.configs.logic.puzzles_randomized || save.data.items.lemon;
+								return flags.dry_dry_desert() && flags.deliver_letters() && save.data.items.letters.mr_e && lemonReq;
 							},
-							ap: [8112000307] // TODO : Wrong id?
+							ap: [8112000307]
 						},
 						{
 							name: 'Talk to Merlee after Merluvlee requests her Crystal Ball',
@@ -6530,6 +6588,7 @@ export const useLogicStore = defineStore('logic', () => {
 								return save.data.configs.logic.koopa_koot;
 							},
 							available: () => {
+								const lemonReq = !save.data.configs.logic.puzzles_randomized || save.data.items.lemon;
 								return (
 									flags.dry_dry_desert() &&
 									save.data.items.boots >= 1 &&
@@ -6540,7 +6599,8 @@ export const useLogicStore = defineStore('logic', () => {
 									save.data.items.koopa_koot_favors.koopa_tea &&
 									save.data.items.koopa_koot_favors.luigi_autograph &&
 									save.data.items.koopa_koot_favors.empty_wallet &&
-									save.data.items.koopa_koot_favors.tasty_tonic
+									save.data.items.koopa_koot_favors.tasty_tonic &&
+									lemonReq
 								);
 							},
 							ap: [8112000305]
@@ -6872,11 +6932,14 @@ export const useLogicStore = defineStore('logic', () => {
 						{
 							name: 'Mamar',
 							icon: '/images/checks/stars/mamar.webp',
+							linkedStar: 'mamar',
 							exists: () => {
 								return true;
 							},
 							available: () => {
-								return flags.dry_dry_ruins() && save.data.items.ruins_key >= 3 && save.data.items.pyramid_stone && save.data.items.diamond_stone && save.data.items.lunar_stone;
+								// With puzzles randomized, all 3 stones are required to solve the Ruins Stones puzzle and reach Tutankoopa
+								const stonesReq = !save.data.configs.logic.puzzles_randomized || (save.data.items.pyramid_stone && save.data.items.diamond_stone && save.data.items.lunar_stone);
+								return flags.dry_dry_ruins() && save.data.items.ruins_key >= 3 && stonesReq;
 							}
 						}
 					]
@@ -7208,7 +7271,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.boo_mansion() && flags.deliver_letters() && save.data.items.letters.franky && save.data.items.boo_portrait;
 							},
-							ap: [8112000385] //TODO: wrong id?
+							ap: [8112000385]
 						},
 						{
 							name: 'By the couch',
@@ -7553,6 +7616,7 @@ export const useLogicStore = defineStore('logic', () => {
 						{
 							name: 'Tubba Blubba',
 							icon: '/images/checks/stars/skolar.webp',
+							linkedStar: 'skolar',
 							exists: () => {
 								return true;
 							},
@@ -9077,7 +9141,9 @@ export const useLogicStore = defineStore('logic', () => {
 								return true;
 							},
 							available: () => {
-								return flags.toybox() && save.data.items.toy_train && save.data.items.cake && flags.partner('bombette') && save.data.items.hammer >= 1;
+								// With puzzles randomized, the Mystery Note is required to reach this area
+								const mysteryNoteReq = !save.data.configs.logic.puzzles_randomized || save.data.items.mystery_note;
+								return flags.toybox() && save.data.items.toy_train && save.data.items.cake && flags.partner('bombette') && save.data.items.hammer >= 1 && mysteryNoteReq;
 							},
 							ap: [8112000441]
 						}
@@ -9101,11 +9167,14 @@ export const useLogicStore = defineStore('logic', () => {
 						{
 							name: 'Muskular',
 							icon: '/images/checks/stars/muskular.webp',
+							linkedStar: 'muskular',
 							exists: () => {
 								return true;
 							},
 							available: () => {
-								return flags.toybox() && save.data.items.toy_train && save.data.items.cake && flags.partner('bombette') && flags.partner('watt') && save.data.items.hammer >= 1;
+								// With puzzles randomized, the Mystery Note is required to reach General Guy via the east-exit route
+								const mysteryNoteReq = !save.data.configs.logic.puzzles_randomized || save.data.items.mystery_note;
+								return flags.toybox() && save.data.items.toy_train && save.data.items.cake && flags.partner('bombette') && flags.partner('watt') && save.data.items.hammer >= 1 && mysteryNoteReq;
 							}
 						}
 					]
@@ -10340,6 +10409,7 @@ export const useLogicStore = defineStore('logic', () => {
 						{
 							name: 'Misstar',
 							icon: '/images/checks/stars/misstar.webp',
+							linkedStar: 'misstar',
 							exists: () => {
 								return true;
 							},
@@ -11010,6 +11080,7 @@ export const useLogicStore = defineStore('logic', () => {
 						{
 							name: 'Klevar',
 							icon: '/images/checks/stars/klevar.webp',
+							linkedStar: 'klevar',
 							exists: () => {
 								return true;
 							},
@@ -11371,7 +11442,7 @@ export const useLogicStore = defineStore('logic', () => {
 							available: () => {
 								return flags.leave_shiver_city() && flags.jump_ledges() && flags.deliver_letters() && save.data.items.letters.frost_t;
 							},
-							ap: [8112000654] //TODO: wrong id?
+							ap: [8112000654]
 						},
 						{
 							name: 'Talk to Merle',
@@ -11973,6 +12044,7 @@ export const useLogicStore = defineStore('logic', () => {
 						{
 							name: 'Kalmar',
 							icon: '/images/checks/stars/kalmar.webp',
+							linkedStar: 'kalmar',
 							exists: () => {
 								return true;
 							},
@@ -12015,7 +12087,19 @@ export const useLogicStore = defineStore('logic', () => {
 					y: 1,
 					w: 1,
 					h: 4,
-					checks: []
+					checks: [
+						{
+							name: 'Gift of the Stars',
+							icon: null,
+							exists: () => {
+								return true;
+							},
+							available: () => {
+								return flags.star_haven();
+							},
+							ap: [8112000162]
+						}
+					]
 				},
 				star_haven_west: {
 					name: 'Star Haven West',

@@ -3,6 +3,7 @@ import { reactive } from 'vue';
 
 export const useTrackerStore = defineStore('tracker', () => {
 	const startingLocations = {
+		random: null,
 		goomba_village: 1,
 		toad_town: 0,
 		dry_dry_outpost: 2,
@@ -68,6 +69,18 @@ export const useTrackerStore = defineStore('tracker', () => {
 					8112000596, 8112000597, 8112000598, 8112000599, 8112000600, 8112000601, 8112000602, 8112000603
 				]
 			}
+		},
+		bosses: {
+			// Bosses are not implemented in Archipelago yet — manual-only, panel hides when AP is connected
+			goomba_king: { name: 'Goomba King', enabled: true, max: 1 },
+			koopa_bros: { name: 'Koopa Bros.', enabled: true, max: 1 },
+			tutankoopa: { name: 'Tutankoopa', enabled: true, max: 1 },
+			tubba_blubba: { name: 'Tubba Blubba', enabled: true, max: 1 },
+			general_guy: { name: 'General Guy', enabled: true, max: 1 },
+			lava_piranha: { name: 'Lava Piranha', enabled: true, max: 1 },
+			huff_n_puff: { name: 'Huff N. Puff', enabled: true, max: 1 },
+			crystal_king: { name: 'Crystal King', enabled: true, max: 1 },
+			bowser: { name: 'Bowser', enabled: true, max: 1 }
 		},
 		partners: {
 			goombario: {
@@ -174,6 +187,12 @@ export const useTrackerStore = defineStore('tracker', () => {
 				}
 			},
 			chapter2: {
+				lemon: {
+					name: 'Lemon (give to Sheek)',
+					enabled: true,
+					max: 1,
+					required: false
+				},
 				parakarry_letters: {
 					name: "Parakarry's Letters",
 					enabled: true,
@@ -305,7 +324,7 @@ export const useTrackerStore = defineStore('tracker', () => {
 					enabled: true,
 					max: 1,
 					required: true,
-					ap: [8112000193, 8112000170, 8112000698]
+					ap: [8112000193, 8112000170]
 				},
 				cookbook: {
 					name: 'Cookbook',
@@ -999,6 +1018,10 @@ export const useTrackerStore = defineStore('tracker', () => {
 				enabled: true,
 				type: 'switch'
 			},
+			shuffle_bosses: {
+				enabled: true,
+				type: 'switch'
+			},
 			star_hunt_enabled: {
 				enabled: true,
 				type: 'switch'
@@ -1136,6 +1159,10 @@ export const useTrackerStore = defineStore('tracker', () => {
 				type: 'switch'
 			},
 			cook_without_frying_pan: {
+				enabled: true,
+				type: 'switch'
+			},
+			puzzles_randomized: {
 				enabled: true,
 				type: 'switch'
 			}
@@ -1297,6 +1324,16 @@ export const useTrackerStore = defineStore('tracker', () => {
 			},
 			notes: {
 				tooltip: 'Shows a widget to take notes.',
+				enabled: true,
+				type: 'switch'
+			},
+			ap_hints: {
+				tooltip: 'Shows the Archipelago hints panel when connected to an AP server.',
+				enabled: true,
+				type: 'switch'
+			},
+			ap_activity: {
+				tooltip: 'Shows the Archipelago recent activity feed when connected to an AP server.',
 				enabled: true,
 				type: 'switch'
 			}

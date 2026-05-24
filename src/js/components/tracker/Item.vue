@@ -1,7 +1,7 @@
 <template>
 	<div
 		class="relative flex items-center justify-center cursor-pointer"
-		:class="size"
+		:class="[size, { 'ready-pulse rounded-md': readyToComplete }]"
 		v-tooltip="save.data.configs.tracker.deactivate_items_tooltips ? null : { content: itemName, delay: { show: tooltipDelay } }">
 		<img
 			class="h-full w-auto"
@@ -14,6 +14,7 @@
 			<img class="absolute bottom-0 h-[15px]" :class="[`right-level${i}`]" src="/images/partners/partner_level.webp" />
 		</template>
 		<img v-if="imageFolder == 'stars' && stars_dungeon_shuffle_images" class="absolute top-0 left-0 h-[20px]" :src="`/images/stars/${stars_dungeon_shuffle_images}.webp`" />
+		<img v-if="imageFolder == 'bosses' && bosses_boss_shuffle_images" class="absolute top-0 left-0 h-[20px]" :src="`/images/bosses/${bosses_boss_shuffle_images}.webp`" />
 		<p v-if="imageFolder == 'stars' && save.data.items[`${itemKey}_difficulty`]" class="absolute w-fit whitespace-nowrap bottom-[-10px] right-0">{{ save.data.items[`${itemKey}_difficulty`] }}</p>
 		<font-awesome-icon v-if="imageFolder == 'stars' && save.data.items[`${itemKey}_chapter_disabled`]" class="absolute text-red-600 z-10 top-0 right-0" :icon="['fas', 'ban']" />
 		<p
@@ -60,8 +61,10 @@
 <script setup>
 import { computed } from 'vue';
 import { useSaveStore } from '../../stores/save';
+import { useLogicStore } from '../../stores/logic';
 
 const save = useSaveStore();
+const logic = useLogicStore();
 
 const props = defineProps({
 	tooltipDelay: {
@@ -114,6 +117,74 @@ const stars_dungeon_shuffle_images = computed(() => {
 	}
 });
 
+const starChapterMap = { eldstar: 1, mamar: 2, skolar: 3, muskular: 4, misstar: 5, klevar: 6, kalmar: 7 };
+
+// Koopa Koot's favor delivery sequence (vanilla PM64 order). Crystal Ball is excluded —
+// it's a Merluvlee→Merlee item, not part of the Koot chain.
+const kootFavorOrder = [
+	'koopa_legends',
+	'sleepy_sheep',
+	'tape',
+	'koopa_tea',
+	'luigi_autograph',
+	'empty_wallet',
+	'tasty_tonic',
+	'merluvlee_autograph',
+	'life_shroom',
+	'nutty_cake',
+	'old_photo',
+	'koopasta',
+	'glasses',
+	'lime',
+	'kooky_cookie',
+	'package',
+	'coconut',
+	'red_jar'
+];
+
+const readyToComplete = computed(() => {
+	if (props.imageFolder === 'stars' && starChapterMap[props.itemKey]) {
+		return logic.flags.can_complete_chapter(starChapterMap[props.itemKey]);
+	}
+	if (props.imageFolder === 'koopa_koot_favors') {
+		const hasItem = !!save.data.items.koopa_koot_favors?.[props.itemKey];
+		if (!hasItem) return false;
+		const alreadyTurnedIn = save.data.items.hand_ins?.koopa_koot_favors?.[props.itemKey] >= 1;
+		if (alreadyTurnedIn) return false;
+		if (!logic.flags.koopa_village() || !logic.flags.can_koot()) return false;
+
+		// Koot accepts favors strictly in order — gate on all earlier favors being delivered.
+		// Items outside the sequence (e.g. Crystal Ball, which is for Merlee, not Koot) don't get the highlight.
+		const idx = kootFavorOrder.indexOf(props.itemKey);
+		if (idx === -1) return false;
+		for (let i = 0; i < idx; i++) {
+			const prev = kootFavorOrder[i];
+			if (!(save.data.items.hand_ins?.koopa_koot_favors?.[prev] >= 1)) return false;
+		}
+		return true;
+	}
+	return false;
+});
+
+const bosses_boss_shuffle_images = computed(() => {
+	if (props.imageFolder == 'bosses') {
+		return {
+			0: null,
+			1: 'goomba_king',
+			2: 'koopa_bros',
+			3: 'tutankoopa',
+			4: 'tubba_blubba',
+			5: 'general_guy',
+			6: 'lava_piranha',
+			7: 'huff_n_puff',
+			8: 'crystal_king',
+			9: 'bowser'
+		}[save.data.items[`${props.itemKey}_boss_shuffle`]];
+	} else {
+		return null;
+	}
+});
+
 const showMerlow = computed(() => {
 	if (save.data.merlow_items !== undefined) {
 		if (props.imageFolder == 'koopa_koot_favors' || props.imageFolder == 'letters') {
@@ -128,3 +199,10 @@ const showMerlow = computed(() => {
 	return false;
 });
 </script>
+
+<style scoped>
+.ready-pulse {
+	/* Tailwind sky-500 = rgb(14, 165, 233) */
+	box-shadow: 0 0 0 2px rgb(14, 165, 233);
+}
+</style>

@@ -4,6 +4,22 @@ import { VitePWA } from 'vite-plugin-pwa';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+	server: {
+		watch: {
+			usePolling: true,
+			interval: 300
+		}
+	},
+	build: {
+		rolldownOptions: {
+			output: {
+				manualChunks(id) {
+					if (id.includes('node_modules/archipelago.js')) return 'archipelago';
+					if (id.includes('node_modules')) return 'vendor';
+				}
+			}
+		}
+	},
 	plugins: [
 		vue(),
 		VitePWA({
@@ -61,7 +77,7 @@ export default defineConfig({
 				]
 			},
 			devOptions: {
-				enabled: true
+				enabled: false
 			}
 		})
 	]

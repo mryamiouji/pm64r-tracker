@@ -207,6 +207,28 @@
 									</template>
 								</div>
 							</template>
+							<template v-if="grid_item.i == 'bosses'">
+								<h2>Bosses</h2>
+								<div
+									class="flex flex-wrap mt-3"
+									:class="[
+										`gap-x-${save.data.configs.tracker.item_gap !== undefined ? save.data.configs.tracker.item_gap : 0.5}`,
+										`gap-y-${save.data.configs.tracker.item_gap !== undefined ? save.data.configs.tracker.item_gap + 1.5 : 2}`
+									]">
+									<template v-for="(trackerItemConfigs, trackerItemKey) in tracker.items.bosses" :key="trackerItemKey">
+										<Item
+											v-if="trackerItemConfigs.enabled && !save.data.configs.invisible_items[grid_item.i][trackerItemKey]"
+											@click="trackerLeftClick($event, trackerItemKey, trackerItemConfigs)"
+											@contextmenu="trackerRightClick($event, trackerItemKey, trackerItemConfigs)"
+											:itemName="trackerItemConfigs.name"
+											:itemKey="trackerItemKey"
+											imageFolder="bosses"
+											:itemCount="save.data.items[trackerItemKey]"
+											:itemCountMax="trackerItemConfigs.max"
+											:initial="trackerItemConfigs.initial" />
+									</template>
+								</div>
+							</template>
 							<template v-if="grid_item.i == 'partners'">
 								<h2>Partners</h2>
 								<div
@@ -474,7 +496,7 @@
 												]">
 												<template v-for="(trackerItemConfigs, trackerItemKey) in tracker.items.items.chapter2" :key="trackerItemKey">
 													<Item
-														v-if="trackerItemConfigs.enabled && !save.data.configs.invisible_items['items']['chapter2'][trackerItemKey]"
+														v-if="trackerItemConfigs.enabled && !save.data.configs.invisible_items['items']['chapter2'][trackerItemKey] && (trackerItemKey !== 'lemon' || save.data.configs.logic.puzzles_randomized)"
 														@click="trackerLeftClick($event, trackerItemKey, trackerItemConfigs)"
 														@contextmenu="trackerRightClick($event, trackerItemKey, trackerItemConfigs)"
 														:itemName="trackerItemConfigs.name"
@@ -725,7 +747,7 @@
 									]">
 									<template v-for="(trackerItemConfigs, trackerItemKey) in tracker.items.items.chapter2" :key="trackerItemKey">
 										<Item
-											v-if="trackerItemConfigs.enabled && !save.data.configs.invisible_items['items'][grid_item.i][trackerItemKey]"
+											v-if="trackerItemConfigs.enabled && !save.data.configs.invisible_items['items'][grid_item.i][trackerItemKey] && (trackerItemKey !== 'lemon' || save.data.configs.logic.puzzles_randomized)"
 											@click="trackerLeftClick($event, trackerItemKey, trackerItemConfigs)"
 											@contextmenu="trackerRightClick($event, trackerItemKey, trackerItemConfigs)"
 											:itemName="trackerItemConfigs.name"
@@ -1081,11 +1103,63 @@
 								<h2>Notes</h2>
 								<textarea class="text-white w-full h-full !font-serif bg-sky-700 p-1" v-model="save.data.notes"></textarea>
 							</template>
+							<template v-if="grid_item.i == 'ap_activity' && ap.state.connected">
+								<div class="flex items-center justify-between gap-3">
+									<h2>Recent activity</h2>
+									<button
+										type="button"
+										class="w-8 h-8 flex items-center justify-center rounded-md bg-sky-800 hover:bg-sky-700 text-white transition-colors"
+										v-tooltip="{ content: 'Activity filters', delay: { show: 0 } }"
+										@click="activitySettingsModalVisible = true">
+										<font-awesome-icon :icon="['fas', 'filter']" />
+									</button>
+								</div>
+								<div class="overflow-y-auto mt-2" style="max-height: calc(100% - 40px)">
+									<p v-if="!filteredActivity.length" class="text-sm opacity-70">Nothing yet.</p>
+									<div v-for="(entry, entryIndex) in filteredActivity" :key="entryIndex" class="text-sm border-b border-sky-800 py-1">
+										<span v-if="entry.kind === 'item'" class="text-emerald-300">+ {{ entry.name }}</span>
+										<span v-else class="text-amber-300">✓ {{ entry.name }}</span>
+										<span v-if="entry.from" class="text-xs opacity-70"> from {{ entry.from }}</span>
+									</div>
+								</div>
+							</template>
 							<template v-if="grid_item.i == 'ap_hints' && ap.state.connected">
 								<h2>Archipelago hints</h2>
-								<div class="flex justify-between">
+								<div class="flex justify-between mt-1">
 									<p>Points: {{ ap.state.hints.points }}</p>
 									<p>Cost: {{ ap.state.hints.cost }}</p>
+								</div>
+								<div class="flex gap-2 mt-2">
+									<input
+										class="flex-1 rounded-md px-2 text-sm text-black disabled:opacity-50 disabled:cursor-not-allowed"
+										type="text"
+										list="ap-item-suggestions"
+										:placeholder="ap.state.hints.points < ap.state.hints.cost ? 'Not enough points' : 'Item name (e.g. Star Beam)'"
+										:disabled="ap.state.hints.points < ap.state.hints.cost"
+										v-model="hintRequestInput"
+										@keyup.enter="requestApHint()" />
+									<button
+										class="bg-sky-800 hover:bg-sky-700 rounded-md px-3 text-sm disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-sky-800"
+										type="button"
+										:disabled="ap.state.hints.points < ap.state.hints.cost"
+										@click="requestApHint()">
+										Get hint
+									</button>
+								</div>
+								<datalist id="ap-item-suggestions">
+									<option v-for="name in ap.state.itemNames" :key="name" :value="name" />
+								</datalist>
+								<div class="overflow-y-auto mt-3" style="max-height: calc(100% - 110px)">
+									<p v-if="!ap.state.hints.list.length" class="text-sm opacity-70">No hints yet.</p>
+									<div
+										v-for="(hint, hintIndex) in ap.state.hints.list"
+										:key="hintIndex"
+										class="text-sm border-b border-sky-800 py-1"
+										:class="{ 'opacity-50 line-through': hint.found || hint.userChecked, 'cursor-pointer hover:bg-sky-900': !hint.found }"
+										@click="ap.toggleHintUserCheck(hint)">
+										<p><span class="font-bold">{{ hint.itemName }}</span> is at <span class="italic">{{ hint.locationName }}</span></p>
+										<p class="text-xs opacity-80">{{ hint.sendingPlayer }} &rarr; {{ hint.receivingPlayer }}</p>
+									</div>
 								</div>
 							</template>
 						</div>
@@ -1287,11 +1361,11 @@
 				</p>
 				<p>
 					Works on
-					<a href="https://github.com/ArchipelagoMW/Archipelago/releases/tag/0.5.1" target="_blank">Archipelago version 0.5.1</a>
+					<a href="https://github.com/ArchipelagoMW/Archipelago/releases/tag/0.6.6" target="_blank">Archipelago version 0.6.6</a>
 					or greater.
 					<br />
 					Need version
-					<a href="https://github.com/JKBSunshine/PMR_APWorld/releases/tag/v0.5.0" target="_blank">0.5.0 of the APWorld</a>
+					<a href="https://github.com/JKBSunshine/PMR_APWorld/releases/tag/v0.6.4" target="_blank">0.6.4 of the APWorld</a>
 					or greater.
 				</p>
 				<p>If you have a game to load, connect first, then load.</p>
@@ -1518,6 +1592,30 @@
 			</template>
 		</Modal>
 
+		<!-- Activity filters Modal -->
+		<Modal :show="activitySettingsModalVisible" @onClose="activitySettingsModalVisible = false">
+			<p class="text-2xl mb-4">Recent activity filters</p>
+			<div class="flex flex-col gap-3">
+				<div class="flex items-center justify-between gap-3">
+					<p class="text-emerald-300">+ Items received</p>
+					<div class="flex items-center">
+						<input id="filter_items" type="checkbox" v-model="save.data.configs.tracker.ap_activity_show_items" />
+						<label for="filter_items" />
+					</div>
+				</div>
+				<div class="flex items-center justify-between gap-3">
+					<p class="text-amber-300">✓ Locations checked</p>
+					<div class="flex items-center">
+						<input id="filter_locations" type="checkbox" v-model="save.data.configs.tracker.ap_activity_show_locations" />
+						<label for="filter_locations" />
+					</div>
+				</div>
+			</div>
+			<div class="mt-6 flex justify-end">
+				<button class="bg-sky-800 hover:bg-sky-700 rounded-md px-4 py-2" type="button" @click="activitySettingsModalVisible = false">Close</button>
+			</div>
+		</Modal>
+
 		<!-- Tutorial Modal -->
 		<Modal :show="tutorialModalVisible" @onClose="tutorialModalVisible = false" :large="true">
 			<div class="about">
@@ -1550,6 +1648,7 @@
 					<p>Right click on the map tracker: Checks all the available checks of the map</p>
 					<p>Ctrl + Left click on stars: Increment the difficulty marker on the stars</p>
 					<p>Shift + Left click on stars: Increment the dungeon shuffle on the stars</p>
+					<p>Shift + Left click on bosses: Increment the boss shuffle on the bosses</p>
 					<p>Shift + Left click on the items: Mark the item as handed the the final NPC</p>
 					<p>Shift + Right click on items: Mark the item as a Merlow's reward</p>
 					<p>Middle mouse click: Mark chapter as disabled (Limited Chapter Logic)</p>
@@ -1574,9 +1673,23 @@
 					<a href="https://discord.gg/4Z5G69ZNJg" target="_blank">PMR Discord</a>
 					in the channel "Discussion & Support > pmr-tracker".
 				</p>
+				<p class="text-lg mt-3">Version 13</p>
+				<div class="ml-5">
+					<p>Fixed empty starting-location dropdown on new saves.</p>
+					<p>Added Bosses tracking.</p>
+					<p>Added Boss Shuffle: Shift + Left click on a boss cycles which boss landed at that slot.</p>
+					<p>Added a Shuffle Bosses toggle in the randomizer settings.</p>
+					<p>Archipelago: Fixed IDs.</p>
+					<p>Archipelago: Added 4 missing locations (Dry Dry Outpost shop items 2/4/5 + Star Sanctuary Gift of the Stars).</p>
+					<p>Archipelago: Fixed bug where every star chapter was disabled on connect when "require specific spirits" was off.</p>
+					<p>Archipelago: Hints panel now lets you request hints, see your hint list, and watch hints turn green-strikethrough as their locations get checked. Item-name autocomplete makes typing the request painless.</p>
+					<p>Archipelago: New Recent Activity feed shows items received and locations checked live, with timestamps.</p>
+					<p>Tracker settings: Added toggles to hide the Archipelago hints and activity panels.</p>
+					<p>Added puzzle shuffle logic.</p>
+				</div>
 				<p class="text-lg mt-3">Version 12</p>
 				<div class="ml-5">
-					<p>Archipelago: Fix IDs.</p>
+					<p>Archipelago: Fixed IDs.</p>
 				</div>
 				<p class="text-lg mt-3">Version 11</p>
 				<div class="ml-5">
@@ -1655,7 +1768,7 @@
 </template>
 
 <script setup>
-import { reactive, ref, watch } from 'vue';
+import { computed, reactive, ref, watch } from 'vue';
 
 import { useSaveStore } from '../stores/save';
 import { useTrackerStore } from '../stores/tracker';
@@ -1681,9 +1794,26 @@ const logicSettingsModalVisible = ref(false);
 const trackerSettingsModalVisible = ref(false);
 const disableItemsModalVisible = ref(false);
 const tutorialModalVisible = ref(false);
+const activitySettingsModalVisible = ref(false);
+
+const hintRequestInput = ref('');
+const requestApHint = () => {
+	ap.apAskHint(hintRequestInput.value);
+	hintRequestInput.value = '';
+};
+
+const filteredActivity = computed(() => {
+	const showItems = save.data.configs.tracker.ap_activity_show_items !== false;
+	const showLocations = save.data.configs.tracker.ap_activity_show_locations !== false;
+	return (save.data.ap_activity || []).filter((entry) => {
+		if (entry.kind === 'item') return showItems;
+		if (entry.kind === 'location') return showLocations;
+		return true;
+	});
+});
 
 const version = ref(localStorage.getItem('version'));
-const currentVersion = 12;
+const currentVersion = 13;
 
 if (version.value == null || version.value <= currentVersion) {
 	tutorialModalVisible.value = true;
@@ -1706,6 +1836,10 @@ const starMenuType = ref('difficulty');
 const _importSaveFileInput = ref(null);
 
 const trackerLeftClick = (event, key, configs, itemSubCategory = null) => {
+	// Suppress browser defaults for modifier-clicks (e.g., Ctrl+click opening a context menu on some setups)
+	if (event.ctrlKey || event.shiftKey) {
+		event.preventDefault();
+	}
 	if (event.ctrlKey) {
 		if (save.data.configs.tracker.star_menu_enabled) {
 			showStarMenu.eldstar = false;
@@ -1766,6 +1900,26 @@ const trackerLeftClick = (event, key, configs, itemSubCategory = null) => {
 				} else {
 					save.data.items[`${key}_dungeon_shuffle`]++;
 				}
+			}
+		} else if (
+			key == 'goomba_king' ||
+			key == 'koopa_bros' ||
+			key == 'tutankoopa' ||
+			key == 'tubba_blubba' ||
+			key == 'general_guy' ||
+			key == 'lava_piranha' ||
+			key == 'huff_n_puff' ||
+			key == 'crystal_king' ||
+			key == 'bowser'
+		) {
+			if (save.data.items[`${key}_boss_shuffle`] == undefined) {
+				save.data.items[`${key}_boss_shuffle`] = 0;
+			}
+
+			if (save.data.items[`${key}_boss_shuffle`] >= 9) {
+				save.data.items[`${key}_boss_shuffle`] = 0;
+			} else {
+				save.data.items[`${key}_boss_shuffle`]++;
 			}
 		} else {
 			if (save.data.items.hand_ins === undefined) {

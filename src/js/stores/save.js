@@ -66,6 +66,24 @@ export const useSaveStore = defineStore('save', () => {
 			kalmar_chapter_disabled: false,
 			starbeam: false,
 			starrod: false,
+			goomba_king: false,
+			koopa_bros: false,
+			tutankoopa: false,
+			tubba_blubba: false,
+			general_guy: false,
+			lava_piranha: false,
+			huff_n_puff: false,
+			crystal_king: false,
+			bowser: false,
+			goomba_king_boss_shuffle: 0,
+			koopa_bros_boss_shuffle: 0,
+			tutankoopa_boss_shuffle: 0,
+			tubba_blubba_boss_shuffle: 0,
+			general_guy_boss_shuffle: 0,
+			lava_piranha_boss_shuffle: 0,
+			huff_n_puff_boss_shuffle: 0,
+			crystal_king_boss_shuffle: 0,
+			bowser_boss_shuffle: 0,
 			goombario: 0,
 			kooper: 0,
 			bombette: 0,
@@ -83,6 +101,7 @@ export const useSaveStore = defineStore('save', () => {
 			sushie_rank: 0,
 			lakilester_rank: 0,
 			ultra_stone: false,
+			lemon: false,
 			boots: 0,
 			hammer: 0,
 			dolly: false,
@@ -195,7 +214,9 @@ export const useSaveStore = defineStore('save', () => {
 			hand_ins: {}
 		},
 		merlow_items: {},
-		checks: {}
+		checks: {},
+		ap_activity: [],
+		user_checked_hints: {}
 	});
 
 	const defaultRandomizerConfigs = {
@@ -210,7 +231,8 @@ export const useSaveStore = defineStore('save', () => {
 		gear_shuffle: 'vanilla',
 		shuffle_dungeon_entrances: false,
 		magical_seed_required: 4,
-		starting_location: 65796,
+		starting_location: null,
+		shuffle_bosses: false,
 		star_hunt_enabled: false,
 		star_hunt_star_count: 120,
 		star_hunt_ends_game: false
@@ -242,7 +264,8 @@ export const useSaveStore = defineStore('save', () => {
 		dojo_randomized: false,
 		trading_event_randomized: false,
 		limit_chapter_logic: false,
-		cook_without_frying_pan: false
+		cook_without_frying_pan: false,
+		puzzles_randomized: false
 	};
 
 	const defaultTrackerConfigs = {
@@ -260,11 +283,14 @@ export const useSaveStore = defineStore('save', () => {
 		compact_item_show_favors: false,
 		compact_item_show_trading_events: false,
 		compact_items_per_chapters: false,
-		compact_items_per_chapters: false,
 		competitive_mode: false,
 		missing_items_in_grayscale: false,
 		deactivate_items_tooltips: false,
-		notes: false
+		notes: false,
+		ap_hints: true,
+		ap_activity: true,
+		ap_activity_show_items: true,
+		ap_activity_show_locations: true
 	};
 
 	const resetTrackerConfigs = () => {
@@ -322,11 +348,32 @@ export const useSaveStore = defineStore('save', () => {
 			defaultSaveClone.items.misstar_chapter_disabled = currentSave.items.misstar_chapter_disabled;
 			defaultSaveClone.items.klevar_chapter_disabled = currentSave.items.klevar_chapter_disabled;
 			defaultSaveClone.items.kalmar_chapter_disabled = currentSave.items.kalmar_chapter_disabled;
-			defaultSaveClone.items.starbeam = currentSave.items.starbeam; //TODO: Remove when starbeam auto check is working
 			defaultSaveClone.items.starrod = currentSave.items.starrod;
+			defaultSaveClone.items.goomba_king = currentSave.items.goomba_king;
+			defaultSaveClone.items.koopa_bros = currentSave.items.koopa_bros;
+			defaultSaveClone.items.tutankoopa = currentSave.items.tutankoopa;
+			defaultSaveClone.items.tubba_blubba = currentSave.items.tubba_blubba;
+			defaultSaveClone.items.general_guy = currentSave.items.general_guy;
+			defaultSaveClone.items.lava_piranha = currentSave.items.lava_piranha;
+			defaultSaveClone.items.huff_n_puff = currentSave.items.huff_n_puff;
+			defaultSaveClone.items.crystal_king = currentSave.items.crystal_king;
+			defaultSaveClone.items.bowser = currentSave.items.bowser;
+			defaultSaveClone.items.goomba_king_boss_shuffle = currentSave.items.goomba_king_boss_shuffle;
+			defaultSaveClone.items.koopa_bros_boss_shuffle = currentSave.items.koopa_bros_boss_shuffle;
+			defaultSaveClone.items.tutankoopa_boss_shuffle = currentSave.items.tutankoopa_boss_shuffle;
+			defaultSaveClone.items.tubba_blubba_boss_shuffle = currentSave.items.tubba_blubba_boss_shuffle;
+			defaultSaveClone.items.general_guy_boss_shuffle = currentSave.items.general_guy_boss_shuffle;
+			defaultSaveClone.items.lava_piranha_boss_shuffle = currentSave.items.lava_piranha_boss_shuffle;
+			defaultSaveClone.items.huff_n_puff_boss_shuffle = currentSave.items.huff_n_puff_boss_shuffle;
+			defaultSaveClone.items.crystal_king_boss_shuffle = currentSave.items.crystal_king_boss_shuffle;
+			defaultSaveClone.items.bowser_boss_shuffle = currentSave.items.bowser_boss_shuffle;
 
 			defaultSaveClone.items.rip_cheato = currentSave.items.rip_cheato;
 			defaultSaveClone.items.chuck_quizmo = currentSave.items.chuck_quizmo;
+
+			// Preserve the AP activity feed across reconnects / item-receive resets
+			defaultSaveClone.ap_activity = currentSave.ap_activity;
+			defaultSaveClone.user_checked_hints = currentSave.user_checked_hints;
 		}
 
 		if (noChecks) {
@@ -382,9 +429,15 @@ export const useSaveStore = defineStore('save', () => {
 		) {
 			let randomizer_seed = currentSave.randomizer_seed;
 			const pmr_endpoint = 'https://paper-mario-randomizer-server.ue.r.appspot.com/randomizer_settings/';
-			axios.get(pmr_endpoint + currentSave.randomizer_seed).then((response) => {
-				let randomizerData = response.data;
-				console.log(randomizerData);
+			fetch(pmr_endpoint + currentSave.randomizer_seed)
+				.then((response) => {
+					if (!response.ok) {
+						throw new Error(`Failed to load seed: HTTP ${response.status}`);
+					}
+					return response.json();
+				})
+				.then((randomizerData) => {
+					console.log(randomizerData);
 
 				resetConfigs();
 				resetSave();
@@ -858,6 +911,19 @@ export const useSaveStore = defineStore('save', () => {
 
 		if (save) {
 			Object.assign(currentSave, JSON.parse(save));
+			// Fill in any randomizer config defaults missing from the persisted save
+			for (const [key, value] of Object.entries(defaultRandomizerConfigs)) {
+				if (currentSave.configs.randomizer[key] === undefined) {
+					currentSave.configs.randomizer[key] = value;
+				}
+			}
+			// Same for tracker configs (so newly added toggles render correctly for old saves)
+			if (currentSave.configs.tracker === undefined) currentSave.configs.tracker = {};
+			for (const [key, value] of Object.entries(defaultTrackerConfigs)) {
+				if (currentSave.configs.tracker[key] === undefined) {
+					currentSave.configs.tracker[key] = value;
+				}
+			}
 		} else {
 			resetSave();
 			resetConfigs();
